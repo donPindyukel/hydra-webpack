@@ -3,10 +3,11 @@
 // ==========================================================================
 
 @import "../../bower_components/normalize-css/normalize";
-@import "partials/untils";
+
+@import "default/untils";
 
 // Глобальные настройки
-@import "partials/variables";
+@import "default/variables";
 
 //
 // Компоненты
@@ -14,6 +15,7 @@
 
 @import "../../bower_components/susy/sass/susy";
 @import "components/mixins";
+@import "components/typography";
 @import "components/grid";
 @import "components/modal";
 @import "components/button";

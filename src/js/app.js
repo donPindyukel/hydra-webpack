@@ -8,9 +8,10 @@
 // Компоненты
 //
 
-
+//@include('components/modal.js')
 
 //
 // Сторонний код
 //
 
+//@include('partials/main.js')

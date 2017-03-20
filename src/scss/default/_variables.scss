@@ -2,6 +2,35 @@
 // Глобальные переменные и настройки
 // ==========================================================================
 
+// Стандартный размер текста на сайте
+$font-size-normal: rem(16px);
+
+// Размеры заголовков
+$font-size-h1: rem(48px);
+$font-size-h2: rem(40px);
+$font-size-h3: rem(31px);
+$font-size-h4: rem(25px);
+$font-size-h5: rem(20px);
+$font-size-h6: rem(16px);
+
+// Шрифты для текста
+$font-family-normal: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+
+// Шрифты для заголовка
+$font-family-headers: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+
+// Цвет стандартного шрифта
+$color-text-normal: #000000;
+
+// Цвет инвертированного шрифта
+$color-text-invert: #ffffff;
+
+// Цвет ссылок
+$color-link-normal: #000000;
+
+// Подчеркивание ссылок
+$link-option-text-decoration: true;
+
 //
 // Адаптивность
 //

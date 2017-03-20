@@ -26,6 +26,7 @@
     text-decoration: none;
 
     @include hover {
+        color: $color-text;
         text-decoration: none;
         background: $color-bg-hover;
         border: $button-border-size $color-border-hover;
@@ -36,6 +37,7 @@
     }
 
     @include focus {
+        color: $color-text;
         text-decoration: none;
         background: $color-bg-hover;
         border: $button-border-size $color-border-hover;

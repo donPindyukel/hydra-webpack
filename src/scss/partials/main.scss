@@ -25,3 +25,11 @@
         @include modal-body($border-radius: 0);
     }
 }
+
+h1 {
+    @include typography-h($font-size: $font-size-h1)
+}
+
+a {
+    @include typography-a();
+}
