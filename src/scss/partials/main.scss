@@ -1,0 +1,27 @@
+//
+// Для теста
+//
+
+.button {
+    @include button(#ffffff, red, red, rgba(0, 0, 0, 0.2));
+}
+
+.container {
+    @include container(80rem);
+}
+
+.grid {
+    @include grid(3);
+
+    @include media(mobile) {
+        @include grid(6);
+    }
+}
+
+.modal {
+    @include modal-overlay(#000);
+
+    .modal-container {
+        @include modal-body($border-radius: 0);
+    }
+}

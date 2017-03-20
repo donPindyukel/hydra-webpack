@@ -1,0 +1,41 @@
+// ==========================================================================
+// Вспомогательные миксины
+// ==========================================================================
+
+// Наведение на элемент
+@mixin hover {
+    &:hover,
+    .hover {
+        @content
+    }
+}
+
+// Фокус на элемент
+@mixin focus {
+    &:focus,
+    .focus {
+        @content
+    }
+}
+
+// Медиа запросы
+// Параметры для передачи - mobile, notebook, desktop
+@mixin media($val) {
+    @if ($val == mobile) {
+        @media screen and (min-width: 0) and (max-width: $adaptive-width-mobile) {
+            @content
+        }
+    }
+
+    @if ($val == notebook) {
+        @media screen and (min-width: $adaptive-width-mobile) and (max-width: $adaptive-width-notebook) {
+            @content
+        }
+    }
+
+    @if ($val == desktop) {
+        @media screen and (min-width: $adaptive-width-notebook) and (max-width: $adaptive-width-desktop) {
+            @content
+        }
+    }
+}

@@ -1,0 +1,68 @@
+// ==========================================================================
+// Глобальные переменные и настройки
+// ==========================================================================
+
+//
+// Адаптивность
+//
+
+// Активация адаптивности
+$adaptive-option-enable: true;
+
+// Мобильные устройства
+$adaptive-width-mobile: rem(640px);
+
+// Ноутбуки
+$adaptive-width-notebook: rem(1500px);
+
+// Мониторы
+$adaptive-width-desktop: rem(1980px);
+
+//
+// Компонент - сетка
+//
+
+$grid-option-debug: false;
+
+// Параметры сетки susy
+$susy: (
+        columns: 12,
+        gutters: .25,
+        gutter-position: outside,
+);
+
+//
+// Компонент - кнопка
+//
+
+// Закругление краев
+$button-border-radius: rem(2px);
+
+// Внутренние отступы
+$button-padding: rem(6px) rem(15px);
+
+// Размер обводки у кнопки
+$button-border-size: rem(1px) solid;
+
+// Тень кнопки
+$button-option-shadow: true;
+$button-shadow-size: rem(1px) rem(1px) rem(1px);
+
+//
+// Компонент - модальное окно
+//
+
+// Цвет оверлея
+$modal-color-overlay: rgba(0, 0, 0, 0.3);
+
+// Цвет фона модального окна
+$modal-color-bg: #FFFFFF;
+
+// Ширина модального окна
+$modal-max-width: rem(500px);
+
+// Внутренний отступ модального окна
+$modal-padding: rem(20px);
+
+// Закругление краев
+$modal-border-radius: rem(6px);

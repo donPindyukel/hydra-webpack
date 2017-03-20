@@ -1,0 +1,47 @@
+// ==========================================================================
+// Компонент кнопки
+// ==========================================================================
+
+@mixin button($color-text, $color-bg, $color-border, $color-shadow) {
+    $color-bg-hover: darken($color-bg, 10%);
+    $color-border-hover: darken($color-border, 10%);
+    $color-shadow-hover: darken($color-shadow, 10%);
+
+    color: $color-text;
+    background: $color-bg;
+    border: $button-border-size $color-border;
+    border-radius: $button-border-radius;
+    padding: $button-padding;
+
+    @if ($button-option-shadow) {
+        box-shadow: $button-shadow-size $color-shadow;
+    }
+
+    transition: all .2s linear;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    text-decoration: none;
+
+    @include hover {
+        text-decoration: none;
+        background: $color-bg-hover;
+        border: $button-border-size $color-border-hover;
+
+        @if ($button-option-shadow) {
+            box-shadow: $button-shadow-size $color-shadow-hover;
+        }
+    }
+
+    @include focus {
+        text-decoration: none;
+        background: $color-bg-hover;
+        border: $button-border-size $color-border-hover;
+
+        @if ($button-option-shadow) {
+            box-shadow: $button-shadow-size $color-shadow-hover;
+        }
+    }
+}
