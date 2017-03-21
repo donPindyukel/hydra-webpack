@@ -8,23 +8,34 @@
  * @returns {Element}
  */
 function el(actor) {
-    return new Element(actor);
+    let elm = new Element(actor);
+    elm.initAll();
+    return elm;
 }
 
 
 class Element {
 
     constructor(actor) {
-        this.name = actor;
-        this.countElements = 0;
+        this.actor = null;
+        this.all = [];
 
-        if (document.querySelectorAll(actor).length > 1) {
-            this.countElements = document.querySelectorAll(actor).length;
-            this.actor = document.querySelectorAll(actor);
-        }
+        if (typeof actor == 'object')
+            this.actor = actor;
         else {
-            this.countElements = 1;
+            this.name = actor;
             this.actor = document.querySelector(actor);
+        }
+
+        return this;
+    }
+
+    initAll() {
+        let allList = document.querySelectorAll(this.name);
+        for (let i = 0; i < allList.length; i++) {
+            let elm = new Element(allList[i]);
+            elm.name = this.name;
+            this.all.push(elm);
         }
     }
 
@@ -36,14 +47,14 @@ class Element {
      * Добавить новый класс
      * @param name
      */
-    addClass(name) {
-        if (this.countElements == 1) {
+    addClass(name, all = false) {
+        if (!all) {
             this.actor.classList.add(name);
         }
         else {
-            for (let i = 0; i < this.actor.length; i++) {
-                this.actor[i].classList.add(name);
-            }
+            this.each(function (e) {
+                e.actor.classList.add(name);
+            });
         }
     }
 
@@ -51,36 +62,26 @@ class Element {
      * Удалить класс из списка классов
      * @param name
      */
-    removeClass(name) {
-        if (this.countElements == 1) {
+    removeClass(name, all = false) {
+        if (!all) {
             this.actor.classList.remove(name);
         }
         else {
-            for (let i = 0; i < this.actor.length; i++) {
-                this.actor[i].classList.remove(name);
-            }
+            this.each(function (e) {
+                e.actor.classList.remove(name);
+            });
         }
     }
 
     /**
-     * Проверяет наличие класса в элементах
+     * Проверяет наличие класса у элемента
      * @param name
      * @returns {boolean}
      */
     hasClass(name) {
-        if (this.countElements == 1) {
-            for (let i = 0; i < this.actor.classList.length; i++) {
-                if (this.actor.classList[i] == name)
-                    return true;
-            }
-        }
-        else {
-            for (let i = 0; i < this.actor.length; i++) {
-                for (let c = 0; c < this.actor[i].classList.length; c++) {
-                    if (this.actor[i].classList[c] == name)
-                        return true;
-                }
-            }
+        for (let i = 0; i < e.actor.classList.length; i++) {
+            if (e.actor.classList[i] == name)
+                return true;
         }
         return false;
     }
@@ -89,8 +90,22 @@ class Element {
     // Работа с аттрибутами
     //
 
+    /**
+     * Получаем содержимое аттрибута DATA-*
+     * @param name
+     * @returns {string}
+     */
     data(name) {
         return this.actor.getAttribute("data-" + name);
+    }
+
+    /**
+     * Проверяем наличие аттрибута DATA-*
+     * @param name
+     * @returns {boolean}
+     */
+    hasData(name) {
+        return this.data(name) != null;
     }
 
     //
@@ -101,18 +116,32 @@ class Element {
      * Событие клика по элементу
      * @param func
      */
-    clickEvent(func) {
-        if (this.countElements == 1) {
+    eventClick(func, all = false) {
+        if (!all) {
             this.actor.onclick = () => {
-                func();
+                func(this);
             }
         }
         else {
-            for (let i = 0; i < this.actor.length; i++) {
-                this.actor[i].onclick = () => {
-                    func();
+            this.each(function (e) {
+                e.actor.onclick = () => {
+                    func(e);
                 }
-            }
+            });
+        }
+    }
+
+    //
+    // Вспомогательный функционал
+    //
+
+    /**
+     * Облегченный цикл для работы с элементами
+     * @param func
+     */
+    each(func) {
+        for (let i = 0; i < this.all.length; i++) {
+            func(this.all[i]);
         }
     }
 

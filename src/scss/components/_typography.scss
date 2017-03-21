@@ -84,8 +84,7 @@
 
     @if ($text-decoration) {
         text-decoration: underline;
-    }
-    @else {
+    } @else {
         text-decoration: none;
     }
 
@@ -94,8 +93,7 @@
 
         @if ($text-decoration) {
             text-decoration: underline;
-        }
-        @else {
+        } @else {
             text-decoration: none;
         }
     }
@@ -105,8 +103,7 @@
 
         @if ($text-decoration) {
             text-decoration: underline;
-        }
-        @else {
+        } @else {
             text-decoration: none;
         }
     }

@@ -2,12 +2,17 @@
 // Для теста
 //
 
-let modal = modal('.modal');
 
-el('.open').clickEvent(function () {
-    modal.show('.modal-main');
+let elm = el_button('.button');
+
+let modalWindow = el_modal('.modal');
+
+el('.open').eventClick(function () {
+    modalWindow.show();
 });
 
-el('.close').clickEvent(function () {
-    modal.hide('.modal-main');
+el('.close').eventClick(function () {
+    modalWindow.hide();
 });
+
+

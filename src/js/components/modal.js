@@ -4,45 +4,34 @@
 
 /**
  * Точка входа в модальное окно
- * @param name
- * @returns {Modal}
+ * @param actor
+ * @returns {ElModal}
  */
-function modal(name) {
-    return new Modal(actor);
+function el_modal(actor) {
+    let elm = new ElModal(actor);
+    elm.initAll();
+    return elm;
 }
 
 
-class Modal extends Element {
+class ElModal extends Element {
 
-    constructor(globalClass) {
-        super(globalClass);
-        this.globalClass = el(globalClass);
+    constructor(actor) {
+        super(actor);
     }
 
     /**
-     * Показать модальное окно по названию класса или id
-     * @param target
+     * Показать модальное окно
      */
-    show(target) {
-        this.hideAll();
-        let actor = el(target);
-        actor.addClass('show');
+    show() {
+        this.addClass('show');
     }
 
     /**
-     * Скрыть модальное окно по названию класса или id
-     * @param target
+     * Скрыть модальное окно
      */
-    hide(target) {
-        let actor = el(target);
-        actor.removeClass('show');
-    }
-
-    /**
-     * Скрыть все модальные окна
-     */
-    hideAll() {
-        this.globalClass.removeClass('show');
+    hide() {
+        this.removeClass('show');
     }
 
 }

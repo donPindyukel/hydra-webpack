@@ -35,13 +35,13 @@
 // border-radius - закругление краев
 // bg - фоновый цвет модального окна
 @mixin modal-body($max-width: $modal-max-width, $padding: $modal-padding, $border-radius: $modal-border-radius, $bg: $modal-color-bg) {
-        width: 100%;
+    width: 100%;
 
-        max-width: $max-width;
-        padding: $padding;
-        border-radius: $border-radius;
-        background: $bg;
+    max-width: $max-width;
+    padding: $padding;
+    border-radius: $border-radius;
+    background: $bg;
 
-        margin: auto;
-        position: relative;
+    margin: auto;
+    position: relative;
 }

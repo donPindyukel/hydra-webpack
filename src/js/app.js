@@ -8,7 +8,7 @@
 
 //@include('components/element.js')
 //@include('components/modal.js')
-//@include('components/filter.js')
+//@include('components/button.js')
 
 //
 // Сторонний код
