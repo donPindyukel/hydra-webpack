@@ -2,10 +2,10 @@
 // Компонент фильтровки
 // ==========================================================================
 
-class Filter {
+class Filter extends Element {
 
     constructor(btn, globalClasses, hideClass) {
-        // ..
+        super(globalClasses);
     }
 
 }

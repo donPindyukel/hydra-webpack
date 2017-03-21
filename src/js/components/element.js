@@ -15,7 +15,9 @@ function el(actor) {
 class Element {
 
     constructor(actor) {
+        this.name = actor;
         this.countElements = 0;
+
         if (document.querySelectorAll(actor).length > 1) {
             this.countElements = document.querySelectorAll(actor).length;
             this.actor = document.querySelectorAll(actor);
@@ -25,6 +27,10 @@ class Element {
             this.actor = document.querySelector(actor);
         }
     }
+
+    //
+    // Работа с классами
+    //
 
     /**
      * Добавить новый класс
@@ -78,6 +84,18 @@ class Element {
         }
         return false;
     }
+
+    //
+    // Работа с аттрибутами
+    //
+
+    data(name) {
+        return this.actor.getAttribute("data-" + name);
+    }
+
+    //
+    // Работа с событиями
+    //
 
     /**
      * Событие клика по элементу

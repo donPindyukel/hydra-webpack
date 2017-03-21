@@ -2,9 +2,20 @@
 // Компонент модального окна
 // ==========================================================================
 
-class Modal {
+/**
+ * Точка входа в модальное окно
+ * @param name
+ * @returns {Modal}
+ */
+function modal(name) {
+    return new Modal(actor);
+}
+
+
+class Modal extends Element {
 
     constructor(globalClass) {
+        super(globalClass);
         this.globalClass = el(globalClass);
     }
 
