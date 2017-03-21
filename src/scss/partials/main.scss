@@ -19,7 +19,7 @@
 }
 
 .modal {
-    @include modal-overlay(#000);
+    @include modal-overlay(rgba(0, 0, 0, 0.5));
 
     .modal-container {
         @include modal-body($border-radius: 0);
@@ -36,4 +36,12 @@ a {
 
 .hide {
     @include hide;
+}
+
+.fadeIn {
+    @include animated(fadeIn);
+}
+
+.fadeOut {
+    @include animated(fadeOut);
 }

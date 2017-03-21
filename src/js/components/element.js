@@ -45,7 +45,8 @@ class Element {
 
     /**
      * Добавить новый класс
-     * @param name
+     * @param name имя класса
+     * @param all применять ко всем
      */
     addClass(name, all = false) {
         if (!all) {
@@ -60,7 +61,8 @@ class Element {
 
     /**
      * Удалить класс из списка классов
-     * @param name
+     * @param name имя класса
+     * @param all применять ко всем
      */
     removeClass(name, all = false) {
         if (!all) {
@@ -74,8 +76,34 @@ class Element {
     }
 
     /**
+     * Добавление класса после истечения времени
+     * @param name имя класса
+     * @param all применять ко всем
+     * @param timeout тамаут
+     */
+    addClassTimeout(name, all = false, timeout = 1000) {
+        let th = this;
+        setTimeout(function () {
+            th.addClass(name, all);
+        }, timeout);
+    }
+
+    /**
+     * Удаление класса после истечения времени
+     * @param name имя класса
+     * @param all применять ко всем
+     * @param timeout тамаут
+     */
+    removeClassTimeout(name, all = false, timeout = 1000) {
+        let th = this;
+        setTimeout(function () {
+            th.removeClass(name, all);
+        }, timeout);
+    }
+
+    /**
      * Проверяет наличие класса у элемента
-     * @param name
+     * @param name имя класса
      * @returns {boolean}
      */
     hasClass(name) {
@@ -92,7 +120,7 @@ class Element {
 
     /**
      * Получаем содержимое аттрибута DATA-*
-     * @param name
+     * @param name имя аттрибута
      * @returns {string}
      */
     data(name) {
@@ -101,7 +129,7 @@ class Element {
 
     /**
      * Проверяем наличие аттрибута DATA-*
-     * @param name
+     * @param name имя аттрибута
      * @returns {boolean}
      */
     hasData(name) {
@@ -114,7 +142,8 @@ class Element {
 
     /**
      * Событие клика по элементу
-     * @param func
+     * @param func колбэк
+     * @param all применять ко всем
      */
     eventClick(func, all = false) {
         if (!all) {
@@ -136,8 +165,24 @@ class Element {
     //
 
     /**
+     * Заменить содержимое жлемента
+     * @param value на какое значение заменить
+     * @param all применять ли ко всем
+     */
+    html(value, all = false) {
+        if (!all) {
+            this.actor.innerHTML = value;
+        }
+        else {
+            this.each(function (th) {
+                th.actor.innerHTML = value;
+            })
+        }
+    }
+
+    /**
      * Облегченный цикл для работы с элементами
-     * @param func
+     * @param func колбэк
      */
     each(func) {
         for (let i = 0; i < this.all.length; i++) {

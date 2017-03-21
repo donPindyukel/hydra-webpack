@@ -22,16 +22,34 @@ class ElModal extends Element {
 
     /**
      * Показать модальное окно
+     * @param animatedClass класс анимации
+     * @param animateDeleteTimeout через сколько удалить класс анимации
      */
-    show() {
+    show(animatedClass = null, animateDeleteTimeout = 1000) {
+        if (animatedClass != null) {
+            this.addClass(animatedClass);
+            this.removeClassTimeout(animatedClass, false, animateDeleteTimeout);
+        }
         this.addClass('show');
     }
 
     /**
      * Скрыть модальное окно
+     * @param animatedClass класс анимации
+     * @param animateDeleteTimeout через сколько удалить класс анимации
      */
-    hide() {
-        this.removeClass('show');
+    hide(animatedClass = null, animateDeleteTimeout = 1000) {
+        if (animatedClass != null) {
+            this.addClass(animatedClass);
+            this.removeClassTimeout(animatedClass, false, animateDeleteTimeout);
+
+            let th = this;
+            setTimeout(function () {
+                th.removeClass('show');
+            }, animateDeleteTimeout)
+        }
+        else
+            this.removeClass('show');
     }
 
 }

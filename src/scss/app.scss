@@ -1,20 +1,28 @@
 // ==========================================================================
 // Подгрузка всех стилей
 // ==========================================================================
+
 @import "../../bower_components/normalize-css/normalize";
+
 @import "default/untils";
+
 // Глобальные настройки
 @import "default/variables";
+
 //
 // Компоненты
 //
+
 @import "../../bower_components/susy/sass/susy";
 @import "components/mixins";
 @import "components/typography";
+@import "components/animation";
 @import "components/grid";
 @import "components/modal";
 @import "components/button";
+
 //
 // Сторонний код
 //
+
 @import "partials/main";

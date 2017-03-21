@@ -3,16 +3,20 @@
 //
 
 
-let elm = el_button('.button');
+let modal = el_modal('.modal-main');
 
-let modalWindow = el_modal('.modal');
+let button = el_button('.button.open');
+let buttonClose = el_button('.button.close');
 
-el('.open').eventClick(function () {
-    modalWindow.show();
+button.html("Открыть!");
+
+button.eventClick(function (th) {
+   modal.show('fadeIn');
 });
 
-el('.close').eventClick(function () {
-    modalWindow.hide();
+buttonClose.eventClick(function () {
+    modal.hide('fadeOut');
 });
 
-
+let buttonFilter = el_button('.filter');
+buttonFilter.filter('.content');

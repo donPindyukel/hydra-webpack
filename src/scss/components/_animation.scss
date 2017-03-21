@@ -1,0 +1,35 @@
+// ==========================================================================
+// Компонент анимации
+// ==========================================================================
+
+@mixin animated($type, $duration: 1s, $iteration: 1) {
+    animation-duration: 1s;
+    animation-fill-mode: $duration;
+    animation-iteration-count: $iteration;
+
+    @if ($type == 'fadeIn') {
+        animation-name: fadeIn;
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+    }
+
+    @if ($type == 'fadeOut') {
+        animation-name: fadeOut;
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1
+            }
+            100% {
+                opacity: 0
+            }
+        }
+    }
+}

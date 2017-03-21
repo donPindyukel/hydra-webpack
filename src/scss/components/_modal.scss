@@ -14,18 +14,17 @@
     position: fixed;
     z-index: 1000;
 
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
     justify-content: center;
     align-items: center;
 
     visibility: hidden;
-    opacity: 0;
+    display: none;
 
     &.show {
         visibility: visible;
-        opacity: 1;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
     }
 }
 
