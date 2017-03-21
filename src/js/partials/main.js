@@ -2,4 +2,12 @@
 // Для теста
 //
 
-let button = new Button('.button', '.modal');
+let modal = new Modal('.modal');
+
+el('.open').clickEvent(function () {
+   modal.show('.modal-main');
+});
+
+el('.close').clickEvent(function () {
+   modal.hide('.modal-main');
+});

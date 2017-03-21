@@ -1,23 +1,37 @@
 // ==========================================================================
-// Компонент кнопки
+// Компонент модального окна
 // ==========================================================================
 
-class Button {
+class Modal {
 
-    constructor(btn, modal) {
-        this.eventBtn = document.querySelector(btn);
-        this.actor = document.querySelector(modal);
-
-        this.eventBtn.onclick = () => {
-            this.show();
-        }
+    constructor(globalClass) {
+        this.globalClass = el(globalClass);
     }
 
-    show() {
-        this.actor.classList.add('show')
+    /**
+     * Показать модальное окно по названию класса или id
+     * @param target
+     */
+    show(target) {
+        this.hideAll();
+        let actor = el(target);
+        actor.addClass('show');
     }
 
-    hide() {
-        this.actor.classList.remove('show');
+    /**
+     * Скрыть модальное окно по названию класса или id
+     * @param target
+     */
+    hide(target) {
+        let actor = el(target);
+        actor.removeClass('show');
     }
+
+    /**
+     * Скрыть все модальные окна
+     */
+    hideAll() {
+        this.globalClass.removeClass('show');
+    }
+
 }

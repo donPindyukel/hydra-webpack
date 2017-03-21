@@ -18,6 +18,20 @@
     }
 }
 
+// Скрыть с экрана
+@mixin hide {
+    visibility: hidden !important;
+    display: none !important;
+}
+
+// Отцентровать элемент
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 // Медиа запросы
 // Параметры для передачи - mobile, notebook, desktop
 @mixin media($val) {

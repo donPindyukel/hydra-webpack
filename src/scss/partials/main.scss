@@ -33,3 +33,7 @@ h1 {
 a {
     @include typography-a();
 }
+
+.hide {
+    @include hide;
+}

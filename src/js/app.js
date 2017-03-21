@@ -2,13 +2,13 @@
 // Подгрузка всех скриптов
 // ==========================================================================
 
-//@include('../../bower_components/jquery/dist/jquery.min.js')
-
 //
 // Компоненты
 //
 
+//@include('components/element.js')
 //@include('components/modal.js')
+//@include('components/filter.js')
 
 //
 // Сторонний код
