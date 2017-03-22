@@ -20,6 +20,15 @@ class ElButton extends Element {
         super(actor);
     }
 
+    initAll() {
+        let allList = document.querySelectorAll(this.name);
+        for (let i = 0; i < allList.length; i++) {
+            let elm = new ElButton(allList[i]);
+            elm.name = this.name;
+            this.all.push(elm);
+        }
+    }
+
     /**
      * Функционал фильтровки выводимого контента
      * @param globalClass - общий класс контента, которым нужно управлять

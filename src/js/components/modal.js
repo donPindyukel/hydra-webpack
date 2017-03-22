@@ -20,6 +20,15 @@ class ElModal extends Element {
         super(actor);
     }
 
+    initAll() {
+        let allList = document.querySelectorAll(this.name);
+        for (let i = 0; i < allList.length; i++) {
+            let elm = new ElModal(allList[i]);
+            elm.name = this.name;
+            this.all.push(elm);
+        }
+    }
+
     /**
      * Показать модальное окно
      * @param animatedClass класс анимации

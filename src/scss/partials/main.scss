@@ -66,3 +66,27 @@ input[type=radio] {
 select {
     @include form-select(rem(300), $font-size-normal, $color-text-normal, $form-color-bg, #000, rgba(0, 0, 0, 0.2), $form-select-img-dropdown)
 }
+
+input.validate {
+
+    &-success {
+        @include form-validate(#000, #c3f8c8, #000);
+    }
+
+    &-error {
+        @include form-validate(#000, #ffc5c3, #000);
+    }
+
+}
+
+select.validate {
+
+    &-success {
+        @include form-validate(#000, #c3f8c8, #000);
+    }
+
+    &-error {
+        @include form-validate(#000, #ffc5c3, #000);
+    }
+
+}

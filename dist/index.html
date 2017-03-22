@@ -35,7 +35,7 @@
     <div class="container">
 
         <label>
-            <input type="checkbox" name="test3" value="test"> Выбрать
+            <input type="checkbox" name="test3" class="js-change-checkbox" data-valid="true" value="test"> Выбрать
         </label>
 
         <label>
@@ -48,15 +48,20 @@
 
         <label>
             Test
-            <input type="text" name="test" class="js-change" value="Test message">
+            <input type="text" name="test" class="js-change" data-valid="4" value="Test message">
+        </label>
+
+        <label>
+            Test2
+            <input type="text" name="test" class="js-change" data-valid="4" value="Test message">
         </label>
 
         <label>
             Test
-            <select name="test">
+            <select name="test" class="js-change" data-valid="2">
                 <option value="1">Test message 1</option>
-                <option value="2">Test message 2</option>
-                <option value="3">Test message 3</option>
+                <option value="22">Test message 2</option>
+                <option value="33">Test message 3</option>
                 <option value="4">Test message 4</option>
             </select>
         </label>

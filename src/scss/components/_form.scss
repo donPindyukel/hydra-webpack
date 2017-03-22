@@ -263,3 +263,22 @@
         }
     }
 }
+
+@mixin form-validate($color-font, $color-bg, $color-border) {
+    color: $color-font;
+    border-color: $color-border;
+    background-color: $color-bg;
+    transition: all .2s linear;
+
+    @include hover {
+        color: $color-font;
+        border-color: $color-border;
+        background-color: $color-bg;
+    }
+
+    @include focus {
+        color: $color-font;
+        border-color: $color-border;
+        background-color: $color-bg;
+    }
+}

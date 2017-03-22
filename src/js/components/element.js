@@ -147,15 +147,15 @@ class Element {
      */
     eventClick(func, all = false) {
         if (!all) {
-            this.actor.onclick = () => {
+            this.actor.addEventListener('click', () => {
                 func(this);
-            }
+            });
         }
         else {
             this.each(function (e) {
-                e.actor.onclick = () => {
+                e.actor.addEventListener('click', () => {
                     func(e);
-                }
+                });
             });
         }
     }
