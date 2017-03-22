@@ -2,8 +2,8 @@
 // Вспомогательный функционал
 // ==========================================================================
 
-@function parseInt($n) {
-    @return $n / ($n * 0 + 1);
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
 }
 
 @function str-replace($string, $search, $replace: "") {
@@ -16,35 +16,48 @@
     @return $string;
 }
 
+@function -zf-to-rem($value, $base: null) {
+    @if type-of($value) != 'number' {
+        @warn inspect($value) + ' was passed to rem-calc(), which is not a number.';
+        @return $value;
+    }
+
+    @if unit($value) == 'em' {
+        $value: strip-unit($value) * 1rem;
+    }
+
+    @if unit($value) != 'rem' {
+        $value: strip-unit($value) / strip-unit($base) * 1rem;
+    }
+
+    @if $value == 0rem {
+        $value: 0;
+    }
+
+    @return $value;
+}
+
 // Переводим число в rem
 @function rem($values) {
-    $px: ();
-    $rem: ();
+    $rem-values: ();
+    $count: length($values);
+    $base: 16;
 
-    @each $value in $values {
-
-        @if $value == 0 or $value == auto {
-            $px: append($px, $value);
-            $rem: append($rem, $value);
-        } @else {
-            $unit: unit($value);
-            $val: parseInt($value);
-
-            @if $unit == "px" {
-                $px: append($px, $value);
-                $rem: append($rem, ($val / 10 + rem));
-            }
-
-            @if $unit == "rem" {
-                $px: append($px, ($val * 10 + px));
-                $rem: append($rem, $value);
-            }
-        }
+    @if unit($base) == '%' {
+        $base: ($base / 100%) * 16px;
     }
 
-    @if $px == $rem {
-        @return $px;
-    } @else {
-        @return $rem;
+    @if unit($base) == 'rem' {
+        $base: strip-unit($base) * 16px;
     }
+
+    @if $count == 1 {
+        @return -zf-to-rem($values, $base);
+    }
+
+    @for $i from 1 through $count {
+        $rem-values: append($rem-values, -zf-to-rem(nth($values, $i), $base));
+    }
+
+    @return $rem-values;
 }

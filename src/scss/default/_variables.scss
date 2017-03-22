@@ -3,15 +3,15 @@
 // ==========================================================================
 
 // Стандартный размер текста на сайте
-$font-size-normal: rem(16px);
+$font-size-normal: rem(16);
 
 // Размеры заголовков
-$font-size-h1: rem(48px);
-$font-size-h2: rem(40px);
-$font-size-h3: rem(31px);
-$font-size-h4: rem(25px);
-$font-size-h5: rem(20px);
-$font-size-h6: rem(16px);
+$font-size-h1: rem(48);
+$font-size-h2: rem(40);
+$font-size-h3: rem(31);
+$font-size-h4: rem(25);
+$font-size-h5: rem(20);
+$font-size-h6: rem(16);
 
 // Шрифты для текста
 $font-family-normal: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -20,7 +20,7 @@ $font-family-normal: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $font-family-headers: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 
 // Цвет стандартного шрифта
-$color-text-normal: #000000;
+$color-text-normal: #272727;
 
 // Цвет инвертированного шрифта
 $color-text-invert: #ffffff;
@@ -39,13 +39,13 @@ $link-option-text-decoration: true;
 $adaptive-option-enable: true;
 
 // Мобильные устройства
-$adaptive-width-mobile: rem(640px);
+$adaptive-width-mobile: rem(640);
 
 // Ноутбуки
-$adaptive-width-notebook: rem(1500px);
+$adaptive-width-notebook: rem(1500);
 
 // Мониторы
-$adaptive-width-desktop: rem(1980px);
+$adaptive-width-desktop: rem(1980);
 
 //
 // Компонент - сетка
@@ -65,17 +65,17 @@ $susy: (
 //
 
 // Закругление краев
-$button-border-radius: rem(2px);
+$button-border-radius: rem(2);
 
 // Внутренние отступы
-$button-padding: rem(6px) rem(15px);
+$button-padding: rem(6) rem(15);
 
 // Размер обводки у кнопки
-$button-border-size: rem(1px) solid;
+$button-border-size: rem(1) solid;
 
 // Тень кнопки
 $button-option-shadow: true;
-$button-shadow-size: rem(1px) rem(1px) rem(1px);
+$button-shadow-size: rem(1) rem(1) rem(1);
 
 //
 // Компонент - модальное окно
@@ -88,10 +88,50 @@ $modal-color-overlay: rgba(0, 0, 0, 0.3);
 $modal-color-bg: #FFFFFF;
 
 // Ширина модального окна
-$modal-max-width: rem(500px);
+$modal-max-width: rem(500);
 
 // Внутренний отступ модального окна
-$modal-padding: rem(20px);
+$modal-padding: rem(20);
 
 // Закругление краев
-$modal-border-radius: rem(6px);
+$modal-border-radius: rem(6);
+
+//
+// Компонент - форма
+//
+
+// Размер элементов
+$form-spacing: rem(12);
+
+// Цвет текста
+$form-color-font: #000000;
+
+// Цвет фона
+$form-color-bg: #ffffff;
+
+// Обводка
+$form-border-size: rem(1) solid;
+
+// Закругление краев
+$form-border-radius: rem(4);
+
+// Тень
+$form-option-shadow: true;
+$form-shadow-size: rem(1) rem(1) rem(1);
+
+// Изображение стрелки для выпадающего списка select
+$form-select-img-dropdown: "../img/default/select-arrow.png";
+
+// Изображение checked для checkbox
+$form-checkbox-img-checked: "../img/default/checkbox-checked.png";
+
+// Изображение checked для radio
+$form-radio-img-checked: "../img/default/radio-checked.png";
+
+
+
+
+
+
+
+

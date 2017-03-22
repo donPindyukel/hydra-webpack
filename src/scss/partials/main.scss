@@ -8,6 +8,7 @@
 
 .container {
     @include container(80rem);
+    padding: rem(10);
 }
 
 .grid {
@@ -44,4 +45,24 @@ a {
 
 .fadeOut {
     @include animated(fadeOut);
+}
+
+label {
+    @include form-label($font-size-normal, $color-text-normal);
+}
+
+input[type=text] {
+    @include form-input(rem(300), $font-size-normal, $color-text-normal, $form-color-bg, #000, rgba(0, 0, 0, 0.2))
+}
+
+input[type=checkbox] {
+    @include form-checkbox($form-color-bg, #000, rgba(0, 0, 0, 0.2), $form-checkbox-img-checked)
+}
+
+input[type=radio] {
+    @include form-radio($form-color-bg, #000, rgba(0, 0, 0, 0.2), $form-radio-img-checked)
+}
+
+select {
+    @include form-select(rem(300), $font-size-normal, $color-text-normal, $form-color-bg, #000, rgba(0, 0, 0, 0.2), $form-select-img-dropdown)
 }
