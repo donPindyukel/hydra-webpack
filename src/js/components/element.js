@@ -5,38 +5,42 @@
 /**
  * Точка входа в элемент
  * @param actor
- * @returns {Element}
+ * @returns {Array}
  */
 function el(actor) {
-    let elm = new Element(actor);
-    elm.initAll();
-    return elm;
-}
+    let elements = [];
 
+    if (typeof actor === 'string') {
+        let selectElements = document.querySelectorAll(actor);
+        for (let i = 0; i < selectElements.length; i++)
+            elements.push(new Element(selectElements[i]));
+    }
+
+    else if (typeof actor === 'object' && actor.length > 0) {
+        let selectElements = actor;
+        for (let i = 0; i < selectElements.length; i++)
+            elements.push(new Element(selectElements[i]));
+    }
+
+    return elements;
+}
 
 class Element {
 
     constructor(actor) {
+        this.name = null;
         this.actor = null;
-        this.all = [];
 
-        if (typeof actor == 'object')
-            this.actor = actor;
-        else {
+        if (typeof actor === 'string') {
             this.name = actor;
             this.actor = document.querySelector(actor);
         }
 
-        return this;
-    }
-
-    initAll() {
-        let allList = document.querySelectorAll(this.name);
-        for (let i = 0; i < allList.length; i++) {
-            let elm = new Element(allList[i]);
-            elm.name = this.name;
-            this.all.push(elm);
+        else if (typeof actor === 'object') {
+            this.actor = actor;
         }
+
+        return this;
     }
 
     //
@@ -46,59 +50,45 @@ class Element {
     /**
      * Добавить новый класс
      * @param name имя класса
-     * @param all применять ко всем
      */
-    addClass(name, all = false) {
-        if (!all) {
-            this.actor.classList.add(name);
-        }
-        else {
-            this.each(function (e) {
-                e.actor.classList.add(name);
-            });
-        }
+    addClass(name) {
+        this.actor.classList.add(name);
+        return this;
     }
 
     /**
      * Удалить класс из списка классов
      * @param name имя класса
-     * @param all применять ко всем
      */
-    removeClass(name, all = false) {
-        if (!all) {
-            this.actor.classList.remove(name);
-        }
-        else {
-            this.each(function (e) {
-                e.actor.classList.remove(name);
-            });
-        }
+    removeClass(name) {
+        this.actor.classList.remove(name);
+        return this;
     }
 
     /**
      * Добавление класса после истечения времени
      * @param name имя класса
-     * @param all применять ко всем
      * @param timeout тамаут
      */
-    addClassTimeout(name, all = false, timeout = 1000) {
+    addClassTimeout(name, timeout = 1000) {
         let th = this;
         setTimeout(function () {
-            th.addClass(name, all);
+            th.addClass(name);
         }, timeout);
+        return this;
     }
 
     /**
      * Удаление класса после истечения времени
      * @param name имя класса
-     * @param all применять ко всем
      * @param timeout тамаут
      */
-    removeClassTimeout(name, all = false, timeout = 1000) {
+    removeClassTimeout(name, timeout = 1000) {
         let th = this;
         setTimeout(function () {
-            th.removeClass(name, all);
+            th.removeClass(name);
         }, timeout);
+        return this;
     }
 
     /**
@@ -108,7 +98,7 @@ class Element {
      */
     hasClass(name) {
         for (let i = 0; i < e.actor.classList.length; i++) {
-            if (e.actor.classList[i] == name)
+            if (e.actor.classList[i] === name)
                 return true;
         }
         return false;
@@ -117,6 +107,16 @@ class Element {
     //
     // Работа с аттрибутами
     //
+
+    /**
+     * Возвращает значение аттрибута по имени
+     * @returns {string}
+     */
+    attr(name, val = null) {
+        if (val !== null)
+            this.actor.setAttribute(name, val);
+        return this.actor.getAttribute(name);
+    }
 
     /**
      * Получаем содержимое аттрибута DATA-*
@@ -133,7 +133,7 @@ class Element {
      * @returns {boolean}
      */
     hasData(name) {
-        return this.data(name) != null;
+        return this.data(name) !== null;
     }
 
     //
@@ -143,21 +143,12 @@ class Element {
     /**
      * Событие клика по элементу
      * @param func колбэк
-     * @param all применять ко всем
      */
-    eventClick(func, all = false) {
-        if (!all) {
-            this.actor.addEventListener('click', () => {
-                func(this);
-            });
-        }
-        else {
-            this.each(function (e) {
-                e.actor.addEventListener('click', () => {
-                    func(e);
-                });
-            });
-        }
+    eventClick(func) {
+        this.actor.addEventListener('click', () => {
+            func(this);
+        });
+        return this;
     }
 
     //
@@ -165,29 +156,25 @@ class Element {
     //
 
     /**
-     * Заменить содержимое жлемента
-     * @param value на какое значение заменить
-     * @param all применять ли ко всем
+     * Поиск элементов внутри данного объекта
+     * @param name
+     * @param func указвает функцию через которую будет создаваться объект
+     * @returns {Array}
      */
-    html(value, all = false) {
-        if (!all) {
-            this.actor.innerHTML = value;
-        }
-        else {
-            this.each(function (th) {
-                th.actor.innerHTML = value;
-            })
-        }
+    find(name, func = el) {
+        if (this.name !== null)
+            return func(this.name + " " + name);
+        else
+            return func(this.actor.querySelectorAll(name));
     }
 
     /**
-     * Облегченный цикл для работы с элементами
-     * @param func колбэк
+     * Заменить содержимое жлемента
+     * @param value на какое значение заменить
      */
-    each(func) {
-        for (let i = 0; i < this.all.length; i++) {
-            func(this.all[i]);
-        }
+    html(value) {
+        this.actor.innerHTML = value;
+        return this;
     }
 
 }

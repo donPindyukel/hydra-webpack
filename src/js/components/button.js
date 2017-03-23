@@ -5,28 +5,31 @@
 /**
  * Точка входа в кнопку
  * @param actor
- * @returns {ElButton}
+ * @returns {Array}
  */
 function el_button(actor) {
-    let elm = new ElButton(actor);
-    elm.initAll();
-    return elm;
-}
+    let elements = [];
 
+    if (typeof actor === 'string') {
+        let selectElements = document.querySelectorAll(actor);
+        for (let i = 0; i < selectElements.length; i++)
+            elements.push(new ElButton(selectElements[i]));
+    }
+
+    else if (typeof actor === 'object' && actor.length > 0) {
+        let selectElements = actor;
+        for (let i = 0; i < selectElements.length; i++)
+            elements.push(new ElButton(selectElements[i]));
+    }
+
+    return elements;
+}
 
 class ElButton extends Element {
 
     constructor(actor) {
         super(actor);
-    }
-
-    initAll() {
-        let allList = document.querySelectorAll(this.name);
-        for (let i = 0; i < allList.length; i++) {
-            let elm = new ElButton(allList[i]);
-            elm.name = this.name;
-            this.all.push(elm);
-        }
+        return this;
     }
 
     /**
@@ -40,15 +43,15 @@ class ElButton extends Element {
         let targetsList = el(globalClass);
 
         this.eventClick(function (button) {
-            targetsList.each(function (target) {
+            each(targetsList, function (target) {
                 target.addClass(hideClass);
 
                 if (button.hasData(dataTargetName) && target.hasData(dataActorName)) {
-                    if (button.data(dataTargetName) == target.data(dataActorName)) {
+                    if (button.data(dataTargetName) === target.data(dataActorName)) {
                         target.removeClass(hideClass);
                     }
                 }
-            });
+            })
         }, true);
     }
 }

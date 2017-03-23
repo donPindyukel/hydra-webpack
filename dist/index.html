@@ -21,69 +21,26 @@
 
 <div class="container">
 
-    <h1>H1 HEADER</h1>
-    <h2>H2 HEADER</h2>
-    <h3>H3 HEADER</h3>
-    <h4>H4 HEADER</h4>
-    <h5>H5 HEADER</h5>
-    <h6>H6 HEADER</h6>
-    <p>P text</p>
-    <a href="#">Text link</a>
-
-    <br><br>
-
-    <div class="container">
+    <form action="ajax-post.php" class="ajax-form" method="post">
 
         <label>
-            <input type="checkbox" name="test3" class="js-change-checkbox" data-valid="true" value="test"> Выбрать
+            <p>Заполните поле</p>
+            <input type="text" name="name" class="js-valid" data-valid="4" value="test">
         </label>
 
         <label>
-            <input type="radio" name="test4" value="test"> Выбрать 1
-        </label>
-
-        <label>
-            <input type="radio" name="test4" value="test2"> Выбрать 2
-        </label>
-
-        <label>
-            Test
-            <input type="text" name="test" class="js-change" data-valid="4" value="Test message">
-        </label>
-
-        <label>
-            Test2
-            <input type="text" name="test" class="js-change" data-valid="4" value="Test message">
-        </label>
-
-        <label>
-            Test
-            <select name="test" class="js-change" data-valid="2">
-                <option value="1">Test message 1</option>
-                <option value="22">Test message 2</option>
-                <option value="33">Test message 3</option>
-                <option value="4">Test message 4</option>
+            <p>Заполните поле</p>
+            <select name="city">
+                <option value="1">Город</option>
             </select>
         </label>
 
-        <br><br>
+        <label>
+            <input type="submit" name="send" class="button" value="Send">
+        </label>
 
-        <a href="#" class="button open">Open modal window</a>
+    </form>
 
-        <br><br>
-
-        <span class="content" data-actor="one">Filter content 1</span>
-        <span class="content" data-actor="two">Filter content 2</span>
-
-    </div>
-
-</div>
-
-
-<div class="modal modal-main">
-    <div class="modal-container">
-        <a href="#" class="button close">Закрыть</a>
-    </div>
 </div>
 
 <script src="./assets/js/app.js"></script>

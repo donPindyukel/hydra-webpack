@@ -1,45 +1,15 @@
 //
-// Для теста
-//
-
-
-let modal = el_modal('.modal-main');
-
-let button = el_button('.button.open');
-let buttonClose = el_button('.button.close');
-
-//
 //
 //
 
-let input = el_form('.js-change');
-input.eventValidate('validate-success', 'validate-error', 'length', 'valid', true);
+let form = el_form('.ajax-form');
 
-/*input.eventChange(function (th) {
-    console.log('this changed - ' + th.val());
-});*/
+form[0].serialize();
 
-//
-//
-//
-
-let checkbox = el_form('.js-change-checkbox');
-checkbox.eventValidate('validate-success', 'validate-error', 'checked', 'valid', false);
-
-//
-//
-//
-
-button.html("Открыть!");
-
-button.eventClick(function (th) {
-   modal.show('fadeIn');
-   th.addClass('fadeIn');
+each(form[0].formFields, function (th) {
+   th.eventValidate('validate-success', 'validate-error');
 });
 
-buttonClose.eventClick(function () {
-    modal.hide('fadeOut');
+form[0].eventSubmit(function (response, status) {
+   log(response);
 });
-
-let buttonFilter = el_button('.filter');
-buttonFilter.filter('.content');
