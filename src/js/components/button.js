@@ -39,7 +39,9 @@ class ElButton extends Element {
      * @param dataActorName - data аттрибут ключа у управляемого элемента
      * @param hideClass - класс для скрытия элементов
      */
-    filter(globalClass, dataTargetName = 'target', dataActorName = 'actor', hideClass = 'hide') {
+    filter(globalClass,
+           dataTargetName = buttonFilterDataTargetName,
+           dataActorName = buttonFilterDataActorName, hideClass = globalHideClass) {
         let targetsList = el(globalClass);
 
         this.eventClick(function (button) {

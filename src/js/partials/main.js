@@ -12,4 +12,4 @@ each(form[0].formFields, function (th) {
 
 form[0].eventSubmit(function (response, status) {
    log(response);
-});
+}, true);

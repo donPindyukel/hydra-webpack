@@ -60,7 +60,7 @@ class ElField extends Element {
      * @param dataParamsName
      * @returns {boolean}
      */
-    validate(validType = 'length', dataParamsName = 'valid') {
+    validate(validType = fieldValidType, dataParamsName = fieldValidDataName) {
         // По длине строки
         if (validType === 'length') {
             let dataValid = parseInt(this.data(dataParamsName));
@@ -90,17 +90,23 @@ class ElField extends Element {
      * @param successClass
      * @param errorClass
      * @param validType
+     * @param removeClassTimeout
      * @param dataParamsName
      */
-    eventValidate(successClass = null, errorClass = null, validType = 'length', dataParamsName = 'valid') {
+    eventValidate(successClass = fieldValidSuccessClass,
+                  errorClass = fieldValidErrorClass,
+                  removeClassTimeout = fieldValidRemoveClassTimeout,
+                  validType = fieldValidType, dataParamsName = fieldValidDataName) {
         this.eventChange(function (th) {
             if (th.validate(validType, dataParamsName)) {
                 th.addClass(successClass);
-                th.removeClassTimeout(successClass, 1000);
+                if (removeClassTimeout !== null)
+                    th.removeClassTimeout(successClass, removeClassTimeout);
             }
             else {
                 th.addClass(errorClass);
-                th.removeClassTimeout(errorClass, 1000);
+                if (removeClassTimeout !== null)
+                    th.removeClassTimeout(errorClass, removeClassTimeout);
             }
         });
         return this;

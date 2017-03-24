@@ -72,12 +72,23 @@ class ElForm extends Element {
     /**
      * Событие отправки данных с формы
      * @param func - колбэк функция
+     * @param stopIsNotValidate - если не прошло валидацию данные не отправлять
      */
-    eventSubmit(func) {
+    eventSubmit(func, stopIsNotValidate = formStopIsNotValidate) {
         let form = this;
         this.actor.addEventListener('submit', (e) => {
             e.preventDefault();
-            ajaxPost(form.attr('action'), form.serialize(), func);
+            if (!stopIsNotValidate)
+                ajaxPost(form.attr('action'), form.serialize(), func);
+            else {
+                let error = 0;
+                this.formFields.forEach(function (field) {
+                    if (!field.validate())
+                        error++;
+                });
+                if (error === 0)
+                    ajaxPost(form.attr('action'), form.serialize(), func);
+            }
             return false;
         });
     }

@@ -37,7 +37,8 @@ class ElModal extends Element {
      * @param animatedClass класс анимации
      * @param animateDeleteTimeout через сколько удалить класс анимации
      */
-    show(animatedClass = null, animateDeleteTimeout = 1000) {
+    show(animatedClass = modalAnimateClassShow,
+         animateDeleteTimeout = modalAnimateDeleteTimeout) {
         if (animatedClass !== null) {
             this.addClass(animatedClass);
             this.removeClassTimeout(animatedClass, animateDeleteTimeout);
@@ -50,7 +51,8 @@ class ElModal extends Element {
      * @param animatedClass класс анимации
      * @param animateDeleteTimeout через сколько удалить класс анимации
      */
-    hide(animatedClass = null, animateDeleteTimeout = 1000) {
+    hide(animatedClass = modalAnimateClassHide,
+         animateDeleteTimeout = modalAnimateDeleteTimeout) {
         if (animatedClass !== null) {
             this.addClass(animatedClass);
             this.removeClassTimeout(animatedClass, animateDeleteTimeout);
