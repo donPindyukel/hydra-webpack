@@ -2,29 +2,6 @@
 // Компонент поля в форме
 // ==========================================================================
 
-/**
- * Точка входа в поле
- * @param actor
- * @returns {Array}
- */
-function el_field(actor) {
-    let elements = [];
-
-    if (typeof actor === 'string') {
-        let selectElements = document.querySelectorAll(actor);
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new ElField(selectElements[i]));
-    }
-
-    else if (typeof actor === 'object' && actor.length > 0) {
-        let selectElements = actor;
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new ElField(selectElements[i]));
-    }
-
-    return elements;
-}
-
 class ElField extends Element {
 
     constructor(actor) {

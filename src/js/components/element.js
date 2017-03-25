@@ -2,29 +2,6 @@
 // Компонент элемента
 // ==========================================================================
 
-/**
- * Точка входа в элемент
- * @param actor
- * @returns {Array}
- */
-function el(actor) {
-    let elements = [];
-
-    if (typeof actor === 'string') {
-        let selectElements = document.querySelectorAll(actor);
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new Element(selectElements[i]));
-    }
-
-    else if (typeof actor === 'object' && actor.length > 0) {
-        let selectElements = actor;
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new Element(selectElements[i]));
-    }
-
-    return elements;
-}
-
 class Element {
 
     constructor(actor) {
@@ -42,10 +19,6 @@ class Element {
 
         return this;
     }
-
-    //
-    // Работа с классами
-    //
 
     /**
      * Добавить новый класс
@@ -97,16 +70,12 @@ class Element {
      * @returns {boolean}
      */
     hasClass(name) {
-        for (let i = 0; i < e.actor.classList.length; i++) {
-            if (e.actor.classList[i] === name)
+        el.actor.classList.forEach(function (th) {
+            if (th === name)
                 return true;
-        }
+        });
         return false;
     }
-
-    //
-    // Работа с аттрибутами
-    //
 
     /**
      * Возвращает значение аттрибута по имени
@@ -135,25 +104,6 @@ class Element {
     hasData(name) {
         return this.data(name) !== null;
     }
-
-    //
-    // Работа с событиями
-    //
-
-    /**
-     * Событие клика по элементу
-     * @param func колбэк
-     */
-    eventClick(func) {
-        this.actor.addEventListener('click', () => {
-            func(this);
-        });
-        return this;
-    }
-
-    //
-    // Вспомогательный функционал
-    //
 
     /**
      * Поиск элементов внутри данного объекта

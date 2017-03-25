@@ -2,33 +2,21 @@
 // Компонент кнопки
 // ==========================================================================
 
-/**
- * Точка входа в кнопку
- * @param actor
- * @returns {Array}
- */
-function el_button(actor) {
-    let elements = [];
-
-    if (typeof actor === 'string') {
-        let selectElements = document.querySelectorAll(actor);
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new ElButton(selectElements[i]));
-    }
-
-    else if (typeof actor === 'object' && actor.length > 0) {
-        let selectElements = actor;
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new ElButton(selectElements[i]));
-    }
-
-    return elements;
-}
-
 class ElButton extends Element {
 
     constructor(actor) {
         super(actor);
+        return this;
+    }
+
+    /**
+     * Событие клика по элементу
+     * @param func колбэк
+     */
+    eventClick(func) {
+        this.actor.addEventListener('click', () => {
+            func(this);
+        });
         return this;
     }
 

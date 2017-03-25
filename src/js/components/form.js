@@ -2,29 +2,6 @@
 // Компонент формы
 // ==========================================================================
 
-/**
- * Точка входа в форму
- * @param actor
- * @returns {Array}
- */
-function el_form(actor) {
-    let elements = [];
-
-    if (typeof actor === 'string') {
-        let selectElements = document.querySelectorAll(actor);
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new ElForm(selectElements[i]));
-    }
-
-    else if (typeof actor === 'object' && actor.length > 0) {
-        let selectElements = actor;
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new ElForm(selectElements[i]));
-    }
-
-    return elements;
-}
-
 class ElForm extends Element {
 
     constructor(actor) {

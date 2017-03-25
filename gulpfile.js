@@ -122,7 +122,7 @@ gulp.task('js:build', function () {
             basepath: '@file'
         }))
         .pipe(babel({
-            presets: ['es2015']
+            presets: ['es2015', 'es2016', 'es2017', 'flow']
         }))
         .pipe(uglify())
         .pipe(gulp.dest(path.build.js))
