@@ -7,9 +7,11 @@
 // duration - скорость анимации
 // iteration - количество повторений
 @mixin animated($type: 'pulse', $duration: 1s, $iteration: 1) {
-    animation-duration: 1s;
-    animation-fill-mode: $duration;
+    animation-duration: $duration;
     animation-iteration-count: $iteration;
+
+    animation-fill-mode: both;
+    animation-timing-function: linear;
 
     @if ($type == 'pulse') {
         animation-name: pulse;
@@ -28,6 +30,21 @@
                 -webkit-transform: scale3d(1, 1, 1);
                 -ms-transform: scale3d(1, 1, 1);
                 transform: scale3d(1, 1, 1)
+            }
+        }
+    }
+
+    @if ($type == 'rotate') {
+        animation-name: rotate;
+        @keyframes rotate {
+            from {
+                -webkit-transform: rotate(0);
+                transform: rotate(0)
+            }
+
+            to {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg)
             }
         }
     }
