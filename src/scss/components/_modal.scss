@@ -4,7 +4,7 @@
 
 // Фоновое затемнение и контейнер для модального окна
 // bg - фон оверлея
-@mixin modal-overlay($bg) {
+@mixin modal-overlay($bg: $modal-color-overlay) {
     width: 100%;
     height: 100%;
     background: $bg;

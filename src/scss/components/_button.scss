@@ -2,7 +2,12 @@
 // Компонент кнопки
 // ==========================================================================
 
-@mixin button($color-text, $color-bg, $color-border, $color-shadow) {
+// Создание кнопки
+// color-text - цвет текста
+// color-bg - цвет фона
+// color-border - цвет обводки
+// color-shadow - цвет тени
+@mixin button($color-text: $color-text-normal, $color-bg: transparent, $color-border: transparent, $color-shadow: transparent) {
     $color-bg-hover: darken($color-bg, 10%);
     $color-border-hover: darken($color-border, 10%);
     $color-shadow-hover: darken($color-shadow, 10%);
