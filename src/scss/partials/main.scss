@@ -94,3 +94,17 @@ select.validate {
     }
 
 }
+
+.slider {
+    @include slider-main();
+    background: fade_out(red, .5);
+
+    .slider-body {
+        @include slider-body();
+    }
+
+    .slide {
+        @include slider-slide($padding: rem(100));
+        background: fade_out(green, .5);
+    }
+}

@@ -14,6 +14,7 @@
 //@include('components/button.js')
 //@include('components/form.js')
 //@include('components/field.js')
+//@include('components/slider.js')
 
 //
 // Сторонний код
