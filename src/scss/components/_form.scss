@@ -2,7 +2,10 @@
 // Компонент формы
 // ==========================================================================
 
-@mixin form-label($font-size, $color-text) {
+// Label текстового поля
+// font-size - размер шрифта
+// color-text - цвет текста
+@mixin form-label($font-size: $font-size-normal, $color-text: $form-color-font) {
     display: block;
 
     color: $color-text;
@@ -13,13 +16,20 @@
     padding: rem(($form-spacing / 2)) 0;
 }
 
-@mixin form-input($max-width, $font-size, $color-font, $color-bg, $color-border, $color-shadow) {
+// Создание input
+// max-width - максимальная длина
+// font-size - размер текста
+// color-text - цвет текста
+// color-bg - цвет фона
+// color-border - цвет обводки
+// color-shadow - цвет тени
+@mixin form-input($max-width, $font-size: $font-size-normal, $color-text: $form-color-font, $color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent) {
     $color-bg-hover: darken($color-bg, 4%);
     $color-border-hover: darken($color-border, 4%);
     $color-shadow-hover: darken($color-shadow, 10%);
     $height: ($font-size + ($form-spacing * 1.5) - rem(1));
 
-    color: $color-font;
+    color: $color-text;
     font-size: $font-size;
     font-family: $font-family-normal;
 
@@ -71,13 +81,21 @@
     }
 }
 
-@mixin form-select($max-width, $font-size, $color-font, $color-bg, $color-border, $color-shadow, $img-dwopdown) {
+// Создание select
+// max-width - максимальная длина
+// font-size - размер текста
+// color-text - цвет текста
+// color-bg - цвет фона
+// color-border - цвет обводки
+// color-shadow - цвет тени
+// img-dwopdown - изобржение стрелки для выпадающего списка
+@mixin form-select($max-width, $font-size: $font-size-normal, $color-text: $form-color-font, $color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent, $img-dwopdown: $form-select-img-dropdown) {
     $color-bg-hover: darken($color-bg, 4%);
     $color-border-hover: darken($color-border, 4%);
     $color-shadow-hover: darken($color-shadow, 10%);
     $height: ($font-size + ($form-spacing * 1.5) - rem(1));
 
-    color: $color-font;
+    color: $color-text;
     font-size: $font-size;
     font-family: $font-family-normal;
 
@@ -144,7 +162,12 @@
     }
 }
 
-@mixin form-checkbox($color-bg, $color-border, $color-shadow, $img-checked) {
+// Создание ckeckbox
+// color-bg - цвет фона
+// color-border - цвет обводки
+// color-shadow - цвет тени
+// img-checked - изобржение галочки при checked элемента
+@mixin form-checkbox($color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent, $img-checked: $form-checkbox-img-checked) {
     $color-bg-hover: darken($color-bg, 4%);
     $color-border-hover: darken($color-border, 4%);
     $color-shadow-hover: darken($color-shadow, 10%);
@@ -204,7 +227,12 @@
     }
 }
 
-@mixin form-radio($color-bg, $color-border, $color-shadow, $img-checked) {
+// Создание radio
+// color-bg - цвет фона
+// color-border - цвет обводки
+// color-shadow - цвет тени
+// img-checked - изобржение галочки при checked элемента
+@mixin form-radio($color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent, $img-checked: $form-radio-img-checked) {
     $color-bg-hover: darken($color-bg, 4%);
     $color-border-hover: darken($color-border, 4%);
     $color-shadow-hover: darken($color-shadow, 10%);
@@ -264,20 +292,24 @@
     }
 }
 
-@mixin form-validate($color-font, $color-bg, $color-border) {
-    color: $color-font;
+// Создание класса для валидации форм
+// color-text - цвет текста
+// color-bg - цвет фона
+// color-border - цвет обводки
+@mixin form-validate($color-text: $form-color-font, $color-bg: $form-color-bg, $color-border: transparent) {
+    color: $color-text;
     border-color: $color-border;
     background-color: $color-bg;
     transition: all .2s linear;
 
     @include hover {
-        color: $color-font;
+        color: $color-text;
         border-color: $color-border;
         background-color: $color-bg;
     }
 
     @include focus {
-        color: $color-font;
+        color: $color-text;
         border-color: $color-border;
         background-color: $color-bg;
     }

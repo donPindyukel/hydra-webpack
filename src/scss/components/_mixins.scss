@@ -34,7 +34,7 @@
 
 // Медиа запросы
 // Параметры для передачи - mobile, notebook, desktop
-@mixin media($val) {
+@mixin media($val: mobile) {
     @if ($val == mobile) {
         @media screen and (min-width: 0) and (max-width: $adaptive-width-mobile) {
             @content

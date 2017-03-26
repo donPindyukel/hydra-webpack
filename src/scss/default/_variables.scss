@@ -64,6 +64,9 @@ $susy: (
 // Компонент - кнопка
 //
 
+// Стандартный цвет кнопки
+$button-color-bg: #e0e1e2;
+
 // Закругление краев
 $button-border-radius: rem(2);
 
@@ -107,7 +110,7 @@ $form-spacing: rem(12);
 $form-color-font: #000000;
 
 // Цвет фона
-$form-color-bg: #ffffff;
+$form-color-bg: #e0e1e2;
 
 // Обводка
 $form-border-size: rem(1) solid;
@@ -127,11 +130,3 @@ $form-checkbox-img-checked: "../img/default/checkbox-checked.png";
 
 // Изображение checked для radio
 $form-radio-img-checked: "../img/default/radio-checked.png";
-
-
-
-
-
-
-
-

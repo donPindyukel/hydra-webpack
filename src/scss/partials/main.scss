@@ -3,7 +3,11 @@
 //
 
 .button {
-    @include button(#ffffff, red, red, rgba(0, 0, 0, 0.2));
+    @include button();
+
+    &.loading {
+        @include button-loading();
+    }
 }
 
 .container {
