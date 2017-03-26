@@ -17,11 +17,11 @@ class ElForm extends Element {
     loadFields() {
         let fieldsList = [];
         // Записываем список всех инпутов в форме
-        each(this.find('input', el_field), function (th) {
+        this.find('input', 'field').forEach(function (th) {
             fieldsList.push(th);
         });
         // Записываем список всех селектов в форме
-        each(this.find('select', el_field), function (th) {
+        this.find('input', 'field').forEach(function (th) {
             fieldsList.push(th);
         });
         return fieldsList;
@@ -35,7 +35,7 @@ class ElForm extends Element {
         let data = '';
         let i = 1;
         let countFields = this.formFields.length;
-        each(this.formFields, function (field) {
+        this.formFields.forEach(function (field) {
             if (field.attr('type') !== "submit") {
                 data += field.attr('name') + "=" + field.val();
                 if (i < countFields)

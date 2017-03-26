@@ -108,14 +108,14 @@ class Element {
     /**
      * Поиск элементов внутри данного объекта
      * @param name
-     * @param func указвает функцию через которую будет создаваться объект
+     * @param returnType указвает функцию через которую будет создаваться объект
      * @returns {Array}
      */
-    find(name, func = el) {
+    find(name, returnType = 'elements') {
         if (this.name !== null)
-            return func(this.name + " " + name);
+            return el(this.name + " " + name, returnType);
         else
-            return func(this.actor.querySelectorAll(name));
+            return el(this.actor.querySelectorAll(name), returnType);
     }
 
     /**

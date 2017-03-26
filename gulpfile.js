@@ -19,6 +19,7 @@ var buildDirStatic = buildDir + "/assets";
 
 var gulp = require('gulp'),
     babel = require('gulp-babel'),
+    flow = require('gulp-flowtype'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),

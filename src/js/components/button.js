@@ -33,7 +33,7 @@ class ElButton extends Element {
         let targetsList = el(globalClass);
 
         this.eventClick(function (button) {
-            each(targetsList, function (target) {
+            targetsList.forEach(function (target) {
                 target.addClass(hideClass);
 
                 if (button.hasData(dataTargetName) && target.hasData(dataActorName)) {
