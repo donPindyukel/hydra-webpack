@@ -150,4 +150,43 @@ class ElSlider extends Element {
         return this;
     }
 
+    /**
+     * Открыть слайд по номеру
+     * @param num
+     * @returns {ElSlider}
+     */
+    openSlide(num) {
+        let clickNext = 0;
+        let typeScroll = 'next';
+
+        if (num <= this.sliders.length && num > 0) {
+            // Если номер слайда больше активного слайда
+            if (num > this.activeStep) {
+                clickNext = num - this.activeStep;
+                typeScroll = 'next';
+            }
+            // Если номер слайда меньше активного слайда
+            if (num < this.activeStep) {
+                clickNext = this.activeStep - num;
+                typeScroll = 'prev';
+            }
+
+            for (let i = 0; i < clickNext; i++) {
+                if (typeScroll === 'next')
+                    this.nextSlide();
+                if (typeScroll === 'prev')
+                    this.prevSlide();
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Возвращает количество слайдов в слайдере
+     * @returns {Number}
+     */
+    countSlides() {
+        return this.sliders.length;
+    }
+
 }
