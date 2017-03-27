@@ -30,6 +30,10 @@ function el(actor, component = 'element') {
     else if (component === 'modal')
         NameClass = ElModal;
 
+    // Компонент слайдера
+    else if (component === 'slider')
+        NameClass = ElSlider;
+
     if (typeof actor === 'string') {
         let selectElements = document.querySelectorAll(actor);
         for (let i = 0; i < selectElements.length; i++)
