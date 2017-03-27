@@ -104,7 +104,8 @@ select.validate {
     }
 
     .slide {
-        @include slider-slide($padding: rem(100));
+        @include slider-slide($width: 100%, $padding: rem(60));
+        margin: rem(50);
         background: fade_out(green, .5);
     }
 }
