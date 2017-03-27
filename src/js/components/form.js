@@ -18,10 +18,11 @@ class ElForm extends Element {
         let fieldsList = [];
         // Записываем список всех инпутов в форме
         this.find('input', 'field').forEach(function (th) {
-            fieldsList.push(th);
+            if (th.attr('type') != 'submit')
+                fieldsList.push(th);
         });
         // Записываем список всех селектов в форме
-        this.find('input', 'field').forEach(function (th) {
+        this.find('select', 'field').forEach(function (th) {
             fieldsList.push(th);
         });
         return fieldsList;

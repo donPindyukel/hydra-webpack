@@ -25,4 +25,16 @@ buttonOpen.forEach(function (button) {
         let dataSlide = th.data('slide');
         slider.openSlide(dataSlide);
     });
-})
+});
+
+//
+//
+//
+
+let forms = el('.js-ajax-form', 'form');
+
+forms.forEach(function (form) {
+   form.eventSubmit(function (response, status) {
+       log(response);
+   }, false);
+});
