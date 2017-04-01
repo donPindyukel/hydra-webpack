@@ -34,6 +34,10 @@ function el(actor, component = 'element') {
     else if (component === 'slider')
         NameClass = ElSlider;
 
+    // Компонент ленивой загрузки
+    else if (component === 'lazy')
+        NameClass = ElLazy;
+
     if (typeof actor === 'string') {
         let selectElements = document.querySelectorAll(actor);
         for (let i = 0; i < selectElements.length; i++)
@@ -44,6 +48,10 @@ function el(actor, component = 'element') {
         let selectElements = actor;
         for (let i = 0; i < selectElements.length; i++)
             elements.push(new NameClass(selectElements[i]));
+    }
+
+    else if (typeof actor === 'object' && actor.length === undefined) {
+        elements.push(new NameClass(actor));
     }
 
     return elements;

@@ -138,7 +138,7 @@ class Element {
      * @returns {Array}
      */
     parent(type = 'element') {
-        return el(this.actor.parentElement.nodeName, type);
+        return el(this.actor.parentNode, type);
     }
 
     /**

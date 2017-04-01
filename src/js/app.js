@@ -15,6 +15,7 @@
 //@include('components/form.js')
 //@include('components/field.js')
 //@include('components/slider.js')
+//@include('components/lazy.js')
 
 //
 // Сторонний код

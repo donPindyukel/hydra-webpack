@@ -109,3 +109,8 @@ select.validate {
         background: fade_out(green, .5);
     }
 }
+
+.block-height {
+    width: 100%;
+    height: rem(600);
+}
