@@ -28,6 +28,7 @@ var gulp = require('gulp'),
     cssmin = require('gulp-clean-css'),
     imagemin = require('gulp-imagemin'),
     connectPhp = require('gulp-connect-php'),
+    pug = require('gulp-pug'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
@@ -36,6 +37,7 @@ var gulp = require('gulp'),
 
 var path = {
     build: {
+        pug: buildDirHtml,
         html: buildDirHtml,
         php: buildDirHtml,
         leaf: buildDirHtml,
@@ -46,6 +48,7 @@ var path = {
         data: buildDirStatic + '/data/'
     },
     src: {
+        pug: 'src/pages/*.pug',
         html: 'src/pages/*.html',
         php: 'src/pages/*.php',
         leaf: 'src/pages/*.leaf',
@@ -56,6 +59,7 @@ var path = {
         data: 'src/data/**/*.*'
     },
     watch: {
+        pug: 'src/pages/**/*.pug',
         html: 'src/pages/**/*.html',
         php: 'src/pages/**/*.php',
         leaf: 'src/pages/**/*.leaf',
@@ -68,7 +72,7 @@ var path = {
     clean: buildDir
 };
 
-gulp.task('connect-sync', function() {
+gulp.task('connect-sync', function () {
     connectPhp.server({
         base: buildDir
     }, function () {
@@ -82,13 +86,30 @@ gulp.task('clean', function (cb) {
     rimraf(path.clean, cb);
 });
 
+gulp.task('pug:build', function () {
+    gulp.src(path.src.pug)
+        .pipe(plumber())
+        .pipe(fileinclude({
+            prefix: '//@',
+            basepath: '@file'
+        }))
+        .pipe(pug({
+            pretty: true
+        }))
+        .pipe(gulp.dest(path.build.pug))
+        .pipe(reload({stream: true}));
+});
+
 gulp.task('html:build', function () {
     gulp.src(path.src.html)
         .pipe(plumber())
         .pipe(fileinclude({
-      prefix: '//@',
-      basepath: '@file'
-    }))
+            prefix: '//@',
+            basepath: '@file'
+        }))
+        .pipe(pug({
+            pretty: true
+        }))
         .pipe(gulp.dest(path.build.html))
         .pipe(reload({stream: true}));
 });
@@ -100,6 +121,9 @@ gulp.task('php:build', function () {
             prefix: '//@',
             basepath: '@file'
         }))
+        .pipe(pug({
+            pretty: true
+        }))
         .pipe(gulp.dest(path.build.php))
         .pipe(reload({stream: true}));
 });
@@ -110,6 +134,9 @@ gulp.task('leaf:build', function () {
         .pipe(fileinclude({
             prefix: '//@',
             basepath: '@file'
+        }))
+        .pipe(pug({
+            pretty: true
         }))
         .pipe(gulp.dest(path.build.leaf))
         .pipe(reload({stream: true}));
@@ -158,19 +185,20 @@ gulp.task('image:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('fonts:build', function() {
+gulp.task('fonts:build', function () {
     gulp.src(path.src.fonts)
         .pipe(plumber())
         .pipe(gulp.dest(path.build.fonts))
 });
 
-gulp.task('data:build', function() {
+gulp.task('data:build', function () {
     gulp.src(path.src.data)
         .pipe(plumber())
         .pipe(gulp.dest(path.build.data))
 });
 
 gulp.task('build', [
+    'pug:build',
     'html:build',
     'php:build',
     'leaf:build',
@@ -182,29 +210,32 @@ gulp.task('build', [
 ]);
 
 
-gulp.task('watch', function(){
-    watch([path.watch.html], function(event, cb) {
+gulp.task('watch', function () {
+    watch([path.watch.pug], function (event, cb) {
+        gulp.start('pug:build');
+    });
+    watch([path.watch.html], function (event, cb) {
         gulp.start('html:build');
     });
-    watch([path.watch.php], function(event, cb) {
+    watch([path.watch.php], function (event, cb) {
         gulp.start('php:build');
     });
-    watch([path.watch.leaf], function(event, cb) {
+    watch([path.watch.leaf], function (event, cb) {
         gulp.start('leaf:build');
     });
-    watch([path.watch.style], function(event, cb) {
+    watch([path.watch.style], function (event, cb) {
         gulp.start('style:build');
     });
-    watch([path.watch.js], function(event, cb) {
+    watch([path.watch.js], function (event, cb) {
         gulp.start('js:build');
     });
-    watch([path.watch.img], function(event, cb) {
+    watch([path.watch.img], function (event, cb) {
         gulp.start('image:build');
     });
-    watch([path.watch.fonts], function(event, cb) {
+    watch([path.watch.fonts], function (event, cb) {
         gulp.start('fonts:build');
     });
-    watch([path.watch.data], function(event, cb) {
+    watch([path.watch.data], function (event, cb) {
         gulp.start('data:build');
     });
 });

@@ -31,13 +31,19 @@
 // //
 // //
 //
-// let forms = el('.js-ajax-form', 'form');
-//
-// forms.forEach(function (form) {
-//    form.eventSubmit(function (response, status) {
-//        log(response);
-//    }, false);
-// });
+
+let forms = el('.js-ajax-form', 'form');
+let fields = el('.form-field', 'field');
+
+fields.forEach((th) => {
+    th.eventValidate();
+});
+
+forms.forEach(function (form) {
+   form.eventSubmit(function (response, status) {
+       log(response);
+   }, true);
+});
 
 //
 //
