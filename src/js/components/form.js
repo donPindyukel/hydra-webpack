@@ -17,12 +17,12 @@ class ElForm extends Element {
     loadFields() {
         let fieldsList = [];
         // Записываем список всех инпутов в форме
-        this.find('input', 'field').forEach(function (th) {
+        this.child('input', 'field').forEach(function (th) {
             if (th.attr('type') != 'submit')
                 fieldsList.push(th);
         });
         // Записываем список всех селектов в форме
-        this.find('select', 'field').forEach(function (th) {
+        this.child('select', 'field').forEach(function (th) {
             fieldsList.push(th);
         });
         return fieldsList;
@@ -54,7 +54,7 @@ class ElForm extends Element {
      */
     eventSubmit(func, stopIsNotValidate = formStopIsNotValidate) {
         let form = this;
-        this.actor.addEventListener('submit', (e) => {
+        this.actors.addEventListener('submit', (e) => {
             e.preventDefault();
             if (!stopIsNotValidate)
                 ajaxPost(form.attr('action'), form.serialize(), func);

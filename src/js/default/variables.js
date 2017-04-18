@@ -73,7 +73,7 @@ let buttonFilterDataTargetName = 'target';
  * data-NAME=''
  * @type {string}
  */
-let buttonFilterDataActorName = 'actor';
+let buttonFilterDataActorName = 'actors';
 
 //
 // Компонент модального окна (Modal)

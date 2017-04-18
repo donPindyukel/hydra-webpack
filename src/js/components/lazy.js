@@ -19,13 +19,13 @@ class ElLazy extends Element {
      */
     showIfVisible(offset = 0, addClass = 'show', removeClass = 'hide', func = function () {}) {
         // Получаем положение элемента относительно начала страницы
-        let elementOffset = this.actor.offsetTop;
+        let elementOffset = this.actors.offsetTop;
 
         // Если не можем определить, берем у отступ у родителя
         if (elementOffset === 0) {
             let parentElement = this.parent();
             if (parentElement.length > 0 && parentElement[0] !== null)
-                elementOffset = parentElement[0].actor.offsetTop;
+                elementOffset = parentElement[0].actors.offsetTop;
         }
 
         // Отслеживаем прокручивание страницы

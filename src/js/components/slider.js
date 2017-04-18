@@ -23,15 +23,15 @@ class ElSlider extends Element {
      * @param countSlidePrint - пока не используется в системе.
      */
     initSlider(bodyClassName = '.slider-body', slideClassName = '.slide', countSlidePrint = 1) {
-        let body = this.find(bodyClassName);
+        let body = this.child(bodyClassName);
 
         // Получаем контейнер, который удем двигать по right позиции
         // в нем содержаться все слайды
         if (body.length > 0)
-            this.body = this.find(bodyClassName)[0];
+            this.body = this.child(bodyClassName)[0];
 
         // Получаем список всех слайдов и настраиваем их
-        this.sliders = this.find(slideClassName);
+        this.sliders = this.child(slideClassName);
         this.sliders.forEach((th) => {
 
             // Актуальная длина и высота слайда

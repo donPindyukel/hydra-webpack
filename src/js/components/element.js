@@ -6,13 +6,13 @@ class Element {
 
     constructor(actor) {
         this.name = null;
-        this.actor = null;
+        this.actors = [];
 
         if (typeof actor === 'string') {
             this.name = actor;
-            this.actor = document.querySelector(actor);
-        } else if (typeof actor === 'object') {
-            this.actor = actor;
+            this.actors = document.querySelectorAll(actor);
+        } else if (typeof actor === 'object' && actor.length > 0) {
+            this.actors = actor;
         }
 
         return this;
@@ -23,7 +23,9 @@ class Element {
      * @param name имя класса
      */
     addClass(name) {
-        this.actor.classList.add(name);
+        this.actors.forEach((th) => {
+            th.classList.add(name);
+        });
         return this;
     }
 
@@ -32,7 +34,9 @@ class Element {
      * @param name имя класса
      */
     removeClass(name) {
-        this.actor.classList.remove(name);
+        this.actors.forEach((th) => {
+           th.classList.remove(name);
+        });
         return this;
     }
 
@@ -42,10 +46,11 @@ class Element {
      * @param timeout тамаут
      */
     addClassTimeout(name, timeout = 1000) {
-        let th = this;
-        setTimeout(function() {
-            th.addClass(name);
-        }, timeout);
+        this.actors.forEach((th) => {
+            setTimeout(function() {
+                th.classList.add(name);
+            }, timeout);
+        });
         return this;
     }
 
@@ -55,10 +60,11 @@ class Element {
      * @param timeout тамаут
      */
     removeClassTimeout(name, timeout = 1000) {
-        let th = this;
-        setTimeout(function() {
-            th.removeClass(name);
-        }, timeout);
+        this.actors.forEach((th) => {
+            setTimeout(function() {
+                th.classList.remove(name);
+            }, timeout);
+        });
         return this;
     }
 
@@ -68,9 +74,11 @@ class Element {
      * @returns {boolean}
      */
     hasClass(name) {
-        el.actor.classList.forEach(function(th) {
-            if (th === name)
-                return true;
+        this.actors.forEach((th) => {
+            th.classList.forEach(function(cls) {
+                if (cls === name)
+                    return true;
+            });
         });
         return false;
     }
@@ -80,9 +88,15 @@ class Element {
      * @returns {string}
      */
     attr(name, val = null) {
-        if (val !== null)
-            this.actor.setAttribute(name, val);
-        return this.actor.getAttribute(name);
+        if (val !== null) {
+            this.actors.forEach((th) => {
+                th.setAttribute(name, val);
+            });
+        }
+
+        this.actors.forEach((th) => {
+            return th.getAttribute(name)
+        });
     }
 
     /**
@@ -91,7 +105,11 @@ class Element {
      * @returns {string}
      */
     data(name) {
-        return this.actor.getAttribute("data-" + name);
+        let result = null;
+        this.actors.forEach((th) => {
+            result = th.getAttribute("data-" + name);
+        });
+        return result;
     }
 
     /**
@@ -100,7 +118,11 @@ class Element {
      * @returns {boolean}
      */
     hasData(name) {
-        return this.data(name) !== null;
+        let result = false;
+        this.actors.forEach((th) => {
+            result = th.getAttribute("data-" + name) !== null;
+        });
+        return result;
     }
 
     /**
@@ -109,11 +131,16 @@ class Element {
      * @param returnType указвает функцию через которую будет создаваться объект
      * @returns {Array}
      */
-    find(name, returnType = 'elements') {
+    child(name, returnType = 'elements') {
         if (this.name !== null)
             return el(this.name + " " + name, returnType);
-        else
-            return el(this.actor.querySelectorAll(name), returnType);
+        else {
+            let elmns = null;
+            this.actors.forEach((th) => {
+                elmns = th.querySelectorAll(name);
+            });
+            return el(elmns, returnType);
+        }
     }
 
     /**
@@ -121,7 +148,11 @@ class Element {
      * @returns {number}
      */
     width() {
-        return this.actor.offsetWidth;
+        let result = 0;
+        this.actors.forEach((th) => {
+            result = th.offsetWidth
+        });
+        return result;
     }
 
     /**
@@ -129,16 +160,24 @@ class Element {
      * @returns {number}
      */
     height() {
-        return this.actor.offsetHeight;
+        let result = 0;
+        this.actors.forEach((th) => {
+            result = th.offsetHeight
+        });
+        return result;
     }
 
     /**
      * Возвращает родительский элемент
-     * @param type
+     * @param returnType
      * @returns {Array}
      */
-    parent(type = 'element') {
-        return el(this.actor.parentNode, type);
+    parent(returnType = 'element') {
+        let elmns = [];
+        this.actors.forEach((th) => {
+            elmns.push(th.parentNode);
+        });
+        return el(elmns, returnType);
     }
 
     /**
@@ -147,17 +186,28 @@ class Element {
      * @returns {string}
      */
     css(name) {
-        let style = window.getComputedStyle(this.actor);
-        return style.getPropertyValue(name);
+        let result = null;
+        this.actors.forEach((th) => {
+            result = window.getComputedStyle(th).getPropertyValue(name);
+        });
+        return result;
     }
 
     /**
      * Заменить содержимое жлемента
      * @param value на какое значение заменить
      */
-    html(value) {
-        this.actor.innerHTML = value;
-        return this;
+    html(value = null) {
+        if (value !== null) {
+            this.actors.forEach((th) => {
+                th.innerHTML = value
+            });
+        }
+        let result = null;
+        this.actors.forEach((th) => {
+            result = th.innerHTML
+        });
+        return result;
     }
 
 }

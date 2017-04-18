@@ -16,8 +16,8 @@ class ElField extends Element {
      */
     val(value = null) {
         if (value !== null)
-            this.actor.value = value;
-        return this.actor.value;
+            this.actors.value = value;
+        return this.actors.value;
     }
 
     /**
@@ -27,8 +27,8 @@ class ElField extends Element {
      */
     checked(value = null) {
         if (value !== null)
-            this.actor.checked = value;
-        return this.actor.checked;
+            this.actors.checked = value;
+        return this.actors.checked;
     }
 
     /**
@@ -56,7 +56,7 @@ class ElField extends Element {
      * @param func колбэк
      */
     eventChange(func) {
-        this.actor.addEventListener('change', () => {
+        this.actors.addEventListener('change', () => {
             func(this);
         });
         return this;

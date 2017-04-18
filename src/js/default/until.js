@@ -9,8 +9,6 @@
  * @returns {Array}
  */
 function el(actor, component = 'element') {
-    let elements = [];
-
     // Задаем компонент, который будет создаваться по стандарту
     let NameClass = Element;
 
@@ -40,21 +38,18 @@ function el(actor, component = 'element') {
 
     if (typeof actor === 'string') {
         let selectElements = document.querySelectorAll(actor);
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new NameClass(selectElements[i]));
+        return new NameClass(selectElements);
     }
 
     else if (typeof actor === 'object' && actor.length > 0) {
-        let selectElements = actor;
-        for (let i = 0; i < selectElements.length; i++)
-            elements.push(new NameClass(selectElements[i]));
+        return new NameClass(actor)
     }
 
     else if (typeof actor === 'object' && actor.length === undefined) {
-        elements.push(new NameClass(actor));
+        return new NameClass(actor);
     }
 
-    return elements;
+    return null;
 }
 
 /**
