@@ -17,12 +17,12 @@ class ElForm extends Element {
     loadFields() {
         let fieldsList = [];
         // Записываем список всех инпутов в форме
-        this.child('input', 'field').forEach(function (th) {
-            if (th.attr('type') != 'submit')
+        this.child('input', 'field').forEach((th) => {
+            if (th.attr('type') !== 'submit')
                 fieldsList.push(th);
         });
         // Записываем список всех селектов в форме
-        this.child('select', 'field').forEach(function (th) {
+        this.child('select', 'field').forEach((th) => {
             fieldsList.push(th);
         });
         return fieldsList;
@@ -36,7 +36,7 @@ class ElForm extends Element {
         let data = '';
         let i = 1;
         let countFields = this.formFields.length;
-        this.formFields.forEach(function (field) {
+        this.formFields.forEach((field) => {
             if (field.attr('type') !== "submit") {
                 data += field.attr('name') + "=" + field.val();
                 if (i < countFields)
@@ -54,21 +54,23 @@ class ElForm extends Element {
      */
     eventSubmit(func, stopIsNotValidate = formStopIsNotValidate) {
         let form = this;
-        this.actors.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (!stopIsNotValidate)
-                ajaxPost(form.attr('action'), form.serialize(), func);
-            else {
-                let error = 0;
-                this.formFields.forEach(function (field) {
-                    if (!field.validate())
-                        error++;
-                });
-                if (error === 0)
+        this.actors.forEach((actor) => {
+            actor.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!stopIsNotValidate)
                     ajaxPost(form.attr('action'), form.serialize(), func);
-            }
-            return false;
-        });
+                else {
+                    let error = 0;
+                    this.formFields.forEach(function (field) {
+                        if (!field.validate())
+                            error++;
+                    });
+                    if (error === 0)
+                        ajaxPost(form.attr('action'), form.serialize(), func);
+                }
+                return false;
+            });
+        })
     }
 
 }

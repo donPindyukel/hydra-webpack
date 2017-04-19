@@ -15,9 +15,19 @@ class ElField extends Element {
      * @param value
      */
     val(value = null) {
-        if (value !== null)
-            this.actors.value = value;
-        return this.actors.value;
+        let result = null;
+
+        if (value !== null) {
+            this.actors.forEach((actor) => {
+                actor.value = value;
+            });
+        }
+
+        this.actors.forEach((actor) => {
+            result = actor.value;
+        });
+
+        return result;
     }
 
     /**
@@ -26,9 +36,19 @@ class ElField extends Element {
      * @returns {Element.checked}
      */
     checked(value = null) {
-        if (value !== null)
-            this.actors.checked = value;
-        return this.actors.checked;
+        let result = null;
+
+        if (value !== null) {
+            this.actors.forEach((actor) => {
+                actor.checked = value;
+            });
+        }
+
+        this.actors.forEach((actor) => {
+            result = actor.checked;
+        });
+
+        return result;
     }
 
     /**
@@ -56,8 +76,10 @@ class ElField extends Element {
      * @param func колбэк
      */
     eventChange(func) {
-        this.actors.addEventListener('change', () => {
-            func(this);
+        this.actors.forEach((th) => {
+            th.addEventListener('change', () => {
+                func(this);
+            });
         });
         return this;
     }
@@ -73,7 +95,8 @@ class ElField extends Element {
     eventValidate(successClass = fieldValidSuccessClass,
                   errorClass = fieldValidErrorClass,
                   removeClassTimeout = fieldValidRemoveClassTimeout,
-                  validType = fieldValidType, dataParamsName = fieldValidDataName) {
+                  validType = fieldValidType,
+                  dataParamsName = fieldValidDataName) {
         this.eventChange(function (th) {
             if (th.validate(validType, dataParamsName)) {
                 th.addClass(successClass);
