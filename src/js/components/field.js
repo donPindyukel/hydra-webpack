@@ -60,13 +60,17 @@ class ElField extends Element {
     validate(validType = fieldValidType, dataParamsName = fieldValidDataName) {
         // По длине строки
         if (validType === 'length') {
-            let dataValid = parseInt(this.data(dataParamsName));
+            let dataValid = 0;
+            if (this.hasData(dataParamsName))
+                dataValid = parseInt(this.data(dataParamsName));
             return (this.val().length >= dataValid);
         }
 
         // Выбран ли элемент или нет
         if (validType === 'checked') {
-            let dataValid = Boolean(this.data(dataParamsName));
+            let dataValid = false;
+            if (this.hasData(dataParamsName))
+                dataValid = Boolean(this.data(dataParamsName));
             return (this.checked() === dataValid);
         }
     }

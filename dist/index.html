@@ -15,9 +15,17 @@
 </head>
 <body>
 <p class="test" data-target="test">Testing message<b class="test2"> test2</b></p>
-<form class="ajax-form">
-  <input class="text" type="text" value="122" data-valid="4"/>
+<form class="ajax-form" action="send.php" method="post">
+  <input class="text valid" name="test" type="text" value="122444" data-valid="4"/>
+  <input class="text2" name="ch" type="radio" value="222"/>
   <input class="button submit" type="submit" value="Send"/>
-</form><script src="./assets/js/app.js"></script>
+</form>
+<div class="block-height">test</div>
+<div class="block">
+  <div class="showscroll hide">Show me after scrolling</div>
+</div>
+<div class="modal" id="modal">
+  <div class="modal-container">Test modal window</div>
+</div><script src="./assets/js/app.js"></script>
 </body>
 </html>

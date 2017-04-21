@@ -13,6 +13,8 @@ class Element {
             this.actors = document.querySelectorAll(actor);
         } else if (typeof actor === 'object' && actor.length > 0) {
             this.actors = actor;
+        } else if (typeof actor === 'object' && actor.length === undefined) {
+            this.actors.push(actor);
         }
 
         return this;
@@ -163,6 +165,18 @@ class Element {
         let result = 0;
         this.actors.forEach((th) => {
             result = th.offsetHeight
+        });
+        return result;
+    }
+
+    /**
+     * Возвращает отступ от верхнего края экрана
+     * @returns {number}
+     */
+    offsetTop() {
+        let result = 0;
+        this.actors.forEach((th) => {
+           result = th.offsetTop;
         });
         return result;
     }
