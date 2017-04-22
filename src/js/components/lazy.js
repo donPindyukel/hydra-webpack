@@ -54,9 +54,35 @@ class ElLazy extends Element {
      * Ленивая загрузка изображений. Показывает изображение при прокрутке страницы.
      * @param type - тип ленивой загрузки (img, bg)
      * @param dataName - имя дата аттрибута, откуда брать ссылку на изображение
+     * @param showAfterReadyPage показать изображение после загрузки страницы
      */
-    loadImage(type = 'img', dataName = 'src') {
+    loadImage(type = 'img', dataName = 'src', showAfterReadyPage = false) {
+        let dataSrc = null;
+        let th = this;
 
+        if (this.hasData(dataName)) {
+            dataSrc = this.data(dataName);
+
+            // Прогружать при пролистывании
+            this.showIfVisible(0, null, null, () => {
+                if (type === 'img')
+                    th.attr('src', dataSrc);
+                else if (type === 'bg')
+                    th.attr('style', 'background-image: url(' + dataSrc + ')');
+            });
+
+            // Прогружать после загрузки страницы
+            if (showAfterReadyPage) {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        if (type === 'img')
+                            th.attr('src', dataSrc);
+                        else if (type === 'bg')
+                            th.attr('style', 'background-image: url(' + dataSrc + ')');
+                    }, 1000);
+                });
+            }
+        }
     }
 
 }

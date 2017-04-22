@@ -15,3 +15,5 @@ el('.button-open', 'button').eventClick((th) => {
     log(th.data('id'));
     slider.openSlide(th.data('id'));
 });
+
+el('.lazy-img', 'lazy').loadImage('img', 'src', true);
