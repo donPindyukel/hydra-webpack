@@ -14,18 +14,16 @@
 <link rel="stylesheet" href="./assets/css/app.css">
 </head>
 <body>
-<p class="test" data-target="test">Testing message<b class="test2"> test2</b></p>
-<form class="ajax-form" action="send.php" method="post">
-  <input class="text valid" name="test" type="text" value="122444" data-valid="4"/>
-  <input class="text2" name="ch" type="radio" value="222"/>
-  <input class="button submit" type="submit" value="Send"/>
-</form>
-<div class="block-height">test</div>
-<div class="block">
-  <div class="showscroll hide">Show me after scrolling</div>
+<div class="slider">
+  <div class="slider-body">
+    <div class="slide">test 1</div>
+    <div class="slide">test 2</div>
+    <div class="slide">test 3</div>
+    <div class="slide">test 4</div>
+  </div>
 </div>
-<div class="modal" id="modal">
-  <div class="modal-container">Test modal window</div>
-</div><script src="./assets/js/app.js"></script>
+<div class="button button-prev">Prev Slide</div>
+<div class="button button-next">Next Slide</div>
+<div class="button button-open" data-id="4">Open Slide</div><script src="./assets/js/app.js"></script>
 </body>
 </html>

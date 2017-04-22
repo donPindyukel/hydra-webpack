@@ -1,20 +1,14 @@
 //@include('./partials/header.html')
 
-p.test(data-target="test")
-    | Testing message
-    b.test2  test2
+div.slider
+    div.slider-body
+        div.slide test 1
+        div.slide test 2
+        div.slide test 3
+        div.slide test 4
 
-form.ajax-form(action='send.php', method='post')
-    input.text.valid(name='test', type="text", value="122444", data-valid='4')
-    input.text2(name='ch', type='radio', value='222')
-    input.button.submit(type='submit', value='Send')
-
-div.block-height test
-
-div.block
-    div.showscroll.hide Show me after scrolling
-
-div#modal.modal
-    div.modal-container Test modal window
+div.button.button-prev Prev Slide
+div.button.button-next Next Slide
+div.button.button-open(data-id='4') Open Slide
 
 //@include('./partials/footer.html')

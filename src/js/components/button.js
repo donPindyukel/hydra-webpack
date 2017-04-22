@@ -14,8 +14,10 @@ class ElButton extends Element {
      * @param func колбэк
      */
     eventClick(func) {
-        this.actors.addEventListener('click', () => {
-            func(this);
+        this.actors.forEach((th) => {
+            th.addEventListener('click', () => {
+                func(this);
+            });
         });
         return this;
     }

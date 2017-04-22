@@ -25,14 +25,15 @@ class ElSlider extends Element {
     initSlider(bodyClassName = '.slider-body', slideClassName = '.slide', countSlidePrint = 1) {
         let body = this.child(bodyClassName);
 
-        // Получаем контейнер, который удем двигать по right позиции
+        // Получаем контейнер, который будем двигать по right позиции
         // в нем содержаться все слайды
-        if (body.length > 0)
-            this.body = this.child(bodyClassName)[0];
+        if (body !== null)
+            this.body = body;
 
         // Получаем список всех слайдов и настраиваем их
         this.sliders = this.child(slideClassName);
-        this.sliders.forEach((th) => {
+        this.sliders.actors.forEach((actor) => {
+            let th = el(actor);
 
             // Актуальная длина и высота слайда
             let newWidth = parseInt(th.css('width'));
@@ -159,7 +160,7 @@ class ElSlider extends Element {
         let clickNext = 0;
         let typeScroll = 'next';
 
-        if (num <= this.sliders.length && num > 0) {
+        if (num <= this.sliders.actors.length && num > 0) {
             // Если номер слайда больше активного слайда
             if (num > this.activeStep) {
                 clickNext = num - this.activeStep;

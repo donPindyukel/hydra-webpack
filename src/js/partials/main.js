@@ -1,15 +1,17 @@
 
 
-//el('#modal', 'modal').show();
+let slider = el('.slider', 'slider');
+slider.initSlider();
 
-el('.text', 'field').eventValidate();
+el('.button-prev', 'button').eventClick(() => {
+    slider.prevSlide()
+});
 
-el('.ajax-form', 'form').eventSubmit((response, error) => {
-    log("response");
-}, true);
+el('.button-next', 'button').eventClick(() => {
+    slider.nextSlide()
+});
 
-log(el('.ajax-form', 'form').serialize());
-
-let lazy = el('.showscroll', 'lazy');
-lazy.showIfVisible();
-log(lazy.offsetTop());
+el('.button-open', 'button').eventClick((th) => {
+    log(th.data('id'));
+    slider.openSlide(th.data('id'));
+});
