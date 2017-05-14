@@ -2,10 +2,10 @@
 // Компонент слайдера
 // ==========================================================================
 
-class ElSlider extends Element {
+class Slider {
 
     constructor(actor) {
-        super(actor);
+        // super(actor);
         this.activeStep = 1;
         this.allSteps = 0;
         this.allSlideWidth = 0;

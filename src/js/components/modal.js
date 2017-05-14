@@ -2,10 +2,10 @@
 // Компонент модального окна
 // ==========================================================================
 
-class ElModal extends Element {
+class Modal {
 
     constructor(actor) {
-        super(actor);
+        // super(actor);
         return this;
     }
 

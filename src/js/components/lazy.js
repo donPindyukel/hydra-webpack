@@ -2,10 +2,10 @@
 // Компонент ленивой загрузки
 // ==========================================================================
 
-class ElLazy extends Element {
+class Lazy {
 
     constructor(actor) {
-        super(actor);
+        this.actor = actor;
         this.showIfVisibleEnd = false;
         return this;
     }

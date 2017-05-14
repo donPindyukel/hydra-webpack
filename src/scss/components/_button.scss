@@ -3,15 +3,17 @@
 // ==========================================================================
 
 // Создание кнопки
+// width - длина кнопки
 // color-text - цвет текста
 // color-bg - цвет фона
 // color-border - цвет обводки
 // color-shadow - цвет тени
-@mixin button($color-text: $color-text-normal, $color-bg: $button-color-bg, $color-border: transparent, $color-shadow: transparent) {
+@mixin button($width: auto, $color-text: $color-text-normal, $color-bg: $button-color-bg, $color-border: transparent, $color-shadow: transparent) {
     $color-bg-hover: darken($color-bg, 10%);
     $color-border-hover: darken($color-border, 10%);
     $color-shadow-hover: darken($color-shadow, 10%);
 
+    width: $width;
     color: $color-text;
     background: $color-bg;
     border: $button-border-size $color-border;
@@ -29,12 +31,14 @@
     vertical-align: middle;
     user-select: none;
     text-decoration: none;
+    outline: none;
 
     @include hover {
         color: $color-text;
         text-decoration: none;
         background: $color-bg-hover;
         border: $button-border-size $color-border-hover;
+        outline: none;
 
         @if ($button-option-shadow) {
             box-shadow: $button-shadow-size $color-shadow-hover;
@@ -46,6 +50,7 @@
         text-decoration: none;
         background: $color-bg-hover;
         border: $button-border-size $color-border-hover;
+        outline: none;
 
         @if ($button-option-shadow) {
             box-shadow: $button-shadow-size $color-shadow-hover;
