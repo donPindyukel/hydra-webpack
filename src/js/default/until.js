@@ -40,3 +40,35 @@ function ajaxPost(url, params, func) {
     };
     httpRequest.send(encodeURI(params));
 }
+
+// ==========================================================================
+// Расширения для JQuery
+// ==========================================================================
+
+(function( $ ) {
+
+    /**
+     * Добавить класс после истечения времени
+     * @param className
+     * @param timeout
+     */
+    $.fn.addClassTimeout = function(className, timeout = 1000) {
+        let th = this;
+        setTimeout(function () {
+            th.addClass(className);
+        }, timeout);
+    };
+
+    /**
+     * Удалить класс после истечения времени
+     * @param className
+     * @param timeout
+     */
+    $.fn.removeClassTimeout = function(className, timeout = 1000) {
+        let th = this;
+        setTimeout(function () {
+            th.removeClass(className);
+        }, timeout);
+    };
+
+})(jQuery);

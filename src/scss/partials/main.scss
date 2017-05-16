@@ -1,0 +1,16 @@
+
+.modal {
+    @include modal-overlay();
+
+    .modal-body {
+        @include modal-body();
+    }
+}
+
+.fadeIn {
+    @include animated('fadeIn')
+}
+
+.fadeOut {
+    @include animated('fadeOut')
+}

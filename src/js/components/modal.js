@@ -2,34 +2,29 @@
 // Компонент модального окна
 // ==========================================================================
 
-class Modal {
-
-    constructor(actor) {
-        // super(actor);
-        return this;
-    }
+(function ($) {
 
     /**
      * Показать модальное окно
-     * @param animatedClass класс анимации
-     * @param animateDeleteTimeout через сколько удалить класс анимации
+     * @param animatedClass анимация показа
+     * @param animateDeleteTimeout время удаления анимации
      */
-    show(animatedClass = modalAnimateClassShow,
-         animateDeleteTimeout = modalAnimateDeleteTimeout) {
+    $.fn.modalShow = function (animatedClass = modalAnimateClassShow,
+                               animateDeleteTimeout = modalAnimateDeleteTimeout) {
         if (animatedClass !== null) {
             this.addClass(animatedClass);
             this.removeClassTimeout(animatedClass, animateDeleteTimeout);
         }
         this.addClass('show');
-    }
+    };
 
     /**
      * Скрыть модальное окно
-     * @param animatedClass класс анимации
-     * @param animateDeleteTimeout через сколько удалить класс анимации
+     * @param animatedClass анимация скрытия
+     * @param animateDeleteTimeout время удаления анимации
      */
-    hide(animatedClass = modalAnimateClassHide,
-         animateDeleteTimeout = modalAnimateDeleteTimeout) {
+    $.fn.modalHide = function (animatedClass = modalAnimateClassHide,
+                               animateDeleteTimeout = modalAnimateDeleteTimeout) {
         if (animatedClass !== null) {
             this.addClass(animatedClass);
             this.removeClassTimeout(animatedClass, animateDeleteTimeout);
@@ -41,6 +36,6 @@ class Modal {
         }
         else
             this.removeClass('show');
-    }
+    };
 
-}
+})(jQuery);
