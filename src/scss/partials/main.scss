@@ -18,3 +18,11 @@
 .hide {
     display: none !important;
 }
+
+.validate-success {
+    @include form-validate(green);
+}
+
+.validate-error {
+    @include form-validate(red);
+}

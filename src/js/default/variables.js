@@ -9,14 +9,6 @@ let globalHideClass = 'hide';
 //
 
 /**
- * Стандартный тип валидации
- * length - длина текста
- * checked - выбран ли элемент
- * @type {string}
- */
-let fieldValidType = 'length';
-
-/**
  * Дата аттрибут у поля, с которого брать настройки для валидации
  * data-NAME
  * data-valid='4' для length (число любое)

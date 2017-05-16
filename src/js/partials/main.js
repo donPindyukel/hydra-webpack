@@ -6,3 +6,5 @@
 // }, 2000);
 
 $('.js-filter').buttonFilter('.js-content');
+
+$('.js-input').fieldEventValidate();
