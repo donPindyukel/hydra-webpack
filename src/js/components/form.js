@@ -2,8 +2,31 @@
 // Компонент формы
 // ==========================================================================
 
-class Form {
+(function ($) {
 
-    // Скоро
+    /**
+     * Отправка данных с формы
+     * @param func
+     * @param stopIsNotValidate
+     */
+    $.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate) {
+        let form = this;
+        form.on('submit', function (e) {
+            e.preventDefault();
+            if (!stopIsNotValidate)
+                ajaxPost(form.attr('action'), form.serialize(), func);
+            else {
+                let error = 0;
+                form.find('input').each(function () {
+                    let field = $(this);
+                    if (!field.fieldValidate())
+                        error++;
+                });
+                if (error === 0)
+                    ajaxPost(form.attr('action'), form.serialize(), func);
+            }
+            return false;
+        });
+    };
 
-}
+})(jQuery);

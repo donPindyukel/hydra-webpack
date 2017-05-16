@@ -107,9 +107,6 @@ gulp.task('html:build', function () {
             prefix: '//@',
             basepath: '@file'
         }))
-        .pipe(pug({
-            pretty: true
-        }))
         .pipe(gulp.dest(path.build.html))
         .pipe(reload({stream: true}));
 });
@@ -121,9 +118,6 @@ gulp.task('php:build', function () {
             prefix: '//@',
             basepath: '@file'
         }))
-        .pipe(pug({
-            pretty: true
-        }))
         .pipe(gulp.dest(path.build.php))
         .pipe(reload({stream: true}));
 });
@@ -134,9 +128,6 @@ gulp.task('leaf:build', function () {
         .pipe(fileinclude({
             prefix: '//@',
             basepath: '@file'
-        }))
-        .pipe(pug({
-            pretty: true
         }))
         .pipe(gulp.dest(path.build.leaf))
         .pipe(reload({stream: true}));

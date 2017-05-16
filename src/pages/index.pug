@@ -17,11 +17,10 @@ div.js-content(data-actor='2') content 2
 br
 br
 
-input.js-input(type='text', value='1', data-valid='2')
-input.js-input(type='number', value='12', data-valid='2')
-input.js-input(type='tel', value='123', data-valid='2')
-input.js-input(type='password', value='1234', data-valid='2')
-input.js-input(type='checkbox', value='1234', data-valid='true')
+form.js-ajax-form(action='./ajax-post.php', method='post', onsubmit='return false;')
+    input.js-input(type='text', name='name', value='Имя', data-valid='2')
+    input.js-input(type='email', name='email', value='test@website.ru', data-valid='2')
+    input(type='submit', value='Отправить')
 
 
 include ./partials/modals

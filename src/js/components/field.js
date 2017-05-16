@@ -14,7 +14,8 @@
 
             // Текстовое поле по длине строки
             if (this.attr('type') === 'text' || this.attr('type') === 'number'
-                || this.attr('type') === 'tel' || this.attr('type') === 'password') {
+                || this.attr('type') === 'tel' || this.attr('type') === 'password'
+                || this.attr('type') === 'email') {
                 let dataValid = parseInt(this.data(dataParamsName));
                 return (this.val().length >= dataValid);
             }
@@ -24,6 +25,8 @@
                 let dataValid = Boolean(this.data(dataParamsName));
                 return (this.prop('checked') === dataValid);
             }
+
+            return true;
         }
     };
 

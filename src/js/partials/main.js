@@ -8,3 +8,7 @@
 $('.js-filter').buttonFilter('.js-content');
 
 $('.js-input').fieldEventValidate();
+
+$('.js-ajax-form').formAjax(function (data) {
+    log(data);
+}, true);
