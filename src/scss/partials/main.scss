@@ -14,3 +14,7 @@
 .fadeOut {
     @include animated('fadeOut')
 }
+
+.hide {
+    display: none !important;
+}
