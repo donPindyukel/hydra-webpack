@@ -200,7 +200,6 @@ gulp.task('build', [
     'data:build'
 ]);
 
-
 gulp.task('watch', function () {
     watch([path.watch.pug], function (event, cb) {
         gulp.start('pug:build');

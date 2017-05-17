@@ -165,9 +165,9 @@
 
             for (let i = 0; i < clickNext; i++) {
                 if (typeScroll === 'next')
-                    this.nextSlide();
+                    this.sliderNext();
                 if (typeScroll === 'prev')
-                    this.prevSlide();
+                    this.sliderPrev();
             }
         }
     };
