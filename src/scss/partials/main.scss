@@ -26,3 +26,16 @@
 .validate-error {
     @include form-validate(red);
 }
+
+$default-grid-columns: 12;
+$default-grid-gutter: 2%;
+
+.grid {
+	@include grid($gutter: $default-grid-gutter);
+
+	@for $i from 1 through $default-grid-columns {
+		> .grid__col-#{$i} {
+			@include grid-col($col: $i, $grid-columns: $default-grid-columns, $gutter: $default-grid-gutter);
+		}
+	}
+}

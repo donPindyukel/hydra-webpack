@@ -8,12 +8,13 @@
 // color-bg - цвет фона
 // color-border - цвет обводки
 // color-shadow - цвет тени
-@mixin button($width: auto, $color-text: $color-text-normal, $color-bg: $button-color-bg, $color-border: transparent, $color-shadow: transparent) {
+@mixin button($max-width: auto, $color-text: $color-text-normal, $color-bg: $button-color-bg, $color-border: transparent, $color-shadow: transparent) {
     $color-bg-hover: darken($color-bg, 10%);
     $color-border-hover: darken($color-border, 10%);
     $color-shadow-hover: darken($color-shadow, 10%);
 
-    width: $width;
+    width: 100%;
+    max-width: $max-width;
     color: $color-text;
     background: $color-bg;
     border: $button-border-size $color-border;

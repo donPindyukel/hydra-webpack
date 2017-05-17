@@ -13,6 +13,7 @@
   "dependencies": {
     "normalize-css": "*",
     "jquery": "3.*",
-    "susy": "2.2.*"
+    "susy": "2.2.*",
+    "flexbox-grid-mixins": "^0.1.3"
   }
 }
