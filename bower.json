@@ -12,7 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "normalize-css": "*",
-    "jquery": "3.*",
-    "susy": "2.2.*"
+    "jquery": "3.*"
   }
 }
