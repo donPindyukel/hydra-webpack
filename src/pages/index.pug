@@ -17,10 +17,32 @@ div.js-content(data-actor='2') content 2
 br
 br
 
+div.slider.js-slider
+    div.slider-body
+        div.slide SLIDE 1
+        div.slide SLIDE 2
+        div.slide SLIDE 3
+        div.slide SLIDE 4
+
+a.js-prev Prev slider
+br
+a.js-next Next slider
+br
+a.js-slide(data-slide='3') Open slide
+
+br
+br
+
 form.js-ajax-form(action='./ajax-post.php', method='post', onsubmit='return false;')
     input.js-input(type='text', name='name', value='Имя', data-valid='2')
     input.js-input(type='email', name='email', value='test@website.ru', data-valid='2')
     input(type='submit', value='Отправить')
+
+div.many-height
+
+div
+    span.js-lazy.hide Test show this
+    img.js-lazy-img(data-src='./assets/img/default/select-arrow.png')
 
 
 include ./partials/modals

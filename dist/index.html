@@ -21,10 +21,20 @@
 <button class="button js-filter" data-target="2">Target 2</button><br><br>
 <div class="js-content" data-actor="1">content 1</div>
 <div class="js-content" data-actor="2">content 2</div><br><br>
+<div class="slider js-slider">
+  <div class="slider-body">
+    <div class="slide">SLIDE 1</div>
+    <div class="slide">SLIDE 2</div>
+    <div class="slide">SLIDE 3</div>
+    <div class="slide">SLIDE 4</div>
+  </div>
+</div><a class="js-prev">Prev slider</a><br><a class="js-next">Next slider</a><br><a class="js-slide" data-slide="3">Open slide</a><br><br>
 <form class="js-ajax-form" action="./ajax-post.php" method="post" onsubmit="return false;">
   <input class="js-input" type="text" name="name" value="Имя" data-valid="2">
   <input class="js-input" type="email" name="email" value="test@website.ru" data-valid="2">
   <input type="submit" value="Отправить">
 </form>
+<div class="many-height"></div>
+<div><span class="js-lazy hide">Test show this</span><img class="js-lazy-img" data-src="./assets/img/default/select-arrow.png"></div>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="./assets/js/app.js"></script>

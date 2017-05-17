@@ -6,8 +6,8 @@
 
     /**
      * Отправка данных с формы
-     * @param func
-     * @param stopIsNotValidate
+     * @param func Выполняемая функция после отправки данных
+     * @param stopIsNotValidate Валидация формы true/false
      */
     $.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate) {
         let form = this;

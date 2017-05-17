@@ -2,13 +2,8 @@
 // Компонент ленивой загрузки
 // ==========================================================================
 
-class Lazy {
 
-    constructor(actor) {
-        this.actor = actor;
-        this.showIfVisibleEnd = false;
-        return this;
-    }
+(function ($) {
 
     /**
      * Применять стили к элементу, если доскролили до него
@@ -17,54 +12,60 @@ class Lazy {
      * @param removeClass - имя класса для удаления при срабатывании
      * @param func - функция, которую нужно запустить при срабатывании
      */
-    showIfVisible(offset = 0, addClass = 'show', removeClass = 'hide', func = function () {}) {
-        // Получаем положение элемента относительно начала страницы
-        let elementOffset = el(this.actors).offsetTop();
+    $.fn.lazyShowIfVisible = function (offset = 0,
+                                   addClass = 'show',
+                                   removeClass = 'hide',
+                                   func = function () {}) {
+        let th = this;
+        let showIfVisibleEnd = false;
 
-        // Если не можем определить, берем у отступ у родителя
+        // Получаем положение элемента относительно начала страницы
+        let elementOffset = th.offset().top;
+
+        // Если не можем определить, берем отступ у родителя
         if (elementOffset === 0) {
-            let parentElement = this.parent();
-            log(parentElement);
-            elementOffset = parentElement.offsetTop();
+            let parentElement = th.parent();
+            elementOffset = parentElement.offset().top;
         }
 
-        // Отслеживаем прокручивание страницы
-        window.addEventListener('scroll', () => {
-            if (this.showIfVisibleEnd === false) {
-                // Получаем данные о положении у элементов
+        $(window).scroll(function () {
+            if (showIfVisibleEnd === false) {
+                // Вычисляем срабатываемую область
                 let customOffset = document.body.scrollTop + window.innerHeight;
                 customOffset -= customOffset * offset;
 
                 // Если мы дошли до элемента, применяем стили функцию
                 if (customOffset > elementOffset) {
                     if (addClass !== null)
-                        this.addClass(addClass);
+                        th.addClass(addClass);
                     if (removeClass !== null)
-                        this.removeClass(removeClass);
-                    func(this);
-                    this.showIfVisibleEnd = true;
+                        th.removeClass(removeClass);
+                    func(th);
+                    showIfVisibleEnd = true;
                 }
             }
         });
-
-        return this;
-    }
+    };
 
     /**
      * Ленивая загрузка изображений. Показывает изображение при прокрутке страницы.
      * @param type - тип ленивой загрузки (img, bg)
      * @param dataName - имя дата аттрибута, откуда брать ссылку на изображение
      * @param showAfterReadyPage показать изображение после загрузки страницы
+     * @param func - функция, которую нужно запустить при срабатывании
      */
-    loadImage(type = 'img', dataName = 'src', showAfterReadyPage = false) {
+    $.fn.lazyLoadImage = function (type = 'img',
+                                   dataName = 'src',
+                                   showAfterReadyPage = false,
+                                   func = function () {}) {
         let dataSrc = null;
         let th = this;
 
-        if (this.hasData(dataName)) {
+        if (this.data(dataName)) {
             dataSrc = this.data(dataName);
 
             // Прогружать при пролистывании
-            this.showIfVisible(0, null, null, () => {
+            this.lazyShowIfVisible(0, null, null, () => {
                 if (type === 'img')
                     th.attr('src', dataSrc);
                 else if (type === 'bg')
@@ -73,7 +74,7 @@ class Lazy {
 
             // Прогружать после загрузки страницы
             if (showAfterReadyPage) {
-                window.addEventListener('load', () => {
+                $(window).on('load', () => {
                     setTimeout(() => {
                         if (type === 'img')
                             th.attr('src', dataSrc);
@@ -83,6 +84,6 @@ class Lazy {
                 });
             }
         }
-    }
+    };
 
-}
+})(jQuery);
