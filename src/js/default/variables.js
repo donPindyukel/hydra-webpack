@@ -46,6 +46,20 @@ let fieldValidRemoveClassTimeout = 1000;
  */
 let formStopIsNotValidate = true;
 
+/**
+ * Управление системой антиспама.
+ * Добавляет в форму скрытое поле через 1 секунду после загрузки страницы.
+ * По этому полю можно проверить, бот это или нет.
+ * @type {boolean}
+ */
+let formActiveAntiSpam = true;
+
+/**
+ * Ключевое слово, которое добавляется в hash поле для проверки при отправки с формы
+ * @type {string}
+ */
+let formAntiSpamHashKey = 'success';
+
 //
 // Компонент кнопки (Button)
 //

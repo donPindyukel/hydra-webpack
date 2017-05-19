@@ -8,9 +8,19 @@
      * Отправка данных с формы
      * @param func Выполняемая функция после отправки данных
      * @param stopIsNotValidate Валидация формы true/false
+     * @param activeAntiSpam
      */
-    $.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate) {
+    $.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate, activeAntiSpam = formActiveAntiSpam) {
         let form = this;
+
+        // Защита от спама
+        if (activeAntiSpam) {
+            setTimeout(function () {
+                form.append('<input type="hidden" name="hash" class="hash" value="'+ formAntiSpamHashKey +'">');
+            }, 1000);
+        }
+
+        // Отлавливаем событие нажатия на сабмит
         form.on('submit', function (e) {
             e.preventDefault();
             if (!stopIsNotValidate)
