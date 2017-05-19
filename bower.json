@@ -12,12 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "normalize-css": "*",
-<<<<<<< HEAD
     "jquery": "3.*",
-    "susy": "2.2.*",
     "flexbox-grid-mixins": "^0.1.3"
-=======
-    "jquery": "3.*"
->>>>>>> origin/develop
   }
 }

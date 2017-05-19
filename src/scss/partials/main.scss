@@ -27,7 +27,6 @@
     @include form-validate(red);
 }
 
-<<<<<<< HEAD
 $default-grid-columns: 12;
 $default-grid-gutter: 2%;
 
@@ -40,7 +39,7 @@ $default-grid-gutter: 2%;
 		}
 	}
 }
-=======
+
 .many-height {
     min-height: 1000px;
 }
@@ -59,4 +58,3 @@ $default-grid-gutter: 2%;
         }
     }
 }
->>>>>>> origin/develop
