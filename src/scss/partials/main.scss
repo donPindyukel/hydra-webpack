@@ -7,6 +7,12 @@
     }
 }
 
+.button {
+    @include button();
+    width: 320px;
+    @include button-blink();
+}
+
 .fadeIn {
     @include animated('fadeIn')
 }

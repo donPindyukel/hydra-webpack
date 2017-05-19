@@ -80,6 +80,9 @@ $button-border-size: rem(1) solid;
 $button-option-shadow: true;
 $button-shadow-size: rem(1) rem(1) rem(1);
 
+// Цвет для эффекта поблескивания кнопки
+$button-blink-background: rgba(255, 255, 255, 0.3);
+
 //
 // Компонент - модальное окно
 //
