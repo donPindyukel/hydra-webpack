@@ -1,3 +1,7 @@
+.preloader {
+    @include lazy-preloader();
+}
+
 
 .modal {
     @include modal-overlay();

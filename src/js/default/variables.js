@@ -103,7 +103,3 @@ let modalAnimateClassHide = 'fadeOut';
  * @type {number}
  */
 let modalAnimateDeleteTimeout = 1000;
-
-
-
-

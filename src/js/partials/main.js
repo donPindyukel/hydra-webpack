@@ -5,6 +5,8 @@
 //     $('.js-modal').modalHide();
 // }, 2000);
 
+$('.preloader').lazyPreloader();
+
 $('.js-filter').buttonFilter('.js-content');
 
 $('.js-input').fieldEventValidate();
