@@ -6,14 +6,15 @@
 // font-size - размер шрифта
 // color-text - цвет текста
 @mixin form-label($font-size: $font-size-normal, $color-text: $form-color-font) {
-    display: block;
+	font-size: $font-size;
+	font-weight: normal;
 
-    color: $color-text;
-    font-size: $font-size;
-    font-weight: normal;
+	display: block;
 
-    margin: 0 0 $form-spacing;
-    padding: rem(($form-spacing / 2)) 0;
+	margin: 0 0 $form-spacing;
+	padding: rem(($form-spacing / 2)) 0;
+
+	color: $color-text;
 }
 
 // Создание input
@@ -24,61 +25,58 @@
 // color-border - цвет обводки
 // color-shadow - цвет тени
 @mixin form-input($max-width, $font-size: $font-size-normal, $color-text: $form-color-font, $color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent) {
-    $color-bg-hover: darken($color-bg, 4%);
-    $color-border-hover: darken($color-border, 4%);
-    $color-shadow-hover: darken($color-shadow, 10%);
-    $height: ($font-size + ($form-spacing * 1.5) - rem(1));
+	$color-bg-hover: darken($color-bg, 4%);
+	$color-border-hover: darken($color-border, 4%);
+	$color-shadow-hover: darken($color-shadow, 10%);
+	$height: ($font-size + ($form-spacing * 1.5) - rem(1));
 
-    color: $color-text;
-    font-size: $font-size;
-    font-family: $font-family-normal;
+	@include hover {
+		transition: all 0.2s linear;
 
-    max-width: $max-width;
-    height: $height;
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    margin: 0 $form-spacing 0 0;
-    padding: $form-spacing / 2;
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
+	@include focus {
+		transition: all 0.2s linear;
 
-    border: $form-border-size $color-border;
-    border-radius: $form-border-radius;
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    background-color: $color-bg;
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
 
-    @if ($form-option-shadow) {
-        box-shadow: $form-shadow-size $color-shadow;
-    }
+	font-family: $font-family-normal;
+	font-size: $font-size;
+	font-weight: normal;
 
-    width: 100%;
-    display: inline-block;
-    box-sizing: border-box;
-    font-weight: normal;
+	display: inline-block;
 
-    white-space: nowrap;
-    vertical-align: middle;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: $max-width;
+	height: $height;
+	margin: 0 $form-spacing 0 0;
+	padding: $form-spacing / 2;
 
-    @include hover {
-        outline: none;
-        transition: all .2s linear;
+	vertical-align: middle;
+	white-space: nowrap;
 
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
+	color: $color-text;
+	border: $form-border-size $color-border;
+	border-radius: $form-border-radius;
+	background-color: $color-bg;
 
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
-
-    @include focus {
-        outline: none;
-        transition: all .2s linear;
-
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
-
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
+	@if ($form-option-shadow) {
+		box-shadow: $form-shadow-size $color-shadow;
+	}
 }
 
 // Создание select
@@ -90,76 +88,75 @@
 // color-shadow - цвет тени
 // img-dwopdown - изобржение стрелки для выпадающего списка
 @mixin form-select($max-width, $font-size: $font-size-normal, $color-text: $form-color-font, $color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent, $img-dwopdown: $form-select-img-dropdown) {
-    $color-bg-hover: darken($color-bg, 4%);
-    $color-border-hover: darken($color-border, 4%);
-    $color-shadow-hover: darken($color-shadow, 10%);
-    $height: ($font-size + ($form-spacing * 1.5) - rem(1));
+	$color-bg-hover: darken($color-bg, 4%);
+	$color-border-hover: darken($color-border, 4%);
+	$color-shadow-hover: darken($color-shadow, 10%);
+	$height: ($font-size + ($form-spacing * 1.5) - rem(1));
 
-    color: $color-text;
-    font-size: $font-size;
-    font-family: $font-family-normal;
+	@include hover {
+		transition: all 0.2s linear;
 
-    max-width: $max-width;
-    height: $height;
-    margin: 0 $form-spacing 0 0;
-    padding: $form-spacing / 2;
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    border: $form-border-size $color-border;
-    border-radius: $form-border-radius;
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
+	@include focus {
+		transition: all 0.2s linear;
 
-    background-color: $color-bg;
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    @if ($form-option-shadow) {
-        box-shadow: $form-shadow-size $color-shadow;
-    }
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
 
-    width: 100%;
-    display: inline-block;
-    box-sizing: border-box;
-    font-weight: normal;
+	font-family: $font-family-normal;
+	font-size: $font-size;
+	font-weight: normal;
 
-    appearance: none;
-    white-space: nowrap;
-    vertical-align: middle;
+	display: inline-block;
 
-    background-image: url($img-dwopdown);
-    background-origin: content-box;
-    background-position: right center;
-    background-repeat: no-repeat;
-    background-size: 12px 12px;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: $max-width;
+	height: $height;
+	margin: 0 $form-spacing 0 0;
+	padding: $form-spacing / 2;
 
-    @include hover {
-        outline: none;
-        transition: all .2s linear;
+	vertical-align: middle;
+	white-space: nowrap;
 
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
+	color: $color-text;
+	border: $form-border-size $color-border;
+	border-radius: $form-border-radius;
+	background-color: $color-bg;
+	background-image: url($img-dwopdown);
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-origin: content-box;
+	background-size: 12px 12px;
 
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
+	appearance: none;
 
-    @include focus {
-        outline: none;
-        transition: all .2s linear;
+	@if ($form-option-shadow) {
+		box-shadow: $form-shadow-size $color-shadow;
+	}
 
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
+	&::-ms-expand {
+		display: none;
+	}
 
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
+	&[multiple] {
+		height: auto;
 
-    &::-ms-expand {
-        display: none;
-    }
-
-    &[multiple] {
-        height: auto;
-        background-image: none;
-    }
+		background-image: none;
+	}
 }
 
 // Создание ckeckbox
@@ -168,63 +165,62 @@
 // color-shadow - цвет тени
 // img-checked - изобржение галочки при checked элемента
 @mixin form-checkbox($color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent, $img-checked: $form-checkbox-img-checked) {
-    $color-bg-hover: darken($color-bg, 4%);
-    $color-border-hover: darken($color-border, 4%);
-    $color-shadow-hover: darken($color-shadow, 10%);
-    $size: ($form-spacing * 1.5) - rem(1);
+	$color-bg-hover: darken($color-bg, 4%);
+	$color-border-hover: darken($color-border, 4%);
+	$color-shadow-hover: darken($color-shadow, 10%);
+	$size: ($form-spacing * 1.5) - rem(1);
 
-    width: $size;
-    height: $size;
+	@include hover {
+		cursor: pointer;
+		transition: all 0.2s linear;
 
-    border: $form-border-size $color-border;
-    border-radius: $form-border-radius;
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    background-color: $color-bg;
-    margin: 0 rem($form-spacing / 2) 0 0;
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
+	@include focus {
+		transition: all 0.2s linear;
 
-    @if ($form-option-shadow) {
-        box-shadow: $form-shadow-size $color-shadow;
-    }
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    display: inline-block;
-    appearance: none;
-    white-space: nowrap;
-    vertical-align: middle;
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
 
-    background-origin: content-box;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 12px 12px;
+	display: inline-block;
 
-    &:checked,
-    .checked {
-        background-image: url($img-checked);
-    }
+	width: $size;
+	height: $size;
+	margin: 0 rem($form-spacing / 2) 0 0;
 
-    @include hover {
-        transition: all .2s linear;
-        outline: none;
-        cursor: pointer;
+	vertical-align: middle;
+	white-space: nowrap;
 
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
+	border: $form-border-size $color-border;
+	border-radius: $form-border-radius;
+	background-color: $color-bg;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-origin: content-box;
+	background-size: 12px 12px;
 
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
+	appearance: none;
 
-    @include focus {
-        transition: all .2s linear;
-        outline: none;
+	@if ($form-option-shadow) {
+		box-shadow: $form-shadow-size $color-shadow;
+	}
 
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
-
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
+	&:checked,
+	.checked {
+		background-image: url($img-checked);
+	}
 }
 
 // Создание radio
@@ -233,63 +229,95 @@
 // color-shadow - цвет тени
 // img-checked - изобржение галочки при checked элемента
 @mixin form-radio($color-bg: $form-color-bg, $color-border: transparent, $color-shadow: transparent, $img-checked: $form-radio-img-checked) {
-    $color-bg-hover: darken($color-bg, 4%);
-    $color-border-hover: darken($color-border, 4%);
-    $color-shadow-hover: darken($color-shadow, 10%);
-    $size: ($form-spacing * 1.5) - rem(1);
+	$color-bg-hover: darken($color-bg, 4%);
+	$color-border-hover: darken($color-border, 4%);
+	$color-shadow-hover: darken($color-shadow, 10%);
+	$size: ($form-spacing * 1.5) - rem(1);
 
-    width: $size;
-    height: $size;
+	@include hover {
+		cursor: pointer;
+		transition: all 0.2s linear;
 
-    border: $form-border-size $color-border;
-    border-radius: 50%;
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    background-color: $color-bg;
-    margin: 0 rem($form-spacing / 2) 0 0;
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
+	@include focus {
+		transition: all 0.2s linear;
 
-    @if ($form-option-shadow) {
-        box-shadow: $form-shadow-size $color-shadow;
-    }
+		border: $form-border-size $color-border-hover;
+		outline: none;
+		background-color: $color-bg-hover;
 
-    display: inline-block;
-    appearance: none;
-    white-space: nowrap;
-    vertical-align: middle;
+		@if ($form-option-shadow) {
+			box-shadow: $form-shadow-size $color-shadow-hover;
+		}
+	}
 
-    background-origin: content-box;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 12px 12px;
+	display: inline-block;
 
-    &:checked,
-    .checked {
-        background-image: url($img-checked);
-    }
+	width: $size;
+	height: $size;
+	margin: 0 rem($form-spacing / 2) 0 0;
 
-    @include hover {
-        transition: all .2s linear;
-        outline: none;
-        cursor: pointer;
+	vertical-align: middle;
+	white-space: nowrap;
 
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
+	border: $form-border-size $color-border;
+	border-radius: 50%;
+	background-color: $color-bg;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-origin: content-box;
+	background-size: 12px 12px;
 
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
+	appearance: none;
 
-    @include focus {
-        transition: all .2s linear;
-        outline: none;
+	@if ($form-option-shadow) {
+		box-shadow: $form-shadow-size $color-shadow;
+	}
 
-        border: $form-border-size $color-border-hover;
-        background-color: $color-bg-hover;
+	&:checked,
+	.checked {
+		background-image: url($img-checked);
+	}
+}
 
-        @if ($form-option-shadow) {
-            box-shadow: $form-shadow-size $color-shadow-hover;
-        }
-    }
+// Создание range slider
+// width-slider длина полосы
+// height-slider высота полосы
+// size-pointer размер поинтера
+// bg-slider фоновый цвет полосы
+// bg-pointer цвет поинтера
+@mixin form-range($width-slider: 100%, $height-slider: $form-slider-range-height, $size-pointer: $form-slider-range-pinter-size, $bg-slider: $form-color-bg, $bg-pointer: $form-color-font) {
+	position: relative;
+
+	width: $width-slider;
+	height: $height-slider;
+	margin: 0 auto;
+	padding: 0;
+
+	outline: 0;
+	background: $bg-slider;
+
+	.range-pointer {
+		position: absolute;
+		z-index: 2;
+		top: rem($height-slider / 2);
+		left: 0;
+
+		width: $size-pointer;
+		height: $size-pointer;
+
+		cursor: pointer;
+		transform: translate(0, -50%);
+
+		background: $bg-pointer;
+	}
 }
 
 // Создание класса для валидации форм
@@ -297,20 +325,20 @@
 // color-bg - цвет фона
 // color-border - цвет обводки
 @mixin form-validate($color-text: $form-color-font, $color-bg: $form-color-bg, $color-border: transparent) {
-    color: $color-text;
-    border-color: $color-border;
-    background-color: $color-bg;
-    transition: all .2s linear;
+	@include hover {
+		color: $color-text;
+		border-color: $color-border;
+		background-color: $color-bg;
+	}
+	@include focus {
+		color: $color-text;
+		border-color: $color-border;
+		background-color: $color-bg;
+	}
 
-    @include hover {
-        color: $color-text;
-        border-color: $color-border;
-        background-color: $color-bg;
-    }
+	transition: all 0.2s linear;
 
-    @include focus {
-        color: $color-text;
-        border-color: $color-border;
-        background-color: $color-bg;
-    }
+	color: $color-text;
+	border-color: $color-border;
+	background-color: $color-bg;
 }

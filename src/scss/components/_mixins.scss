@@ -4,52 +4,53 @@
 
 // Наведение на элемент
 @mixin hover {
-    &:hover,
-    .hover {
-        @content
-    }
+	&:hover,
+	.hover {
+		@content
+	}
 }
 
 // Фокус на элемент
 @mixin focus {
-    &:focus,
-    .focus {
-        @content
-    }
+	&:focus,
+	.focus {
+		@content
+	}
 }
 
 // Скрыть с экрана
 @mixin hide {
-    visibility: hidden !important;
-    display: none !important;
+	display: none !important;
+	visibility: hidden !important;
 }
 
 // Отцентровать элемент
 @mixin absolute-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%);
 }
 
 // Медиа запросы
 // Параметры для передачи - mobile, notebook, desktop
 @mixin media($val: mobile) {
-    @if ($val == mobile) {
-        @media screen and (min-width: 0) and (max-width: $adaptive-width-mobile) {
-            @content
-        }
-    }
+	@if ($val == mobile) {
+		@media only screen and (min-width: 0) and (max-width: $adaptive-width-mobile) {
+			@content
+		}
+	}
 
-    @if ($val == notebook) {
-        @media screen and (min-width: $adaptive-width-mobile) and (max-width: $adaptive-width-notebook) {
-            @content
-        }
-    }
+	@if ($val == notebook) {
+		@media only screen and (min-width: $adaptive-width-mobile) and (max-width: $adaptive-width-notebook) {
+			@content
+		}
+	}
 
-    @if ($val == desktop) {
-        @media screen and (min-width: $adaptive-width-notebook) and (max-width: $adaptive-width-desktop) {
-            @content
-        }
-    }
+	@if ($val == desktop) {
+		@media only screen and (min-width: $adaptive-width-notebook) and (max-width: $adaptive-width-desktop) {
+			@content
+		}
+	}
 }

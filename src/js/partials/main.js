@@ -5,6 +5,8 @@
 //     $('.js-modal').modalHide();
 // }, 2000);
 
+$('.range-slider__range').fieldInitRangeSlider();
+
 $('.preloader').lazyPreloader();
 
 $('.js-filter').buttonFilter('.js-content');
@@ -33,5 +35,4 @@ $('.js-next').click(function () {
 $('.js-slide').click(function () {
     let dataSlide = $(this).data('slide');
     $(this).sliderOpenNumber(dataSlide);
-
 });

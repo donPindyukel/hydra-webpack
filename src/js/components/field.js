@@ -5,6 +5,71 @@
 (function ($) {
 
     /**
+     * Создание range slider
+     * @param dataParamsName
+     * @returns {boolean}
+     */
+    $.fn.fieldInitRangeSlider = function (dataMin = 'min', dataMax = 'max') {
+        let th = this;
+        let min = th.data(dataMin);
+        let max = th.data(dataMax);
+        th.append('<span class="range-pointer"></span>');
+        th.append('<input type="hidden" class="range-value" value="'+ dataMin +'">');
+        let pointer = th.find('.range-pointer');
+        let value = th.find('.range-value');
+        let widthSlider = th.width();
+        let isMoviePointer = false;
+
+        // Кликаем на область слайдера и туда переносим поинтер
+        th.mousedown(function(e) {
+          pointerMovie(e);
+        });
+
+        // Акцивация движения ползунка при клике
+        pointer.mousedown(function() {
+          isMoviePointer = true;
+        });
+
+        // Елси клик больше не нажат, отключаем движение
+        pointer.mouseup(function() {
+          isMoviePointer = false;
+        });
+
+        // Если покинули зону ползунка, отключаем движение
+        th.mouseleave(function() {
+          isMoviePointer = false;
+        });
+
+        // Движение поинтера за мышью
+        th.bind('mousemove', function(e) {
+            if (isMoviePointer)
+                pointerMovie(e);
+        });
+
+        // Функция смены положения поинтера и записи value
+        function pointerMovie(e) {
+            // Вычисление положения ползунка
+            let offsetLeft = th.offset().left;
+            let left = e.pageX - offsetLeft - (pointer.width() / 2);
+            let maxWidth = th.width(); //  offsetLeft;
+
+            // Калькулирование значения текстового поля
+            let calc = Math.round(left * max / th.width());
+
+            // Позиционирование поинтера
+            pointer.css('left', left + 'px');
+
+            // Не отпускаем за максимальное и минимальное значения
+            if (left < 0) pointer.css('left', '0px');
+            if (left >= maxWidth) pointer.css('left', maxWidth + 'px');
+
+            if (calc < min) calc = min;
+            if (calc > max) calc = max;
+            value.val(calc);
+        }
+    };
+
+    /**
      * Валидация поля формы
      * @param dataParamsName
      * @returns {boolean}

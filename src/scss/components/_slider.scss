@@ -3,42 +3,45 @@
 // ==========================================================================
 
 @mixin slider-main($width: 100%, $height: 300) {
-    width: $width;
-    max-width: 100%;
-    height: rem($height);
-    display: block;
-    overflow: hidden;
-    position: relative;
+	position: relative;
+
+	display: block;
+	overflow: hidden;
+
+	width: $width;
+	max-width: 100%;
+	height: rem($height);
 }
 
-@mixin slider-body($width: 100%, $height: 300, $transition: all .5s linear) {
-    width: $width;
-    max-width: $width;
-    height: rem($height);
+@mixin slider-body($width: 100%, $height: 300, $transition: all 0.5s linear) {
+	position: relative;
+	top: 0;
+	right: 0;
 
-    display: flex;
+	display: flex;
 
-    position: relative;
-    top: 0;
-    right: 0;
+	width: $width;
+	max-width: $width;
+	height: rem($height);
 
-    transition: $transition;
+	transition: $transition;
 }
 
 @mixin slider-slide($width: 100%, $height: 300, $padding: 0, $margin: 0) {
-    width: $width;
-    min-width: $width;
-    max-width: $width;
-    height: rem($height);
-    padding: $padding;
-    margin: $margin;
+	position: relative;
+	top: 0;
+	left: 0;
 
-    display: block;
-    flex-basis: 0;
-    flex-grow: 1;
-    flex-shrink: 1;
+	display: block;
 
-    position: relative;
-    top: 0;
-    left: 0;
+	width: $width;
+	min-width: $width;
+	max-width: $width;
+	height: rem($height);
+	margin: $margin;
+	padding: $padding;
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 1;
 }

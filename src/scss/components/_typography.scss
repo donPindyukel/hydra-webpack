@@ -8,7 +8,7 @@
 // weight - жирность
 // style - стиль шрифта
 // exts - расширения, которые выгружаем
-@function str-replace($string, $search, $replace: "") {
+@function str-replace($string, $search, $replace: '') {
 	$index: str-index($string, $search);
 
 	@if $index {
@@ -21,30 +21,29 @@
 
 
 @mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
-    $src: null;
+	$src: null;
+	$extmods: (
+	eot: '?',
+	svg: '#' + str-replace($name, ' ', '_')
+	);
+	$formats: (
+	otf: 'opentype',
+	ttf: 'truetype'
+	);
 
-    $extmods: (
-            eot: "?",
-            svg: "#" + str-replace($name, " ", "_")
-    );
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + '.' + $extmod)) format(quote($format)), comma);
+	}
 
-    $formats: (
-            otf: "opentype",
-            ttf: "truetype"
-    );
+	@font-face {
+		font-family: quote($name);
+		font-weight: $weight;
+		font-style: $style;
 
-    @each $ext in $exts {
-        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
-        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
-        $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
-    }
-
-    @font-face {
-        font-family: quote($name);
-        font-style: $style;
-        font-weight: $weight;
-        src: $src;
-    }
+		src: $src;
+	}
 }
 
 // Настройки и размеры заголовков
@@ -52,32 +51,37 @@
 // color - цвет текста
 // font-family - шрифт
 @mixin typography-h($font-size: $font-size-h1, $color: $color-text-normal, $font-family: $font-family-headers) {
-    color: $color;
-    font-size: $font-size;
-    font-family: $font-family;
-    font-style: normal;
-    font-weight: normal;
-    text-rendering: optimizeLegibility;
-    margin: 0;
+	font-family: $font-family;
+	font-size: $font-size;
+	font-weight: normal;
+	font-style: normal;
 
-    small {
-        line-height: 0;
-    }
+	margin: 0;
+
+	color: $color;
+
+	text-rendering: optimizeLegibility;
+
+	small {
+		line-height: 0;
+	}
 }
 
 // Параграф
 // color - цвет текста
 // font-family
 @mixin typography-p($color: $color-text-normal, $font-family: $font-family-normal) {
-    color: $color;
-    font-size: inherit;
-    line-height: 1.6;
-    font-family: $font-family;
-    font-style: normal;
-    font-weight: normal;
+	font-family: $font-family;
+	font-size: inherit;
+	font-weight: normal;
+	font-style: normal;
+	line-height: 1.6;
 
-    margin-bottom: 1rem;
-    text-rendering: optimizeLegibility;
+	margin-bottom: 1rem;
+
+	color: $color;
+
+	text-rendering: optimizeLegibility;
 }
 
 // Ссылка
@@ -85,38 +89,38 @@
 // font-family - шрифт
 // text-decoration - декорация текста
 @mixin typography-a($color: $color-link-normal, $font-family: $font-family-normal, $text-decoration: $link-option-text-decoration) {
-    $color-hover: darken($color, 10%);
+	$color-hover: darken($color, 10%);
 
-    color: $color;
-    font-size: inherit;
-    line-height: inherit;
-    font-family: $font-family;
-    font-style: normal;
-    font-weight: normal;
+	@include hover {
+		color: $color-hover;
 
-    @if ($text-decoration) {
-        text-decoration: underline;
-    } @else {
-        text-decoration: none;
-    }
+		@if ($text-decoration) {
+			text-decoration: underline;
+		} @else {
+			text-decoration: none;
+		}
+	}
+	@include focus {
+		color: $color;
 
-    @include hover {
-        color: $color-hover;
+		@if ($text-decoration) {
+			text-decoration: underline;
+		} @else {
+			text-decoration: none;
+		}
+	}
 
-        @if ($text-decoration) {
-            text-decoration: underline;
-        } @else {
-            text-decoration: none;
-        }
-    }
+	font-family: $font-family;
+	font-size: inherit;
+	font-weight: normal;
+	font-style: normal;
+	line-height: inherit;
 
-    @include focus {
-        color: $color;
+	color: $color;
 
-        @if ($text-decoration) {
-            text-decoration: underline;
-        } @else {
-            text-decoration: none;
-        }
-    }
+	@if ($text-decoration) {
+		text-decoration: underline;
+	} @else {
+		text-decoration: none;
+	}
 }

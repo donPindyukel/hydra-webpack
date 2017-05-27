@@ -45,7 +45,7 @@ $adaptive-width-mobile: rem(640);
 $adaptive-width-notebook: rem(1500);
 
 // Мониторы
-$adaptive-width-desktop: rem(1980);
+$adaptive-width-desktop: rem(2800);
 
 //
 // Компонент - сетка
@@ -56,7 +56,7 @@ $grid-option-debug: false;
 // Параметры сетки susy
 $susy: (
         columns: 12,
-        gutters: .25,
+        gutters: 0.25,
         gutter-position: outside,
 );
 
@@ -91,7 +91,7 @@ $button-blink-background: rgba(255, 255, 255, 0.3);
 $modal-color-overlay: rgba(0, 0, 0, 0.3);
 
 // Цвет фона модального окна
-$modal-color-bg: #FFFFFF;
+$modal-color-bg: #ffffff;
 
 // Ширина модального окна
 $modal-max-width: rem(500);
@@ -106,7 +106,7 @@ $modal-border-radius: rem(6);
 // Компонент - форма
 //
 
-// Размер элементов
+// Размер элементов формы
 $form-spacing: rem(12);
 
 // Цвет текста
@@ -126,18 +126,26 @@ $form-option-shadow: true;
 $form-shadow-size: rem(1) rem(1) rem(1);
 
 // Изображение стрелки для выпадающего списка select
-$form-select-img-dropdown: "../img/default/select-arrow.png";
+$form-select-img-dropdown: '../img/default/select-arrow.png';
 
 // Изображение checked для checkbox
-$form-checkbox-img-checked: "../img/default/checkbox-checked.png";
+$form-checkbox-img-checked: '../img/default/checkbox-checked.png';
 
 // Изображение checked для radio
-$form-radio-img-checked: "../img/default/radio-checked.png";
+$form-radio-img-checked: '../img/default/radio-checked.png';
+
+// Высота полосы для range slider
+$form-slider-range-height: rem(14);
+
+// Размер поинтера в range slider
+$form-slider-range-pinter-size: rem(28);
 
 //
 // Компонент - ленивая загрузка
 //
 
-$lazy-preloader-bg: #000;
+// Цвет фона прелоадера
+$lazy-preloader-bg: #000000;
 
-$lazy-preloader-logo-img: "../img/default/preloader.gif";
+// Изображение в центре экрана прелоадера
+$lazy-preloader-logo-img: '../img/default/preloader.gif';

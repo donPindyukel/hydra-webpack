@@ -1,40 +1,49 @@
 .preloader {
-    @include lazy-preloader();
+	@include lazy-preloader();
 }
 
+.container {
+	font-size: 16px;
+
+	display: block;
+	&.small {
+		max-width: 200px;
+	}
+}
 
 .modal {
-    @include modal-overlay();
+	@include modal-overlay();
 
-    .modal-body {
-        @include modal-body();
-    }
+	.modal-body {
+		@include modal-body();
+	}
 }
 
 .button {
-    @include button();
-    width: 320px;
-    @include button-blink();
+	@include button();
+	@include button-blink();
+
+	width: 320px;
 }
 
 .fadeIn {
-    @include animated('fadeIn')
+	@include animated('fadeIn');
 }
 
 .fadeOut {
-    @include animated('fadeOut')
+	@include animated('fadeOut');
 }
 
 .hide {
-    display: none !important;
+	display: none !important;
 }
 
 .validate-success {
-    @include form-validate(green);
+	@include form-validate(green);
 }
 
 .validate-error {
-    @include form-validate(red);
+	@include form-validate(red);
 }
 
 $default-grid-columns: 12;
@@ -44,27 +53,36 @@ $default-grid-gutter: 2%;
 	@include grid($gutter: $default-grid-gutter);
 
 	@for $i from 1 through $default-grid-columns {
-		> .grid__col-#{$i} {
+		 > .grid__col-#{$i} {
 			@include grid-col($col: $i, $grid-columns: $default-grid-columns, $gutter: $default-grid-gutter);
 		}
 	}
 }
 
 .many-height {
-    min-height: 1000px;
+	min-height: 1000px;
 }
 
 .slider {
-    @include slider-main();
-    background: #000;
+	@include slider-main();
 
-    .slider-body {
-        @include slider-body();
+	background: #000000;
 
-        .slide {
-            @include slider-slide();
-            background: #13be00;
-            padding: 50px;
-        }
-    }
+	.slider-body {
+		@include slider-body();
+
+		.slide {
+			@include slider-slide();
+
+			padding: 50px;
+
+			background: #13be00;
+		}
+	}
+}
+
+.range-slider {
+	&__range {
+		@include form-range();
+	}
 }

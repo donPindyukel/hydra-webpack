@@ -2,13 +2,11 @@
 // Подгрузка всех скриптов
 // ==========================================================================
 
-//@include('default/until.js')
-//@include('default/variables.js')
-
 //
 // Компоненты
 //
 
+//@include('components/until.js')
 //@include('components/modal.js')
 //@include('components/button.js')
 //@include('components/form.js')
@@ -20,4 +18,5 @@
 // Сторонний код
 //
 
+//@include('partials/variables.js')
 //@include('partials/main.js')

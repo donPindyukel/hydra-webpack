@@ -29,6 +29,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     connectPhp = require('gulp-connect-php'),
     pug = require('gulp-pug'),
+    csscomb = require('gulp-csscomb'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
@@ -158,9 +159,15 @@ gulp.task('style:build', function () {
             errLogToConsole: true
         }))
         .pipe(prefixer())
+        .pipe(csscomb())
         .pipe(cssmin())
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
+});
+
+gulp.task('style:csscomb', function () {
+    gulp.src(path.src.style)
+        .pipe(csscomb());
 });
 
 gulp.task('image:build', function () {
