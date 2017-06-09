@@ -18,5 +18,5 @@
 // Сторонний код
 //
 
-//@include('partials/variables.js')
-//@include('partials/main.js')
+//@include('globals/variables.js')
+//@include('globals/main.js')

@@ -17,8 +17,8 @@
                                   hideClass = globalHideClass) {
         let targetsList = $(globalClass);
 
-        this.click(function (b) {
-            let button = $(b.target);
+        this.click(function () {
+            let button = $(this);
             targetsList.each(function () {
                 let target = $(this);
                 target.addClass(hideClass);
