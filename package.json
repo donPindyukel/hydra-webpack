@@ -1,6 +1,6 @@
 {
   "name": "hydra-webpack",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Starter package for development of the site",
   "repository": {
     "type": "git",
