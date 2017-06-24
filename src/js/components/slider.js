@@ -2,19 +2,15 @@
 // Компонент слайдера
 // ==========================================================================
 
-class ElSlider extends Element {
+(function ($) {
 
-    constructor(actor) {
-        super(actor);
-        this.activeStep = 1;
-        this.allSteps = 0;
-        this.allSlideWidth = 0;
-        this.singleSlideWidth = 0;
-        this.leftModif = 0;
-        this.body = null;
-        this.sliders = [];
-        return this;
-    }
+    let activeStep = 1;
+    let allSteps = 0;
+    let allSlideWidth = 0;
+    let singleSlideWidth = 0;
+    let leftModif = 0;
+    let body = null;
+    let sliders = [];
 
     /**
      * Иницилизация слайдера
@@ -22,27 +18,29 @@ class ElSlider extends Element {
      * @param slideClassName - имя класса слайда
      * @param countSlidePrint - пока не используется в системе.
      */
-    initSlider(bodyClassName = '.slider-body', slideClassName = '.slide', countSlidePrint = 1) {
-        let body = this.find(bodyClassName);
+    $.fn.sliderInit = function (bodyClassName = '.slider-body',
+                                slideClassName = '.slide',
+                                countSlidePrint = 1) {
+        let slider = this;
 
-        // Получаем контейнер, который удем двигать по right позиции
+        // Получаем контейнер, который будем двигать по right позиции
         // в нем содержаться все слайды
-        if (body.length > 0)
-            this.body = this.find(bodyClassName)[0];
+        body = this.find(bodyClassName);
 
         // Получаем список всех слайдов и настраиваем их
-        this.sliders = this.find(slideClassName);
-        this.sliders.forEach((th) => {
+        sliders = this.find(slideClassName);
+        sliders.each(function () {
+            let slide = $(this);
 
             // Актуальная длина и высота слайда
-            let newWidth = parseInt(th.css('width'));
-            let newHeight = this.height();
+            let newWidth = parseInt(slide.css('width'));
+            let newHeight = slider.height();
             // Изменения длины во внешнем и внутреннем отступах
             let leftRight = 0;
 
             // Калькулируем значение внутренних отступов
             // в зависимости от количество параметров в padding
-            let cleanPadding = th.css('padding').replace(/px/g, '');
+            let cleanPadding = slide.css('padding').replace(/px/g, '');
             let multipleValuePadding = cleanPadding.split(' ');
             if (multipleValuePadding.length === 1) {
                 newWidth -= cleanPadding * 2;
@@ -76,7 +74,7 @@ class ElSlider extends Element {
 
             // Калькулируем значение внешних отступов
             // в зависимости от количество параметров в margin
-            let cleanMargin = th.css('margin').replace(/px/g, '');
+            let cleanMargin = slide.css('margin').replace(/px/g, '');
             let multipleValueMargin = cleanMargin.split(' ');
             if (multipleValueMargin.length === 1) {
                 newWidth -= cleanMargin * 2;
@@ -109,84 +107,78 @@ class ElSlider extends Element {
             }
 
             // Выставляем размеры для слайда
-            th.attr('style', 'min-width: ' + newWidth + 'px; height: ' + newHeight + 'px;');
+            slide.attr('style', 'min-width: ' + newWidth + 'px; height: ' + newHeight + 'px;');
 
             // Длина одного слайда
-            this.singleSlideWidth = parseInt(newWidth + leftRight);
+            singleSlideWidth = parseInt(newWidth + leftRight);
             // Сумарная длина всех слайдов
-            this.allSlideWidth += newWidth + leftRight;
+            allSlideWidth += newWidth + leftRight;
             // Количество шагов
-            this.allSteps++;
+            allSteps++;
         });
 
         // Убираем из общей длины, длину равную одного слайда.
-        this.allSlideWidth -= this.singleSlideWidth;
-    }
-
+        allSlideWidth -= singleSlideWidth;
+    };
 
     /**
      * Следующий слайд
-     * @returns {ElSlider}
      */
-    nextSlide() {
-        if (this.activeStep < this.allSteps) {
-            this.activeStep++;
-            this.leftModif += this.singleSlideWidth;
+    $.fn.sliderNext = function () {
+        if (activeStep < allSteps) {
+            activeStep++;
+            leftModif += singleSlideWidth;
         }
-        this.body.attr('style', 'width: ' + this.allSlideWidth + 'px; right: ' + this.leftModif + 'px');
-        return this;
-    }
+        body.attr('style', 'width: ' + allSlideWidth + 'px; right: ' + leftModif + 'px');
+    };
 
     /**
      * Предыдущий слайд
-     * @returns {ElSlider}
      */
-    prevSlide() {
-        if (this.activeStep > 1) {
-            this.activeStep--;
-            this.leftModif -= this.singleSlideWidth;
+    $.fn.sliderPrev = function () {
+        if (activeStep > 1) {
+            activeStep--;
+            leftModif -= singleSlideWidth;
         }
-        this.body.attr('style', 'width: ' + this.allSlideWidth + 'px; right: ' + this.leftModif + 'px');
-        return this;
-    }
+        body.attr('style', 'width: ' + allSlideWidth + 'px; right: ' + leftModif + 'px');
+    };
 
     /**
      * Открыть слайд по номеру
-     * @param num
-     * @returns {ElSlider}
+     * @param num номер слайда
      */
-    openSlide(num) {
+    $.fn.sliderOpenNumber = function (num) {
         let clickNext = 0;
         let typeScroll = 'next';
 
-        if (num <= this.sliders.length && num > 0) {
+        if (num <= sliders.length && num > 0) {
             // Если номер слайда больше активного слайда
-            if (num > this.activeStep) {
-                clickNext = num - this.activeStep;
+            if (num > activeStep) {
+                clickNext = num - activeStep;
                 typeScroll = 'next';
             }
             // Если номер слайда меньше активного слайда
-            if (num < this.activeStep) {
-                clickNext = this.activeStep - num;
+            if (num < activeStep) {
+                clickNext = activeStep - num;
                 typeScroll = 'prev';
             }
 
             for (let i = 0; i < clickNext; i++) {
                 if (typeScroll === 'next')
-                    this.nextSlide();
+                    this.sliderNext();
                 if (typeScroll === 'prev')
-                    this.prevSlide();
+                    this.sliderPrev();
             }
         }
-        return this;
-    }
+    };
 
     /**
-     * Возвращает количество слайдов в слайдере
+     * Количество слайдов в слайдере
      * @returns {Number}
      */
-    countSlides() {
-        return this.sliders.length;
-    }
+    $.fn.sliderCount = function () {
+        return sliders.length;
+    };
 
-}
+})(jQuery);
+

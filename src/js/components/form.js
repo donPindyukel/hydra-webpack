@@ -2,72 +2,44 @@
 // Компонент формы
 // ==========================================================================
 
-class ElForm extends Element {
-
-    constructor(actor) {
-        super(actor);
-        this.formFields = this.loadFields();
-        return this;
-    }
+(function ($) {
 
     /**
-     * Получаем список всех полей в форме
-     * @returns {Array}
+     * Отправка данных с формы
+     * @param func Выполняемая функция после отправки данных
+     * @param stopIsNotValidate Валидация формы true/false
+     * @param activeAntiSpam
      */
-    loadFields() {
-        let fieldsList = [];
-        // Записываем список всех инпутов в форме
-        this.find('input', 'field').forEach(function (th) {
-            fieldsList.push(th);
-        });
-        // Записываем список всех селектов в форме
-        this.find('input', 'field').forEach(function (th) {
-            fieldsList.push(th);
-        });
-        return fieldsList;
-    }
+    $.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate, activeAntiSpam = formActiveAntiSpam) {
+        let th = this;
 
-    /**
-     * Формируем все данные с полей в форме для отправки по ajax
-     * @returns {string}
-     */
-    serialize() {
-        let data = '';
-        let i = 1;
-        let countFields = this.formFields.length;
-        this.formFields.forEach(function (field) {
-            if (field.attr('type') !== "submit") {
-                data += field.attr('name') + "=" + field.val();
-                if (i < countFields)
-                    data += "&";
-            }
-            i++;
-        });
-        return data;
-    }
+        // Защита от спама
+        if (activeAntiSpam) {
+            setTimeout(function () {
+                th.append('<input type="hidden" name="hash" class="hash" value="'+ formAntiSpamHashKey +'">');
+            }, 1000);
+        }
 
-    /**
-     * Событие отправки данных с формы
-     * @param func - колбэк функция
-     * @param stopIsNotValidate - если не прошло валидацию данные не отправлять
-     */
-    eventSubmit(func, stopIsNotValidate = formStopIsNotValidate) {
-        let form = this;
-        this.actor.addEventListener('submit', (e) => {
+        // Отлавливаем событие нажатия на сабмит
+        this.on('submit', function (e) {
+            let form = $(this);
             e.preventDefault();
             if (!stopIsNotValidate)
-                ajaxPost(form.attr('action'), form.serialize(), func);
+                ajaxPost(form, form.attr('action'), form.serialize(), func);
             else {
                 let error = 0;
-                this.formFields.forEach(function (field) {
-                    if (!field.validate())
+                form.find('input').each(function () {
+                    let field = $(this);
+                    if (!field.fieldValidate()) {
                         error++;
+                        field.change();
+                    }
                 });
                 if (error === 0)
-                    ajaxPost(form.attr('action'), form.serialize(), func);
+                    ajaxPost(form, form.attr('action'), form.serialize(), func);
             }
             return false;
         });
-    }
+    };
 
-}
+})(jQuery);

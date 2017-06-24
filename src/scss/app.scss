@@ -4,20 +4,16 @@
 
 @import "../../bower_components/normalize-css/normalize";
 
-@import "default/untils";
-
-// Глобальные настройки
-@import "default/variables";
-
 //
 // Компоненты
 //
 
-@import "../../bower_components/susy/sass/susy";
+@import "../../bower_components/flexbox-grid-mixins/sass/flexbox-grid-mixins";
+@import "components/untils";
 @import "components/mixins";
 @import "components/typography";
 @import "components/animation";
-@import "components/grid";
+@import "components/lazy";
 @import "components/modal";
 @import "components/button";
 @import "components/form";
@@ -27,4 +23,5 @@
 // Сторонний код
 //
 
-@import "partials/main";
+@import "globals/variables";
+@import "globals/main";

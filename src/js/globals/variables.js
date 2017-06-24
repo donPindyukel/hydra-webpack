@@ -9,14 +9,6 @@ let globalHideClass = 'hide';
 //
 
 /**
- * Стандартный тип валидации
- * length - длина текста
- * checked - выбран ли элемент
- * @type {string}
- */
-let fieldValidType = 'length';
-
-/**
  * Дата аттрибут у поля, с которого брать настройки для валидации
  * data-NAME
  * data-valid='4' для length (число любое)
@@ -53,6 +45,20 @@ let fieldValidRemoveClassTimeout = 1000;
  * @type {boolean}
  */
 let formStopIsNotValidate = true;
+
+/**
+ * Управление системой антиспама.
+ * Добавляет в форму скрытое поле через 1 секунду после загрузки страницы.
+ * По этому полю можно проверить, бот это или нет.
+ * @type {boolean}
+ */
+let formActiveAntiSpam = true;
+
+/**
+ * Ключевое слово, которое добавляется в hash поле для проверки при отправки с формы
+ * @type {string}
+ */
+let formAntiSpamHashKey = 'success';
 
 //
 // Компонент кнопки (Button)
@@ -97,7 +103,3 @@ let modalAnimateClassHide = 'fadeOut';
  * @type {number}
  */
 let modalAnimateDeleteTimeout = 1000;
-
-
-
-

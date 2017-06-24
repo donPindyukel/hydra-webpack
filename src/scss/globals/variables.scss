@@ -2,8 +2,27 @@
 // Глобальные переменные и настройки
 // ==========================================================================
 
+// Рабочая область
+$width-container: rem(1200);
+
+// Премиальный цвет сайта
+$color-primary: #6ebdff;
+$color-primary-invert: #38cc9b;
+
+// Акцентный цвет сайта
+$color-accent: #6ebdff;
+$color-accent-invert: #38cc9b;
+
+// Цвета фона
+$color-bg: #ffffff;
+$color-bg-invert: #f6fbff;
+
+// Вертикальный ритм сайта
+$vg: rem(6);
+
 // Стандартный размер текста на сайте
 $font-size-normal: rem(16);
+$font-size-small: rem(14);
 
 // Размеры заголовков
 $font-size-h1: rem(48);
@@ -45,20 +64,13 @@ $adaptive-width-mobile: rem(640);
 $adaptive-width-notebook: rem(1500);
 
 // Мониторы
-$adaptive-width-desktop: rem(1980);
+$adaptive-width-desktop: rem(2800);
 
 //
 // Компонент - сетка
 //
 
-$grid-option-debug: false;
-
-// Параметры сетки susy
-$susy: (
-        columns: 12,
-        gutters: .25,
-        gutter-position: outside,
-);
+// ...
 
 //
 // Компонент - кнопка
@@ -80,6 +92,9 @@ $button-border-size: rem(1) solid;
 $button-option-shadow: true;
 $button-shadow-size: rem(1) rem(1) rem(1);
 
+// Цвет для эффекта поблескивания кнопки
+$button-blink-background: rgba(255, 255, 255, 0.3);
+
 //
 // Компонент - модальное окно
 //
@@ -88,7 +103,7 @@ $button-shadow-size: rem(1) rem(1) rem(1);
 $modal-color-overlay: rgba(0, 0, 0, 0.3);
 
 // Цвет фона модального окна
-$modal-color-bg: #FFFFFF;
+$modal-color-bg: #ffffff;
 
 // Ширина модального окна
 $modal-max-width: rem(500);
@@ -103,7 +118,7 @@ $modal-border-radius: rem(6);
 // Компонент - форма
 //
 
-// Размер элементов
+// Размер элементов формы
 $form-spacing: rem(12);
 
 // Цвет текста
@@ -123,10 +138,26 @@ $form-option-shadow: true;
 $form-shadow-size: rem(1) rem(1) rem(1);
 
 // Изображение стрелки для выпадающего списка select
-$form-select-img-dropdown: "../img/default/select-arrow.png";
+$form-select-img-dropdown: '../img/default/select-arrow.png';
 
 // Изображение checked для checkbox
-$form-checkbox-img-checked: "../img/default/checkbox-checked.png";
+$form-checkbox-img-checked: '../img/default/checkbox-checked.png';
 
 // Изображение checked для radio
-$form-radio-img-checked: "../img/default/radio-checked.png";
+$form-radio-img-checked: '../img/default/radio-checked.png';
+
+// Высота полосы для range slider
+$form-slider-range-height: rem(14);
+
+// Размер поинтера в range slider
+$form-slider-range-pinter-size: rem(28);
+
+//
+// Компонент - ленивая загрузка
+//
+
+// Цвет фона прелоадера
+$lazy-preloader-bg: #000000;
+
+// Изображение в центре экрана прелоадера
+$lazy-preloader-logo-img: '../img/default/preloader.gif';
