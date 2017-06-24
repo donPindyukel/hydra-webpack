@@ -11,10 +11,12 @@
      * @param activeAntiSpam
      */
     $.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate, activeAntiSpam = formActiveAntiSpam) {
+        let th = this;
+
         // Защита от спама
         if (activeAntiSpam) {
             setTimeout(function () {
-                this.append('<input type="hidden" name="hash" class="hash" value="'+ formAntiSpamHashKey +'">');
+                th.append('<input type="hidden" name="hash" class="hash" value="'+ formAntiSpamHashKey +'">');
             }, 1000);
         }
 
@@ -28,8 +30,10 @@
                 let error = 0;
                 form.find('input').each(function () {
                     let field = $(this);
-                    if (!field.fieldValidate())
+                    if (!field.fieldValidate()) {
                         error++;
+                        field.change();
+                    }
                 });
                 if (error === 0)
                     ajaxPost(form, form.attr('action'), form.serialize(), func);

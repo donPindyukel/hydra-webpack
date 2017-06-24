@@ -5,7 +5,8 @@ if (!isset($_POST['hash']) || $_POST['hash'] != "success") {
 	print "error";
 	exit;
 }
-
+    
+$linkToUploads = "http://website.ru/uploads/";
 $to      = 'info@website.ru';
 $subject = 'Сообщение с сайта';
 $headers = "Content-type: text/html; charset=utf-8 \r\n";
@@ -26,18 +27,19 @@ if ( isset( $_FILES['file'] ) ) {
 }
 
 $message = '<html>';
-$message = '<head>';
-$message = '<title>' . $subject . '</title>';
-$message = '</head>';
-$message = '<body>';
-$message = '<h3>' . $subject . '</h3>';
-$message = '<p>Имя: ' . $_POST['name'] . '</p>';
-$message = '<p>Телефон: ' . $_POST['phone'] . '</p>';
-$message = '<p>Форма: ' . $_POST['fn'] . '</p>';
+$message .= '<head>';
+$message .= '<title>' . $subject . '</title>';
+$message .= '</head>';
+$message .= '<body>';
+$message .= '<h3>' . $subject . '</h3>';
+$message .= '<p>Имя: ' . $_POST['name'] . '</p>';
+$message .= '<p>Телефон: ' . $_POST['phone'] . '</p>';
+$message .= '<p>Почта: ' . $_POST['email'] . '</p>';
+$message .= '<p>Форма: ' . $_POST['fn'] . '</p>';
 
 // Если был загружен файл
 if ( $upload == true ) {
-	$message .= "<p>Ссылка на загруженный файл: http://serviskrovlya.ru/uploads/$filename</p>";
+	$message .= "<p>Ссылка на загруженный файл: $linkToUploads.$filename</p>";
 }
 
 $message .= '</body></html>';

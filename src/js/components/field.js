@@ -6,42 +6,43 @@
 
     /**
      * Создание range slider
-     * @param dataParamsName
      * @returns {boolean}
+     * @param dataMin
+     * @param dataMax
      */
     $.fn.fieldInitRangeSlider = function (dataMin = 'min', dataMax = 'max') {
         let th = this;
         let min = th.data(dataMin);
         let max = th.data(dataMax);
         th.append('<span class="range-pointer"></span>');
-        th.append('<input type="hidden" class="range-value" value="'+ dataMin +'">');
+        th.append('<input type="hidden" class="range-value" value="' + dataMin + '">');
         let pointer = th.find('.range-pointer');
         let value = th.find('.range-value');
         let widthSlider = th.width();
         let isMoviePointer = false;
 
         // Кликаем на область слайдера и туда переносим поинтер
-        th.mousedown(function(e) {
-          pointerMovie(e);
+        th.mousedown(function (e) {
+            pointerMovie(e);
         });
 
         // Акцивация движения ползунка при клике
-        pointer.mousedown(function() {
-          isMoviePointer = true;
+        pointer.mousedown(function () {
+            isMoviePointer = true;
         });
 
         // Елси клик больше не нажат, отключаем движение
-        pointer.mouseup(function() {
-          isMoviePointer = false;
+        pointer.mouseup(function () {
+            isMoviePointer = false;
         });
 
         // Если покинули зону ползунка, отключаем движение
-        th.mouseleave(function() {
-          isMoviePointer = false;
+        th.mouseleave(function () {
+            isMoviePointer = false;
         });
 
         // Движение поинтера за мышью
-        th.bind('mousemove', function(e) {
+        th.bind('mousemove', function (e) {
             if (isMoviePointer)
                 pointerMovie(e);
         });
@@ -108,6 +109,7 @@
                                         dataParamsName = fieldValidDataName) {
         this.change(function () {
             let th = $(this);
+
             if (th.fieldValidate(dataParamsName)) {
                 th.addClass(successClass);
                 if (removeClassTimeout !== null)
