@@ -29,7 +29,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     connectPhp = require('gulp-connect-php'),
     pug = require('gulp-pug'),
-    csscomb = require('gulp-csscomb'),
+    eslint = require('gulp-eslint'),
+    scsslint = require('gulp-scss-lint'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
@@ -142,7 +143,7 @@ gulp.task('js:build', function () {
             basepath: '@file'
         }))
         .pipe(babel({
-            presets: ['es2015', 'es2016', 'es2017', 'flow']
+            presets: ['es2015', 'es2016', 'es2017', 'flow'],
         }))
         .pipe(uglify())
         .pipe(gulp.dest(path.build.js))
@@ -159,15 +160,9 @@ gulp.task('style:build', function () {
             errLogToConsole: true
         }))
         .pipe(prefixer())
-        .pipe(csscomb())
         .pipe(cssmin())
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
-});
-
-gulp.task('style:csscomb', function () {
-    gulp.src(path.src.style)
-        .pipe(csscomb());
 });
 
 gulp.task('image:build', function () {
@@ -195,6 +190,21 @@ gulp.task('data:build', function () {
         .pipe(gulp.dest(path.build.data))
 });
 
+gulp.task('style:lint', function() {
+  return gulp.src([path.watch.style])
+    // .pipe(plumber())
+    .pipe(scsslint({
+        'config': '.scsslint.yml'
+    }));
+});
+
+gulp.task('js:lint', () => {
+    return gulp.src([path.watch.js])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(flow({ abort: true }))
+});
+
 gulp.task('build', [
     'pug:build',
     'html:build',
@@ -204,7 +214,9 @@ gulp.task('build', [
     'style:build',
     'fonts:build',
     'image:build',
-    'data:build'
+    'data:build',
+    'js:lint',
+    'style:lint'
 ]);
 
 gulp.task('watch', function () {
@@ -220,11 +232,11 @@ gulp.task('watch', function () {
     watch([path.watch.leaf], function (event, cb) {
         gulp.start('leaf:build');
     });
-    watch([path.watch.style], function (event, cb) {
-        gulp.start('style:build');
-    });
     watch([path.watch.js], function (event, cb) {
         gulp.start('js:build');
+    });
+    watch([path.watch.style], function (event, cb) {
+        gulp.start('style:build');
     });
     watch([path.watch.img], function (event, cb) {
         gulp.start('image:build');
@@ -234,6 +246,12 @@ gulp.task('watch', function () {
     });
     watch([path.watch.data], function (event, cb) {
         gulp.start('data:build');
+    });
+    watch([path.watch.js], function (event, cb) {
+        gulp.start('js:lint');
+    });
+    watch([path.watch.style], function (event, cb) {
+        gulp.start('style:lint');
     });
 });
 
