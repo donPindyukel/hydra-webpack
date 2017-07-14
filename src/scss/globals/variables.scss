@@ -14,7 +14,7 @@ $color-accent: #6ebdff;
 $color-accent-invert: #38cc9b;
 
 // Цвета фона
-$color-bg: #ffffff;
+$color-bg: #fff;
 $color-bg-invert: #f6fbff;
 
 // Вертикальный ритм сайта
@@ -42,10 +42,10 @@ $font-family-headers: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $color-text-normal: #272727;
 
 // Цвет инвертированного шрифта
-$color-text-invert: #ffffff;
+$color-text-invert: #fff;
 
 // Цвет ссылок
-$color-link-normal: #000000;
+$color-link-normal: #000;
 
 // Подчеркивание ссылок
 $link-option-text-decoration: true;
@@ -103,7 +103,7 @@ $button-blink-background: rgba(255, 255, 255, 0.3);
 $modal-color-overlay: rgba(0, 0, 0, 0.3);
 
 // Цвет фона модального окна
-$modal-color-bg: #ffffff;
+$modal-color-bg: #fff;
 
 // Ширина модального окна
 $modal-max-width: rem(500);
@@ -122,7 +122,7 @@ $modal-border-radius: rem(6);
 $form-spacing: rem(12);
 
 // Цвет текста
-$form-color-font: #000000;
+$form-color-font: #000;
 
 // Цвет фона
 $form-color-bg: #e0e1e2;
@@ -157,7 +157,7 @@ $form-slider-range-pinter-size: rem(28);
 //
 
 // Цвет фона прелоадера
-$lazy-preloader-bg: #000000;
+$lazy-preloader-bg: #000;
 
 // Изображение в центре экрана прелоадера
 $lazy-preloader-logo-img: '../img/default/preloader.gif';

@@ -8,12 +8,9 @@
 @mixin form-label($font-size: $font-size-normal, $color-text: $form-color-font) {
 	font-size: $font-size;
 	font-weight: normal;
-
 	display: block;
-
 	margin: 0 0 $form-spacing;
 	padding: rem(($form-spacing / 2)) 0;
-
 	color: $color-text;
 }
 
@@ -32,7 +29,6 @@
 
 	@include hover {
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -43,7 +39,6 @@
 	}
 	@include focus {
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -56,19 +51,15 @@
 	font-family: $font-family-normal;
 	font-size: $font-size;
 	font-weight: normal;
-
 	display: inline-block;
-
 	box-sizing: border-box;
 	width: 100%;
 	max-width: $max-width;
 	height: $height;
 	margin: 0 $form-spacing 0 0;
 	padding: $form-spacing / 2;
-
 	vertical-align: middle;
 	white-space: nowrap;
-
 	color: $color-text;
 	border: $form-border-size $color-border;
 	border-radius: $form-border-radius;
@@ -95,7 +86,6 @@
 
 	@include hover {
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -106,7 +96,6 @@
 	}
 	@include focus {
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -119,19 +108,15 @@
 	font-family: $font-family-normal;
 	font-size: $font-size;
 	font-weight: normal;
-
 	display: inline-block;
-
 	box-sizing: border-box;
 	width: 100%;
 	max-width: $max-width;
 	height: $height;
 	margin: 0 $form-spacing 0 0;
 	padding: $form-spacing / 2;
-
 	vertical-align: middle;
 	white-space: nowrap;
-
 	color: $color-text;
 	border: $form-border-size $color-border;
 	border-radius: $form-border-radius;
@@ -154,7 +139,6 @@
 
 	&[multiple] {
 		height: auto;
-
 		background-image: none;
 	}
 }
@@ -173,7 +157,6 @@
 	@include hover {
 		cursor: pointer;
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -184,7 +167,6 @@
 	}
 	@include focus {
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -195,14 +177,11 @@
 	}
 
 	display: inline-block;
-
 	width: $size;
 	height: $size;
 	margin: 0 rem($form-spacing / 2) 0 0;
-
 	vertical-align: middle;
 	white-space: nowrap;
-
 	border: $form-border-size $color-border;
 	border-radius: $form-border-radius;
 	background-color: $color-bg;
@@ -237,7 +216,6 @@
 	@include hover {
 		cursor: pointer;
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -248,7 +226,6 @@
 	}
 	@include focus {
 		transition: all 0.2s linear;
-
 		border: $form-border-size $color-border-hover;
 		outline: none;
 		background-color: $color-bg-hover;
@@ -259,14 +236,11 @@
 	}
 
 	display: inline-block;
-
 	width: $size;
 	height: $size;
 	margin: 0 rem($form-spacing / 2) 0 0;
-
 	vertical-align: middle;
 	white-space: nowrap;
-
 	border: $form-border-size $color-border;
 	border-radius: 50%;
 	background-color: $color-bg;
@@ -295,12 +269,10 @@
 // bg-pointer цвет поинтера
 @mixin form-range($width-slider: 100%, $height-slider: $form-slider-range-height, $size-pointer: $form-slider-range-pinter-size, $bg-slider: $form-color-bg, $bg-pointer: $form-color-font) {
 	position: relative;
-
 	width: $width-slider;
 	height: $height-slider;
 	margin: 0 auto;
 	padding: 0;
-
 	outline: 0;
 	background: $bg-slider;
 
@@ -309,13 +281,10 @@
 		z-index: 2;
 		top: rem($height-slider / 2);
 		left: 0;
-
 		width: $size-pointer;
 		height: $size-pointer;
-
 		cursor: pointer;
 		transform: translate(0, -50%);
-
 		background: $bg-pointer;
 	}
 }
@@ -337,7 +306,6 @@
 	}
 
 	transition: all 0.2s linear;
-
 	color: $color-text;
 	border-color: $color-border;
 	background-color: $color-bg;

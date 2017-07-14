@@ -2,26 +2,26 @@
 // Подгрузка всех стилей
 // ==========================================================================
 
-@import "../../bower_components/normalize-css/normalize";
+@import '../../bower_components/normalize-css/normalize';
 
 //
 // Компоненты
 //
 
-@import "../../bower_components/flexbox-grid-mixins/sass/flexbox-grid-mixins";
-@import "components/untils";
-@import "components/mixins";
-@import "components/typography";
-@import "components/animation";
-@import "components/lazy";
-@import "components/modal";
-@import "components/button";
-@import "components/form";
-@import "components/slider";
+@import '../../bower_components/flexbox-grid-mixins/sass/flexbox-grid-mixins';
+@import 'components/untils';
+@import 'components/mixins';
+@import 'components/typography';
+@import 'components/animation';
+@import 'components/lazy';
+@import 'components/modal';
+@import 'components/button';
+@import 'components/form';
+@import 'components/slider';
 
 //
 // Сторонний код
 //
 
-@import "globals/variables";
-@import "globals/main";
+@import 'globals/variables';
+@import 'globals/main';

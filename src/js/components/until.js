@@ -7,7 +7,7 @@
  * @param val
  */
 function log(val) {
-    console.log(val);
+	console.log(val);
 }
 
 /**
@@ -16,13 +16,14 @@ function log(val) {
  * @param func
  */
 function ajaxGet(url, func) {
-    let httpRequest = new XMLHttpRequest();
-    httpRequest.open('GET', url);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    httpRequest.onload = function () {
-        func(httpRequest.responseText, httpRequest.status);
-    };
-    httpRequest.send();
+	let httpRequest = new XMLHttpRequest();
+
+	httpRequest.open('GET', url);
+	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	httpRequest.onload = function () {
+		func(httpRequest.responseText, httpRequest.status);
+	};
+	httpRequest.send();
 }
 
 /**
@@ -33,13 +34,14 @@ function ajaxGet(url, func) {
  * @param func
  */
 function ajaxPost(form, url, params, func) {
-    let httpRequest = new XMLHttpRequest();
-    httpRequest.open('POST', url);
-    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    httpRequest.onload = function () {
-        func(form, httpRequest.responseText, httpRequest.status);
-    };
-    httpRequest.send(encodeURI(params));
+	let httpRequest = new XMLHttpRequest();
+
+	httpRequest.open('POST', url);
+	httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	httpRequest.onload = function () {
+		func(form, httpRequest.responseText, httpRequest.status);
+	};
+	httpRequest.send(encodeURI(params));
 }
 
 /**
@@ -48,10 +50,11 @@ function ajaxPost(form, url, params, func) {
  * @returns {*}
  */
 function getCookie(name) {
-    let matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
+	let matches = document.cookie.match(new RegExp(
+		`(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`
+	));
+
+	return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
 /**
@@ -61,26 +64,31 @@ function getCookie(name) {
  * @param options path=/; expires="
  */
 function setCookie(name, value, options) {
-    options = options || {};
-    let expires = options.expires;
-    if (typeof expires === "number" && expires) {
-        let d = new Date();
-        d.setTime(d.getTime() + expires * 1000);
-        expires = options.expires = d;
-    }
-    if (expires && expires.toUTCString) {
-        options.expires = expires.toUTCString();
-    }
-    value = encodeURIComponent(value);
-    let updatedCookie = name + "=" + value;
-    for (let propName in options) {
-        updatedCookie += "; " + propName;
-        let propValue = options[propName];
-        if (propValue !== true) {
-            updatedCookie += "=" + propValue;
-        }
-    }
-    document.cookie = updatedCookie;
+	options = options || {
+	};
+	let expires = options.expires;
+
+	if (typeof expires === 'number' && expires) {
+		let d = new Date();
+
+		d.setTime(d.getTime() + expires * 1000);
+		expires = options.expires = d;
+	}
+	if (expires && expires.toUTCString) {
+		options.expires = expires.toUTCString();
+	}
+	value = encodeURIComponent(value);
+	let updatedCookie = `${name}=${value}`;
+
+	for (let propName in options) {
+		updatedCookie += `; ${propName}`;
+		let propValue = options[propName];
+
+		if (propValue !== true) {
+			updatedCookie += `=${propValue}`;
+		}
+	}
+	document.cookie = updatedCookie;
 }
 
 /**
@@ -88,39 +96,39 @@ function setCookie(name, value, options) {
  * @param name
  */
 function deleteCookie(name) {
-    setCookie(name, "", {
-        expires: -1
-    })
+	setCookie(name, '', {
+		expires: -1,
+	});
 }
 
 // ==========================================================================
 // Расширения для JQuery
 // ==========================================================================
 
-(function( $ ) {
-
-    /**
+(function ($) {
+	/**
      * Добавить класс после истечения времени
      * @param className
      * @param timeout
      */
-    $.fn.addClassTimeout = function(className, timeout = 1000) {
-        let th = this;
-        setTimeout(function () {
-            th.addClass(className);
-        }, timeout);
-    };
+	$.fn.addClassTimeout = function (className, timeout = 1000) {
+		let th = this;
 
-    /**
+		setTimeout(() => {
+			th.addClass(className);
+		}, timeout);
+	};
+
+	/**
      * Удалить класс после истечения времени
      * @param className
      * @param timeout
      */
-    $.fn.removeClassTimeout = function(className, timeout = 1000) {
-        let th = this;
-        setTimeout(function () {
-            th.removeClass(className);
-        }, timeout);
-    };
+	$.fn.removeClassTimeout = function (className, timeout = 1000) {
+		let th = this;
 
+		setTimeout(() => {
+			th.removeClass(className);
+		}, timeout);
+	};
 })(jQuery);

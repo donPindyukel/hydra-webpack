@@ -55,7 +55,7 @@ var path = {
         php: 'src/pages/*.php',
         leaf: 'src/pages/*.leaf',
         js: 'src/js/*.js',
-        style: 'src/scss/*.scss',
+        scss: 'src/scss/*.scss',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*',
         data: 'src/data/**/*.*'
@@ -66,7 +66,7 @@ var path = {
         php: 'src/pages/**/*.php',
         leaf: 'src/pages/**/*.leaf',
         js: 'src/js/**/*.js',
-        style: 'src/scss/**/*.scss',
+        scss: 'src/scss/**/*.scss',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*',
         data: 'src/data/**/*.*'
@@ -150,8 +150,8 @@ gulp.task('js:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('style:build', function () {
-    gulp.src(path.src.style)
+gulp.task('scss:build', function () {
+    gulp.src(path.src.scss)
         .pipe(plumber())
         .pipe(sass({
             includePaths: ['src/scss'],
@@ -190,9 +190,8 @@ gulp.task('data:build', function () {
         .pipe(gulp.dest(path.build.data))
 });
 
-gulp.task('style:lint', function() {
-  return gulp.src([path.watch.style])
-    // .pipe(plumber())
+gulp.task('scss:lint', function() {
+  return gulp.src([path.watch.scss])
     .pipe(scsslint({
         'config': '.scsslint.yml'
     }));
@@ -211,12 +210,12 @@ gulp.task('build', [
     'php:build',
     'leaf:build',
     'js:build',
-    'style:build',
+    'scss:build',
     'fonts:build',
     'image:build',
     'data:build',
-    'js:lint',
-    'style:lint'
+    //'js:lint',
+    //'scss:lint'
 ]);
 
 gulp.task('watch', function () {
@@ -235,8 +234,8 @@ gulp.task('watch', function () {
     watch([path.watch.js], function (event, cb) {
         gulp.start('js:build');
     });
-    watch([path.watch.style], function (event, cb) {
-        gulp.start('style:build');
+    watch([path.watch.scss], function (event, cb) {
+        gulp.start('scss:build');
     });
     watch([path.watch.img], function (event, cb) {
         gulp.start('image:build');
@@ -247,12 +246,12 @@ gulp.task('watch', function () {
     watch([path.watch.data], function (event, cb) {
         gulp.start('data:build');
     });
-    watch([path.watch.js], function (event, cb) {
-        gulp.start('js:lint');
-    });
-    watch([path.watch.style], function (event, cb) {
-        gulp.start('style:lint');
-    });
+    // watch([path.watch.js], function (event, cb) {
+    //     gulp.start('js:lint');
+    // });
+    // watch([path.watch.scss], function (event, cb) {
+    //     gulp.start('scss:lint');
+    // });
 });
 
 gulp.task('default', ['build', 'connect-sync', 'watch']);
