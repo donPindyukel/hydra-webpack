@@ -6,7 +6,7 @@ var commandType = null;
 var blockName = null;
 
 // Получаем имя команды
-process.argv.forEach(function(val, index, array) {
+process.argv.forEach(function (val, index, array) {
     if (index == 2) {
         commandType = val;
     }
@@ -14,12 +14,12 @@ process.argv.forEach(function(val, index, array) {
 
 if (commandType == "block") {
     // Ссылки для создания элементов блока
-    var pugDirectory = "./src/pages/blocks";
-    var scssDirectory = "./src/scss/blocks";
-    var jsDirectory = "./src/js/blocks";
+    var pugDirectory = "./src/blocks";
+    var scssDirectory = "./src/blocks";
+    var jsDirectory = "./src/blocks";
 
     // Получаем имя блока для создания
-    process.argv.forEach(function(val, index, array) {
+    process.argv.forEach(function (val, index, array) {
         if (index == 3) {
             blockName = val;
         }
@@ -31,8 +31,8 @@ if (commandType == "block") {
         createFile(blockName, 'scss', scssDirectory);
         createFile(blockName, 'js', jsDirectory);
 
-        appendTextFile('./src/scss/app.scss', '@import "blocks/'+ blockName +'";');
-        appendTextFile('./src/js/app.js', "//@include('blocks/"+ blockName +".js')");
+        appendTextFile('./src/blocks/blocks.scss', '@import "' + blockName + "/" + blockName + '";');
+        appendTextFile('./src/blocks/blocks.js', "//@include('" + blockName + "/" + blockName + ".js')");
     }
 }
 
@@ -41,9 +41,14 @@ function createFile(name, ext, directory) {
     var content = "/\/ ==========================================================================" +
         "\n/\/ " + name +
         "\n/\/ ==========================================================================";
+    var dir = directory + "/" + name;
+    var file = dir + "/" + name + "." + ext;
 
-    var file = directory + "/" + name + "." + ext;
-    fs.writeFile(file, content, function(err) {
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+    
+    fs.writeFile(file, content, function (err) {
         if (err) {
             console.log(err);
         } else {
@@ -55,7 +60,7 @@ function createFile(name, ext, directory) {
 // Добавить текст в конец строки файла
 function appendTextFile(file, text) {
     fs.appendFile(file, '\n' + text, function (err) {
-      if (err) throw err;
-      console.log('Modify ' + file + ' success');
+        if (err) throw err;
+        console.log('Modify ' + file + ' success');
     });
 }

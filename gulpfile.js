@@ -18,6 +18,7 @@ var buildDirStatic = buildDir + "/assets";
 //
 
 var gulp = require('gulp'),
+    rename = require('gulp-rename'),
     babel = require('gulp-babel'),
     flow = require('gulp-flowtype'),
     watch = require('gulp-watch'),
@@ -44,32 +45,32 @@ var path = {
         php: buildDirHtml,
         leaf: buildDirHtml,
         js: buildDirStatic + '/js/',
-        css: buildDirStatic + '/css/',
+        css: buildDirStatic + '/css',
         img: buildDirStatic + '/img/',
         fonts: buildDirStatic + '/fonts/',
         data: buildDirStatic + '/data/'
     },
     src: {
-        pug: 'src/pages/*.pug',
-        html: 'src/pages/*.html',
-        php: 'src/pages/*.php',
-        leaf: 'src/pages/*.leaf',
-        js: 'src/js/*.js',
-        scss: 'src/scss/*.scss',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*',
-        data: 'src/data/**/*.*'
+        pug: ['src/pages/*.pug'],
+        html: ['src/pages/*.html'],
+        php: ['src/pages/*.php'],
+        leaf: ['src/pages/*.leaf'],
+        js: ['src/components/*.js', 'src/blocks/*.js'],
+        scss: ['src/components/*.scss', 'src/blocks/*.scss'],
+        img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif'],
+        fonts: ['src/fonts/*.*', 'src/fonts/**/*.*'],
+        data: ['src/data/*.*', 'src/data/**/*.*']
     },
     watch: {
-        pug: 'src/pages/**/*.pug',
-        html: 'src/pages/**/*.html',
-        php: 'src/pages/**/*.php',
-        leaf: 'src/pages/**/*.leaf',
-        js: 'src/js/**/*.js',
-        scss: 'src/scss/**/*.scss',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*',
-        data: 'src/data/**/*.*'
+        pug: ['src/pages/*.pug', 'src/blocks/**/*.pug'],
+        html: ['src/pages/*.html', 'src/blocks/**/*.html'],
+        php: ['src/pages/*.php', 'src/blocks/**/*.php'],
+        leaf: ['src/pages/*.leaf', 'src/blocks/**/*.leaf'],
+        js: ['src/components/*.js', 'src/components/**/*.js', 'src/blocks/*.js', 'src/blocks/**/*.js'],
+        scss: ['src/components/*.scss', 'src/components/**/*.scss', 'src/blocks/*.scss', 'src/blocks/**/*.scss'],
+        img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif'],
+        fonts: ['src/fonts/*.*', 'src/fonts/**/*.*'],
+        data: ['src/data/*.*', 'src/data/**/*.*']
     },
     clean: buildDir
 };
@@ -168,6 +169,7 @@ gulp.task('scss:build', function () {
 gulp.task('image:build', function () {
     gulp.src(path.src.img)
         .pipe(plumber())
+        .pipe(rename({dirname: ''}))
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
@@ -219,31 +221,31 @@ gulp.task('build', [
 ]);
 
 gulp.task('watch', function () {
-    watch([path.watch.pug], function (event, cb) {
+    watch(path.watch.pug, function (event, cb) {
         gulp.start('pug:build');
     });
-    watch([path.watch.html], function (event, cb) {
+    watch(path.watch.html, function (event, cb) {
         gulp.start('html:build');
     });
-    watch([path.watch.php], function (event, cb) {
+    watch(path.watch.php, function (event, cb) {
         gulp.start('php:build');
     });
-    watch([path.watch.leaf], function (event, cb) {
+    watch(path.watch.leaf, function (event, cb) {
         gulp.start('leaf:build');
     });
-    watch([path.watch.js], function (event, cb) {
+    watch(path.watch.js, function (event, cb) {
         gulp.start('js:build');
     });
-    watch([path.watch.scss], function (event, cb) {
+    watch(path.watch.scss, function (event, cb) {
         gulp.start('scss:build');
     });
-    watch([path.watch.img], function (event, cb) {
+    watch(path.watch.img, function (event, cb) {
         gulp.start('image:build');
     });
-    watch([path.watch.fonts], function (event, cb) {
+    watch(path.watch.fonts, function (event, cb) {
         gulp.start('fonts:build');
     });
-    watch([path.watch.data], function (event, cb) {
+    watch(path.watch.data, function (event, cb) {
         gulp.start('data:build');
     });
     // watch([path.watch.js], function (event, cb) {

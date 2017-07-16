@@ -11,6 +11,7 @@
     "browser-sync": "2.18.8",
     "rimraf": "2.6.1",
     "gulp": "3.8.11",
+    "gulp-rename": "1.2.2",
     "gulp-autoprefixer": "3.1.1",
     "gulp-clean-css": "3.0.4",
     "gulp-connect-php": "0.0.8",
