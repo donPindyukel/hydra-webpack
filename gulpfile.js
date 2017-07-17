@@ -57,7 +57,7 @@ var path = {
         leaf: ['src/pages/*.leaf'],
         js: ['src/components/*.js', 'src/blocks/*.js'],
         scss: ['src/components/*.scss', 'src/blocks/*.scss'],
-        img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif'],
+        img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif', 'src/**/*.ico'],
         fonts: ['src/fonts/*.*', 'src/fonts/**/*.*'],
         data: ['src/data/*.*', 'src/data/**/*.*']
     },
@@ -68,7 +68,7 @@ var path = {
         leaf: ['src/pages/*.leaf', 'src/blocks/**/*.leaf'],
         js: ['src/components/*.js', 'src/components/**/*.js', 'src/blocks/*.js', 'src/blocks/**/*.js'],
         scss: ['src/components/*.scss', 'src/components/**/*.scss', 'src/blocks/*.scss', 'src/blocks/**/*.scss'],
-        img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif'],
+        img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif', 'src/**/*.ico'],
         fonts: ['src/fonts/*.*', 'src/fonts/**/*.*'],
         data: ['src/data/*.*', 'src/data/**/*.*']
     },
@@ -170,12 +170,12 @@ gulp.task('image:build', function () {
     gulp.src(path.src.img)
         .pipe(plumber())
         .pipe(rename({dirname: ''}))
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()],
-            interlaced: true
-        }))
+        .pipe(imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.jpegtran({progressive: true}),
+            imagemin.optipng({optimizationLevel: 5}),
+            imagemin.svgo({plugins: [{removeViewBox: true}]})
+        ]))
         .pipe(gulp.dest(path.build.img))
         .pipe(reload({stream: true}));
 });
