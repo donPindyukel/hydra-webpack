@@ -55,14 +55,6 @@ input[type=text],
 input[type=tel],
 input[type=email] {
 	@include form-input(rem(220));
-	@include hover {
-		border-color: fade_out($color-text-normal, 0.85);
-	}
-
-	margin-right: 1%;
-	color: fade_out($color-text-normal, 0.45);
-	border-color: lighten($color-primary, 20%);
-	border-radius: rem(100);
 }
 
 .container {
@@ -88,27 +80,14 @@ input[type=email] {
 	}
 }
 
+.button {
+	@include button();
+}
+
 .hide {
 	display: none !important;
 }
 
 .no-visible {
 	visibility: hidden !important;
-}
-
-.slider {
-	&__overlay {
-		@include slider-main();
-	}
-
-	&__body {
-		@include slider-body();
-	}
-
-	&__item {
-		@include slider-slide();
-		background: red;
-		padding: 60px;
-		margin: 40px;
-	}
 }
