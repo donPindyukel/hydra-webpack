@@ -112,11 +112,13 @@ function deleteCookie(name) {
      * @param timeout
      */
 	$.fn.addClassTimeout = function (className, timeout = 1000) {
-		let th = this;
+		let $th = $(this);
 
 		setTimeout(() => {
-			th.addClass(className);
+			$th.addClass(className);
 		}, timeout);
+
+		return $th;
 	};
 
 	/**
@@ -125,10 +127,12 @@ function deleteCookie(name) {
      * @param timeout
      */
 	$.fn.removeClassTimeout = function (className, timeout = 1000) {
-		let th = this;
+		let $th = $(this);
 
 		setTimeout(() => {
-			th.removeClass(className);
+			$th.removeClass(className);
 		}, timeout);
+
+		return $th;
 	};
 })(jQuery);
