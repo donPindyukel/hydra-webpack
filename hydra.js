@@ -14,9 +14,7 @@ process.argv.forEach(function (val, index, array) {
 
 if (commandType == "block") {
     // Ссылки для создания элементов блока
-    var pugDirectory = "./src/blocks";
-    var scssDirectory = "./src/blocks";
-    var jsDirectory = "./src/blocks";
+    var dir = "./src/blocks";
 
     // Получаем имя блока для создания
     process.argv.forEach(function (val, index, array) {
@@ -27,12 +25,20 @@ if (commandType == "block") {
 
     // Если имя блока было указано, создаем элементы блока
     if (blockName != null) {
-        createFile(blockName, 'pug', pugDirectory);
-        createFile(blockName, 'scss', scssDirectory);
-        createFile(blockName, 'js', jsDirectory);
+        fs.mkdir(dir + '/' + blockName, function (e) {
+            if (e === null) {
+                createFile(blockName, 'pug', dir);
+                createFile(blockName, 'scss', dir);
+                createFile(blockName, 'js', dir);
 
-        appendTextFile('./src/blocks/blocks.scss', '@import "' + blockName + "/" + blockName + '";');
-        appendTextFile('./src/blocks/blocks.js', "//@include('" + blockName + "/" + blockName + ".js')");
+                appendTextFile(dir + '/blocks.scss', '@import "' + blockName + "/" + blockName + '";');
+                appendTextFile(dir + '/blocks.js', "//@include('" + blockName + "/" + blockName + ".js')");
+            }
+            else {
+                console.log('Block "' + blockName + '" exists!');
+            }
+        });
+
     }
 }
 
@@ -44,10 +50,6 @@ function createFile(name, ext, directory) {
     var dir = directory + "/" + name;
     var file = dir + "/" + name + "." + ext;
 
-    if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-    }
-    
     fs.writeFile(file, content, function (err) {
         if (err) {
             console.log(err);
