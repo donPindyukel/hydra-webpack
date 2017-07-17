@@ -71,36 +71,33 @@
 	 * @param func - функция, которую нужно запустить при срабатывании
 	 */
 	$.fn.lazyLoadImage = function (type = 'img', dataName = 'src', showAfterReadyPage = false, func = function () {}) {
+		let dataSrc = null;
+		let th = $(this);
 
-		this.each(function () {
-			let dataSrc = null;
-			let th = $(this);
+		if (th.data(dataName)) {
+			dataSrc = th.data(dataName);
 
-			if (th.data(dataName)) {
-				dataSrc = th.data(dataName);
-
-				// Прогружать при пролистывании
-				th.lazyShowIfVisible(0, null, null, () => {
-					if (type === 'img') {
-						th.attr('src', dataSrc);
-					} else if (type === 'bg') {
-						th.attr('style', `background-image: url(${dataSrc})`);
-					}
-				});
-
-				// Прогружать после загрузки страницы
-				if (showAfterReadyPage) {
-					$(window).on('load', () => {
-						setTimeout(() => {
-							if (type === 'img') {
-								th.attr('src', dataSrc);
-							} else if (type === 'bg') {
-								th.attr('style', `background-image: url(${dataSrc})`);
-							}
-						}, 1000);
-					});
+			// Прогружать при пролистывании
+			th.lazyShowIfVisible(0, null, null, () => {
+				if (type === 'img') {
+					th.attr('src', dataSrc);
+				} else if (type === 'bg') {
+					th.attr('style', `background-image: url(${dataSrc})`);
 				}
+			});
+
+			// Прогружать после загрузки страницы
+			if (showAfterReadyPage) {
+				$(window).on('load', () => {
+					setTimeout(() => {
+						if (type === 'img') {
+							th.attr('src', dataSrc);
+						} else if (type === 'bg') {
+							th.attr('style', `background-image: url(${dataSrc})`);
+						}
+					}, 1000);
+				});
 			}
-		});
+		}
 	};
 })(jQuery);

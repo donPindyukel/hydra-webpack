@@ -103,3 +103,31 @@ let modalAnimateClassHide = 'fadeOut';
  * @type {number}
  */
 let modalAnimateDeleteTimeout = 1000;
+
+//
+// Компонент полей (Slider)
+//
+
+/**
+ * Имя класса тела слайдера (scss - @include slider-body())
+ * @type {string}
+ */
+let sliderBodyClass = '.slider__body';
+
+/**
+ * Имя класса слайда (scss - @include slider-slide())
+ * @type {string}
+ */
+let sliderItemClass = '.slider__item';
+
+/**
+ * Автоматическая смена слайда
+ * @type {boolean}
+ */
+let sliderAutoscroll = false;
+
+/**
+ * Таймаут смены слайда
+ * @type {number}
+ */
+let sliderAutoscrollTimeout = 1000;

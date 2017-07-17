@@ -15,9 +15,8 @@
 	 * Иницилизация слайдера
 	 * @param bodyClassName - имя класса, в котором содержатся слайды
 	 * @param slideClassName - имя класса слайда
-	 * @param countSlidePrint - пока не используется в системе.
 	 */
-	$.fn.sliderInit = function (bodyClassName = '.slider-body', slideClassName = '.slide', countSlidePrint = 1) {
+	$.fn.sliderInit = function (bodyClassName = sliderBodyClass, slideClassName = sliderItemClass) {
 		let slider = $(this);
 
 		// Получаем контейнер, который будем двигать по right позиции
@@ -83,6 +82,48 @@
 
 		// Убираем из общей длины, длину равную одного слайда.
 		allSlideWidth -= singleSlideWidth;
+	};
+
+	/**
+	 * Автоскролинг слайдера
+	 * @param timeout - время задержки
+	 */
+	$.fn.sliderAutoscroll = function (timeout = sliderAutoscrollTimeout, stopIfMoousEenter = sliderAutoscroll) {
+		let slider = $(this);
+		let activeSlide = 0;
+		let nextSlide = true;
+		let blockScroll = false;
+
+		setInterval(function () {
+			if (blockScroll) return;
+
+			if (nextSlide) {
+				if (activeSlide < slider.sliderCount()) {
+					slider.sliderNext();
+					activeSlide++;
+				} 
+				if (activeSlide >= slider.sliderCount()) nextSlide = false;
+			} else {
+				if (activeSlide > 1) {
+					slider.sliderPrev();
+					activeSlide--;
+				}
+				if (activeSlide <= 1) nextSlide = true;
+			}
+			log(activeSlide);
+		}, timeout);
+
+		if (stopIfMoousEenter) {
+			// Блокировать работу слайдера при наведении на него курсора
+			slider.mouseenter(function () {
+				blockScroll = true;
+			});
+
+			// Отмена блокировки слайдера при выхода курсора из него
+			slider.mouseleave(function () {
+				blockScroll = false;
+			});
+		}
 	};
 
 	/**
