@@ -27,6 +27,9 @@ if (commandType == "block") {
     if (blockName != null) {
         fs.mkdir(dir + '/' + blockName, function (e) {
             if (e === null) {
+                // Создание директории с изображениями
+                fs.mkdir(dir + '/' + blockName + '/' + 'img', function (e) {});
+
                 createFile(blockName, 'pug', dir);
                 createFile(blockName, 'scss', dir);
                 createFile(blockName, 'js', dir);
