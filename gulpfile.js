@@ -31,7 +31,7 @@ var gulp = require('gulp'),
     connectPhp = require('gulp-connect-php'),
     pug = require('gulp-pug'),
     eslint = require('gulp-eslint'),
-    scsslint = require('gulp-scss-lint'),
+    puglint = require('gulp-pug-linter'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
@@ -70,7 +70,9 @@ var path = {
         scss: ['src/components/*.scss', 'src/components/**/*.scss', 'src/blocks/*.scss', 'src/blocks/**/*.scss'],
         img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif', 'src/**/*.ico'],
         fonts: ['src/fonts/*.*', 'src/fonts/**/*.*'],
-        data: ['src/data/*.*', 'src/data/**/*.*']
+        data: ['src/data/*.*', 'src/data/**/*.*'], 
+        jslint: ['src/blocks/*.js', 'src/blocks/**/*.js'],
+        puglint: ['src/pages/*.pug', 'src/blocks/**/*.pug'],
     },
     clean: buildDir
 };
@@ -192,15 +194,14 @@ gulp.task('data:build', function () {
         .pipe(gulp.dest(path.build.data))
 });
 
-gulp.task('scss:lint', function() {
-  return gulp.src([path.watch.scss])
-    .pipe(scsslint({
-        'config': '.scsslint.yml'
-    }));
+gulp.task('pug:lint', () => {
+    return gulp.src(path.watch.puglint)
+        .pipe(puglint())
+        .pipe(puglint.reporter())
 });
 
 gulp.task('js:lint', () => {
-    return gulp.src([path.watch.js])
+    return gulp.src(path.watch.jslint)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(flow({ abort: true }))
@@ -216,8 +217,8 @@ gulp.task('build', [
     'fonts:build',
     'image:build',
     'data:build',
-    //'js:lint',
-    //'scss:lint'
+    'js:lint',
+    'pug:lint'
 ]);
 
 gulp.task('watch', function () {
@@ -248,12 +249,12 @@ gulp.task('watch', function () {
     watch(path.watch.data, function (event, cb) {
         gulp.start('data:build');
     });
-    // watch([path.watch.js], function (event, cb) {
-    //     gulp.start('js:lint');
-    // });
-    // watch([path.watch.scss], function (event, cb) {
-    //     gulp.start('scss:lint');
-    // });
+    watch(path.watch.js, function (event, cb) {
+        gulp.start('js:lint');
+    });
+    watch(path.watch.pug, function (event, cb) {
+        gulp.start('pug:lint');
+    });
 });
 
 gulp.task('default', ['build', 'connect-sync', 'watch']);
