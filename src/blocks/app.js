@@ -2,6 +2,5 @@
 // Подгрузка скриптов блоков
 // ==========================================================================
 
-//@include('../components/components.js')
-//@include('./global/variables.js')
-//@include('./global/main.js')
+//@include('../components/$components.js')
+//@include('./global/$main.js')

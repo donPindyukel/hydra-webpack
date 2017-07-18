@@ -1,5 +1,5 @@
 // ==========================================================================
-// Компонент поля в форме
+// Компонент формы
 // ==========================================================================
 
 (function ($) {
@@ -18,7 +18,6 @@
 		th.append(`<input type="hidden" class="range-value" value="${dataMin}">`);
 		let pointer = th.find('.range-pointer');
 		let value = th.find('.range-value');
-		let widthSlider = th.width();
 		let isMoviePointer = false;
 
 		// Кликаем на область слайдера и туда переносим поинтер
@@ -84,7 +83,7 @@
      * @param dataParamsName
      * @returns {boolean}
      */
-	$.fn.fieldValidate = function (dataParamsName = fieldValidDataName) {
+	$.fn.fieldValidate = function(dataParamsName = fieldValidDataName) {
 		if (this.attr('type')) {
 			// Текстовое поле по длине строки
 			if (this.attr('type') === 'text' || this.attr('type') === 'number'
@@ -131,6 +130,49 @@
 					th.removeClassTimeout(errorClass, removeClassTimeout);
 				}
 			}
+		});
+	};
+
+	/**
+     * Отправка данных с формы
+     * @param func Выполняемая функция после отправки данных
+     * @param stopIsNotValidate Валидация формы true/false
+     * @param activeAntiSpam
+     */
+	$.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate, activeAntiSpam = formActiveAntiSpam) {
+		let th = this;
+
+		// Защита от спама
+		if (activeAntiSpam) {
+			setTimeout(() => {
+				th.append(`<input type="hidden" name="hash" class="hash" value="${formAntiSpamHashKey}">`);
+			}, 1000);
+		}
+
+		// Отлавливаем событие нажатия на сабмит
+		this.on('submit', function (e) {
+			let form = $(this);
+
+			e.preventDefault();
+			if (!stopIsNotValidate) {
+				ajaxPost(form, form.attr('action'), form.serialize(), func);
+			} else {
+				let error = 0;
+
+				form.find('input').each(function () {
+					let field = $(this);
+
+					if (!field.fieldValidate()) {
+						error += 1;
+						field.change();
+					}
+				});
+				if (error === 0) {
+					ajaxPost(form, form.attr('action'), form.serialize(), func);
+				}
+			}
+
+			return false;
 		});
 	};
 })(jQuery);

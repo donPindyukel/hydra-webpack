@@ -5,12 +5,13 @@
 @import '../../bower_components/normalize-css/normalize';
 @import '../../bower_components/flexbox-grid-mixins/sass/flexbox-grid-mixins';
 
-@import 'global/untils';
-@import 'global/mixins';
-@import 'typography/typography';
-@import 'animation/animation';
-@import 'lazy/lazy';
-@import 'modal/modal';
-@import 'button/button';
-@import 'form/form';
-@import 'slider/slider';
+@import 'global/_untils';
+@import 'global/_mixins';
+@import '../blocks/global/_variables';
+@import 'typography/_typography';
+@import 'animation/_animation';
+@import 'lazy/_lazy';
+@import 'modal/_modal';
+@import 'button/_button';
+@import 'form/_form';
+@import 'slider/_slider';
