@@ -4,3 +4,4 @@
 
 //@include('../components/components.js')
 //@include('./global/variables.js')
+//@include('./global/main.js')
