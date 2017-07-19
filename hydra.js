@@ -116,8 +116,8 @@ if (commandType === 'update') {
 		ncp('./update/bower.json', './bower.json', () => {});
 		ncp('./update/gulpfile.js', './gulpfile.js', () => {});
 
-		ncp('./updatehydra.js', './hydra.js', () => {});
-		ncp('./package.json', './package.json', () => {});
+		ncp('./update/hydra.js', './hydra.js', () => {});
+		ncp('./update/package.json', './package.json', () => {});
 
 		rimraf('./update', () => {
 			console.log('Временная директория удалена.');
