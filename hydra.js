@@ -8,12 +8,12 @@ let rimraf = require('rimraf');
 //
 
 // Функция для создания файла
-function createFile(name, ext, directory) {
+function createFile(name, prefix, ext, directory) {
 	let content = `${'/\/ ==========================================================================' +
 		'\n/\/ '}${name
 	}\n/\/ ==========================================================================`;
 	let dir = `${directory}/${name}`;
-	let file = `${dir}/${name}.${ext}`;
+	let file = `${dir}/${prefix}${name}.${ext}`;
 
 	fs.writeFile(file, content, (err) => {
 		if (err) {
@@ -68,9 +68,9 @@ if (commandType === 'block') {
 				// Создание директории с изображениями
 				fs.mkdir(`${dir}/${blockName}/img`, () => {});
 
-				createFile(blockName, 'pug', dir);
-				createFile(`_${blockName}`, 'scss', dir);
-				createFile(`$${blockName}`, 'js', dir);
+				createFile(blockName, '', 'pug', dir);
+				createFile(`${blockName}`, '_', 'scss', dir);
+				createFile(`${blockName}`, '$', 'js', dir);
 
 				appendTextFile(`${dir}/app.scss`, `@import "${blockName}/${blockName}";`);
 				appendTextFile(`${dir}/app.js`, `//@include('${blockName}/$${blockName}.js')`);
