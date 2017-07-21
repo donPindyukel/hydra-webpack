@@ -104,26 +104,26 @@ if (commandType === 'update') {
 			console.log('Старые компоненты успешно удалены.');
 		});
 
-		// Копируем файлы для обновления пакета
-		ncp('./update/src/components', './src/components', () => {});
-		ncp('./update/src/components/components.js', './src/components/components.js', () => {});
-		ncp('./update/src/components/components.scss', './src/components/components.scss', () => {});
+		setTimeout(() => {
+			// Копируем файлы для обновления пакета
+			ncp('./update/src/components', './src/components', (err) => { if (err) return console.error(err); });
+			ncp('./update/.csscomb.json', './.csscomb.json', (err) => { if (err) return console.error(err); });
+			ncp('./update/.eslintrc.json', './.eslintrc.json', (err) => { if (err) return console.error(err); });
+			ncp('./update/.flowconfig', './.flowconfig', (err) => { if (err) return console.error(err); });
+			ncp('./update/.pug-lintrc.json', './.pug-lintrc.json', (err) => { if (err) return console.error(err); });
+			ncp('./update/bower.json', './bower.json', (err) => { if (err) return console.error(err); });
+			ncp('./update/gulpfile.js', './gulpfile.js', (err) => { if (err) return console.error(err); });
 
-		ncp('./update/.csscomb.json', './.csscomb.json', () => {});
-		ncp('./update/.eslintrc.json', './.eslintrc.json', () => {});
-		ncp('./update/.flowconfig', './.flowconfig', () => {});
-		ncp('./update/.pug-lintrc.json', './.pug-lintrc.json', () => {});
-		ncp('./update/bower.json', './bower.json', () => {});
-		ncp('./update/gulpfile.js', './gulpfile.js', () => {});
+			ncp('./update/hydra.js', './hydra.js', (err) => { if (err) return console.error(err); });
+			ncp('./update/package.json', './package.json', (err) => { if (err) return console.error(err); });
 
-		ncp('./update/hydra.js', './hydra.js', () => {});
-		ncp('./update/package.json', './package.json', () => {});
-
-		rimraf('./update', () => {
-			console.log('Временная директория удалена.');
-		});
-
-		console.log('Копирование файлов завершено.');
-		console.log('Запустите "npm i && bower i".');
+			setTimeout(() => {
+				rimraf('./update', () => {
+					console.log('Временная директория удалена.');
+					console.log('Копирование файлов завершено.');
+					console.log('Запустите "npm i && bower i".');
+				});
+			}, 500);
+		}, 500);
 	});
 }
