@@ -1,0 +1,17 @@
+// ==========================================================================
+// Подгрузка стилей компонентов
+// ==========================================================================
+
+@import '../../bower_components/normalize-css/normalize';
+@import '../../bower_components/flexbox-grid-mixins/sass/flexbox-grid-mixins';
+
+@import 'global/_untils';
+@import 'global/_mixins';
+@import 'typography/_typography';
+@import '../blocks/global/_variables';
+@import 'animation/_animation';
+@import 'lazy/_lazy';
+@import 'modal/_modal';
+@import 'button/_button';
+@import 'form/_form';
+@import 'slider/_slider';

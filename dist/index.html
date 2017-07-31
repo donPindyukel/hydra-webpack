@@ -5,27 +5,33 @@
     <title>HYDRA Webpack</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <link rel="shortcut icon" href="./assets/img/default/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/app.css">
   </head>
   <body></body>
 </html>
+<div id="app">
+  <p> {{ message }}</p>
+</div>
 <h1>H1 TITLE ЗАГОЛОВОК / h1 title заголовок</h1>
 <h2>H2 TITLE ЗАГОЛОВОК / h2 title заголовок</h2>
 <h3>H3 TITLE ЗАГОЛОВОК / h3 title заголовок</h3>
 <h4>H4 TITLE ЗАГОЛОВОК / h4 title заголовок</h4>
 <h5>H5 TITLE ЗАГОЛОВОК / h5 title заголовок</h5>
 <h6>H6 TITLE ЗАГОЛОВОК / h6 title заголовок</h6><br><br>
-<p>PARAGRAPH ПАРАГРАФ / paragraph параграф</p><span>SPAN СПАН / span спан</span><br><small>SMALL МАЛЕНЬКИЙ / small маленький</small><br><a href="#">LINK ССЫЛКА / link ссылка</a><br><br>
+<p>PARAGRAPH ПАРАГРАФ / paragraph параграф</p><span>SPAN СПАН / span спан</span><br><small>SMALL МАЛЕНЬКИЙ / small маленький</small><br><a href="#" data-id="test" target="blank">LINK ССЫЛКА / link ссылка</a><br><br>
 <form action="#" method="post">
   <input type="text" name="name" placeholder="Введи текст">
   <input type="text" name="name" placeholder="Введи текст">
   <input type="text" name="name" placeholder="Введи текст">
-  <button type="submit">Отправить с формы</button>
+  <button class="button" type="submit">Отправить с формы</button>
 </form>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<!--script(src="https://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js" crossorigin="anonymous")-->
+<!-- Для разработки-->
+<script src="https://ru.vuejs.org/js/vue.js"></script>
+<!-- Для продакшена-->
+<script src="https://ru.vuejs.org/js/vue.min.js"></script>
+<!---->
 <script src="./assets/js/app.js"></script>
