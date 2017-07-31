@@ -25,7 +25,6 @@
 	"requireStrictEqualityOperators": true,
 	"validateAttributeQuoteMarks": "'",
 	"validateAttributeSeparator": " ",
-	"validateDivTags": true,
 	"validateIndentation": "\t",
 	"validateLineBreaks": "LF",
 	"validateSelfClosingTags": true

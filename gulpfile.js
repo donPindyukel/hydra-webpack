@@ -32,9 +32,11 @@ var gulp = require('gulp'),
 	pug = require('gulp-pug'),
 	eslint = require('gulp-eslint'),
 	puglint = require('gulp-pug-linter'),
+	browserify = require('browserify'),
+	vueify = require('vueify'),
 	pngquant = require('imagemin-pngquant'),
 	rimraf = require('rimraf'),
-	browserSync = require("browser-sync"),
+	browserSync = require('browser-sync'),
 	reload = browserSync.reload,
 	plumber = require('gulp-plumber');
 
@@ -55,8 +57,8 @@ var path = {
 		html: ['src/pages/*.html'],
 		php: ['src/pages/*.php'],
 		leaf: ['src/pages/*.leaf'],
-		js: ['src/components/*.js', 'src/blocks/*.js'],
-		scss: ['src/components/*.scss', 'src/blocks/*.scss'],
+		js: ['src/blocks/*.js'],
+		scss: ['src/blocks/*.scss'],
 		img: ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.svg', 'src/**/*.gif', 'src/**/*.ico'],
 		fonts: ['src/fonts/*.*', 'src/fonts/**/*.*'],
 		data: ['src/data/*.*', 'src/data/**/*.*']
@@ -217,8 +219,6 @@ gulp.task('build', [
 	'fonts:build',
 	'image:build',
 	'data:build',
-	// 'js:lint',
-	// 'pug:lint'
 ]);
 
 gulp.task('watch', function () {

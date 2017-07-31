@@ -1,5 +1,8 @@
 include ../blocks/global/head
 
+div#app
+	p  {{ message }}
+
 h1 H1 TITLE ЗАГОЛОВОК / h1 title заголовок
 h2 H2 TITLE ЗАГОЛОВОК / h2 title заголовок
 h3 H3 TITLE ЗАГОЛОВОК / h3 title заголовок
@@ -19,17 +22,15 @@ small SMALL МАЛЕНЬКИЙ / small маленький
 
 br
 
-a(href="#", data-id='test', target='blank') LINK ССЫЛКА / link ссылка
+a(href='#' data-id='test' target='blank') LINK ССЫЛКА / link ссылка
 
 br
 br
 
-form(action="#", method='post')
-    input(type='text', name='name', placeholder='Введи текст')
-    input(type='text', name='name', placeholder='Введи текст')
-    input(type='text', name='name', placeholder='Введи текст')
-    button.button(type='submit') Отправить с формы
-
-include ../blocks/global/modals
+form(action='#' method='post')
+	input(type='text' name='name' placeholder='Введи текст')
+	input(type='text' name='name' placeholder='Введи текст')
+	input(type='text' name='name' placeholder='Введи текст')
+	button.button(type='submit') Отправить с формы
 
 include ../blocks/global/foot
