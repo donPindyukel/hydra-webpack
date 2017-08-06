@@ -4,8 +4,8 @@
 
 /**
  * Отправка GET запроса ajax
- * @param url
- * @param func
+ * @param url Ссылка для отправки запроса
+ * @param func Функция для возвращения результата отправки
  */
 function ajaxGet(url, func) {
   let httpRequest = new XMLHttpRequest();
@@ -21,9 +21,9 @@ function ajaxGet(url, func) {
 /**
  * Отправка POST запроса ajax
  * @param form Для возвращения объекта формы в callback
- * @param url
- * @param params
- * @param func
+ * @param url Ссылка для отправки запроса
+ * @param params Передаваемые параметры на страницу
+ * @param func Функция для возвращения результата отправки
  */
 function ajaxPost(form, url, params, func) {
   let httpRequest = new XMLHttpRequest();
@@ -43,7 +43,7 @@ function ajaxPost(form, url, params, func) {
    * @param dataMin Атрибут минимального значения
    * @param dataMax Атрибут максимального значения
    */
-  $.fn.fieldInitRangeSlider = function (dataMin = 'min', dataMax = 'max') {
+  $.fn.fieldInitRangeSlider = function (dataMin, dataMax) {
     let th = this;
     let min = th.data(dataMin);
     let max = th.data(dataMax);

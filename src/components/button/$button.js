@@ -6,11 +6,10 @@
   /**
    * Функционал фильтровки выводимого контента.
    * @param globalClass - общий класс контента, которым нужно управлять
-   * @param dataTargetName - data аттрибут у кнопки для указания ключа
-   * @param dataActorName - data аттрибут ключа у управляемого элемента
+   * @param dataTargetName - атрибут у кнопки и элемента для указания уникального ключа
    * @param hideClass - класс для скрытия элементов
    */
-  $.fn.buttonFilter = function (globalClass, dataTargetName, dataActorName, hideClass) {
+  $.fn.buttonFilter = function (globalClass, dataName, hideClass) {
     let targetsList = $(globalClass);
 
     this.click(function () {
@@ -21,8 +20,8 @@
 
         target.addClass(hideClass);
 
-        if (button.attr(`data-${dataTargetName}`) && target.attr(`data-${dataActorName}`)) {
-          if (button.data(dataTargetName) === target.data(dataActorName)) {
+        if (button.attr(`data-${dataName}`) && target.attr(`data-${dataName}`)) {
+          if (button.data(dataName) === target.data(dataName)) {
             target.removeClass(hideClass);
           }
         }

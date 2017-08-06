@@ -27,7 +27,7 @@
 }
 
 // Создание select
-@mixin form-select($color-bg, $img-dwopdown, $padding: 0) {
+@mixin select($color-bg, $img-dwopdown, $padding: 0) {
 	$color-bg-hover: darken($color-bg, 4%);
 
 	@include hover {
@@ -97,7 +97,7 @@
 }
 
 // Создание radio
-@mixin form-radio($color-bg, $border, $img-checked) {
+@mixin radio($color-bg, $border, $img-checked) {
 	$color-bg-hover: darken($color-bg, 4%);
 
 	@include hover {
@@ -130,7 +130,7 @@
 }
 
 // Создание range slider
-@mixin form-range($size-pointer, $bg-slider, $bg-pointer) {
+@mixin range-slider($size-pointer, $bg-slider, $bg-pointer) {
 	position: relative;
 	margin: 0 auto;
 	padding: 0;
@@ -151,7 +151,7 @@
 }
 
 // Создание класса для валидации форм
-@mixin form-validate($color-text, $color-bg, $color-border) {
+@mixin input-validate($color-text, $color-bg, $color-border) {
 	@include hover {
 		color: $color-text;
 		border-color: $color-border;
