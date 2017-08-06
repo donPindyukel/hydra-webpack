@@ -3,7 +3,7 @@
 // ==========================================================================
 
 // Создание кнопки
-@mixin button($font, $color-bg, $padding: 0, $max-width: inherit, $blink: false) {
+@mixin button($color-bg, $padding: 0, $max-width: inherit, $blink: false) {
 	$color-bg-hover: darken($color-bg, 10%);
 
 	@include hover {
@@ -17,7 +17,6 @@
 		background: $color-bg-hover;
 	}
 
-	font: font;
 	display: inline-block;
 	max-width: $max-width;
 	padding: $padding;

@@ -2,6 +2,29 @@
 // Вспомогательные миксины
 // ==========================================================================
 
+// Создание контейнера
+@mixin container($max-width: inherit, $height: auto, $margin: 0) {
+	width: 100%;
+	display: block;
+	max-width: $max-width;
+	height: $height;
+	margin: $margin auto;
+}
+
+// Создание сетки
+@mixin grid($max-width: inherit, $direction: column, $align-items: center) {
+	display: flex;
+	flex-direction: $direction;
+	align-items: $align-items;
+}
+
+// Столбец сетки
+@mixin column($width: 1, $padding: 0, $margin: 0) {
+	flex: $width;
+	padding: $padding;
+	$margin: $margin;
+}
+
 // Размеры элемента
 @mixin size($width, $height: auto) {
 	width: 100%;
@@ -47,14 +70,6 @@
 @mixin hide {
 	display: none !important;
 	visibility: hidden !important;
-}
-
-// Отцентровать элемент
-@mixin absolute-center {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 }
 
 // Медиа запросы

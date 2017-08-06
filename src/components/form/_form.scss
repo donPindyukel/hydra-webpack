@@ -3,7 +3,7 @@
 // ==========================================================================
 
 // Создание input
-@mixin input($font, $color-bg, $padding: 0, $max-width: inherit) {
+@mixin input($color-bg, $padding: 0, $max-width: inherit) {
 	$color-bg-hover: darken($color-bg, 3%);
 
 	@include hover {
@@ -17,8 +17,6 @@
 		background-color: $color-bg-hover;
 	}
 
-	font: $font;
-	font-weight: normal;
 	display: inline-block;
 	width: 100%;
 	max-width: $max-width;
@@ -26,10 +24,11 @@
 	vertical-align: middle;
 	white-space: nowrap;
 	background-color: $color-bg;
+	border: 0;
 }
 
 // Создание select
-@mixin form-select($font, $color-bg, $img-dwopdown, $padding: 0, $max-width: inherit) {
+@mixin form-select($color-bg, $img-dwopdown, $padding: 0, $max-width: inherit) {
 	$color-bg-hover: darken($color-bg, 4%);
 
 	@include hover {
@@ -43,8 +42,6 @@
 		background-color: $color-bg-hover;
 	}
 
-	font: $font;
-	font-weight: normal;
 	display: inline-block;
 	box-sizing: border-box;
 	width: 100%;
@@ -55,6 +52,7 @@
 	background: $color-bg url($img-dwopdown) no-repeat right center;
 	background-origin: content-box;
 	background-size: 12px 12px;
+	border: 0;
 
 	appearance: none;
 

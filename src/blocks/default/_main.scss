@@ -16,35 +16,35 @@ body {
 }
 
 h1 {
-	// 
+	@include font($color-text, $font-size-h1, $font-family-headers);
 }
 
 h2 {
-	//
+	@include font($color-text, $font-size-h2, $font-family-headers);
 }
 
 h3 {
-	//
+	@include font($color-text, $font-size-h3, $font-family-headers);
 }
 
 h4 {
-	//
+	@include font($color-text, $font-size-h4, $font-family-headers);
 }
 
 h5 {
-	//
+	@include font($color-text, $font-size-h5, $font-family-headers);
 }
 
 h6 {
-	//
+	@include font($color-text, $font-size-h6, $font-family-headers);
 }
 
 p {
-	//
+	@include font($color-text, $font-size-normal, $font-family-normal);
 }
 
 a {
-	//
+	@include font($color-text, $font-size-normal, $font-family-normal);
 }
 
 .hide {
@@ -53,4 +53,23 @@ a {
 
 .no-visible {
 	visibility: hidden !important;
+}
+
+//
+// Для теста, удалить при разработке
+//
+
+.container {
+	@include container($width-container, auto, rem(20));
+}
+
+input {
+	@include input(#ccc, rem(10), rem(300));
+	@include font($color-text, $font-size-normal, $font-family-normal);
+}
+
+button {
+	@include font($color-text, $font-size-normal, $font-family-normal);
+	@include button(#cccccc, rem(10));
+	@include size(rem(600));
 }
