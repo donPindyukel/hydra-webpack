@@ -3,8 +3,7 @@
 // ==========================================================================
 
 // Фоновое затемнение и контейнер для модального окна
-// bg - фон оверлея
-@mixin modal-overlay($bg: $modal-color-overlay) {
+@mixin modal-overlay($bg) {
 	position: fixed;
 	z-index: 1000;
 	top: 0;
@@ -19,24 +18,17 @@
 	justify-content: center;
 
 	&.show {
-		display: -webkit-flex;
-		display: -ms-flexbox;
-		display:         flex;
+		display: flex;
 		visibility: visible;
 	}
 }
 
-// Модальное окно
-// max-width - максимальная ширина модального окна
-// padding - внутренний отступ
-// border-radius - закругление краев
-// bg - фоновый цвет модального окна
-@mixin modal-body($max-width: $modal-max-width, $padding: $modal-padding, $border-radius: $modal-border-radius, $bg: $modal-color-bg) {
+// Модальное окно с его содержимым
+@mixin modal-container($max-width, $padding, $bg) {
 	position: relative;
 	width: 100%;
 	max-width: $max-width;
 	margin: auto;
 	padding: $padding;
-	border-radius: $border-radius;
 	background: $bg;
 }

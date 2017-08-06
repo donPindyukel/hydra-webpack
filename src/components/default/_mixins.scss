@@ -2,11 +2,18 @@
 // Вспомогательные миксины
 // ==========================================================================
 
+// Размеры элемента
+@mixin size($width, $height: auto) {
+	width: 100%;
+	max-width: $width;
+	height: $height;
+}
+
 // Наведение на элемент
 @mixin hover {
 	&:hover,
 	.hover {
-		@content
+		@content;
 	}
 }
 
@@ -14,7 +21,25 @@
 @mixin focus {
 	&:focus,
 	.focus {
-		@content
+		@content;
+	}
+}
+
+// Псевдоэлемент after
+@mixin after {
+	&:after,
+	.after {
+		content: '';
+		@content;
+	}
+}
+
+// Псевдоэлемент before
+@mixin before {
+	&:before,
+	.before {
+		content: '';
+		@content;
 	}
 }
 
@@ -33,23 +58,15 @@
 }
 
 // Медиа запросы
-// Параметры для передачи - mobile, notebook, desktop
-@mixin media($val: mobile) {
-	@if ($val == mobile) {
-		@media (min-width: 0) and (max-width: $adaptive-width-mobile) {
-			@content
+@mixin media($max-width, $min-width: 0) {
+	@if ($min-width > 0) {
+		@media (min-width: $min-width) and (max-width: $max-width) {
+			@content;
 		}
 	}
-
-	@if ($val == notebook) {
-		@media (min-width: $adaptive-width-mobile) and (max-width: $adaptive-width-notebook) {
-			@content
-		}
-	}
-
-	@if ($val == desktop) {
-		@media (min-width: $adaptive-width-notebook) and (max-width: $adaptive-width-desktop) {
-			@content
+	@else {
+		@media (max-width: $max-width) {
+			@content;
 		}
 	}
 }

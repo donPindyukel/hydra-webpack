@@ -3,11 +3,7 @@
 // ==========================================================================
 
 // Тело прилоадера, которое занимает весь экран. В центре изображение.
-// bg - цвет фона прелоадера
-// logo-width - длина изображения логотипа
-// logo-height - высота изображения логотипа
-// logo-img - изображение логотипа в центре прелоадера
-@mixin lazy-preloader($bg: $lazy-preloader-bg, $logo-width: rem(64), $logo-height: rem(64), $logo-img: $lazy-preloader-logo-img) {
+@mixin lazy-preloader($bg, $indicator-size, $indicator-bg) {
 	position: absolute;
 	z-index: 9999;
 	top: 0;
@@ -20,11 +16,11 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		width: $logo-width;
-		height: $logo-height;
+		width: $indicator-size;
+		height: $indicator-size;
 		content: '';
 		transform: translate(-50%, -50%);
-		background: transparent url($logo-img) no-repeat center;
+		background: $indicator-bg;
 		background-size: contain;
 	}
 }

@@ -1,0 +1,36 @@
+// ==========================================================================
+// Глобальные переменные
+// ==========================================================================
+
+// Рабочая область
+$width-container: rem(1200);
+// Вертикальный ритм сайта
+$vg: rem(6);
+
+// Цвет стандартного шрифта
+$color-text: #272727;
+// Цвет ссылок
+$color-link: #000;
+// Премиальный цвет сайта
+$color-primary: #6ebdff;
+// Акцентный цвет сайта
+$color-accent: #6ebdff;
+// Цвета фона
+$color-bg: #fff;
+
+// Стандартный размер текста на сайте
+$font-size-normal: rem(16);
+$font-size-small: rem(14);
+
+// Размеры заголовков
+$font-size-h1: rem(48);
+$font-size-h2: rem(40);
+$font-size-h3: rem(31);
+$font-size-h4: rem(25);
+$font-size-h5: rem(20);
+$font-size-h6: rem(16);
+
+// Шрифты для текста
+$font-family-normal: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+// Шрифты для заголовка
+$font-family-headers: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;

@@ -2,8 +2,7 @@
 // Подгрузка скриптов компонентов
 // ==========================================================================
 
-//@include('../blocks/global/$variables.js')
-//@include('global/$untils.js')
+//@include('default/$untils.js')
 //@include('modal/$modal.js')
 //@include('button/$button.js')
 //@include('form/$form.js')

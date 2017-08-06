@@ -2,177 +2,207 @@
 // Компонент формы
 // ==========================================================================
 
+/**
+ * Отправка GET запроса ajax
+ * @param url
+ * @param func
+ */
+function ajaxGet(url, func) {
+  let httpRequest = new XMLHttpRequest();
+
+  httpRequest.open('GET', url);
+  httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  httpRequest.onload = function () {
+    func(httpRequest.responseText, httpRequest.status);
+  };
+  httpRequest.send();
+}
+
+/**
+ * Отправка POST запроса ajax
+ * @param form Для возвращения объекта формы в callback
+ * @param url
+ * @param params
+ * @param func
+ */
+function ajaxPost(form, url, params, func) {
+  let httpRequest = new XMLHttpRequest();
+
+  httpRequest.open('POST', url);
+  httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  httpRequest.onload = function () {
+    func(form, httpRequest.responseText, httpRequest.status);
+  };
+  httpRequest.send(encodeURI(params));
+}
+
 (function ($) {
-	/**
-     * Создание range slider
-     * @returns {boolean}
-     * @param dataMin
-     * @param dataMax
-     */
-	$.fn.fieldInitRangeSlider = function (dataMin = 'min', dataMax = 'max') {
-		let th = this;
-		let min = th.data(dataMin);
-		let max = th.data(dataMax);
+  /**
+   * Создание range slider
+   * @returns {boolean}
+   * @param dataMin Атрибут минимального значения
+   * @param dataMax Атрибут максимального значения
+   */
+  $.fn.fieldInitRangeSlider = function (dataMin = 'min', dataMax = 'max') {
+    let th = this;
+    let min = th.data(dataMin);
+    let max = th.data(dataMax);
 
-		th.append('<span class="range-pointer"></span>');
-		th.append(`<input type="hidden" class="range-value" value="${dataMin}">`);
-		let pointer = th.find('.range-pointer');
-		let value = th.find('.range-value');
-		let isMoviePointer = false;
+    th.append('<span class="range-pointer"></span>');
+    th.append(`<input type="hidden" class="range-value" value="${dataMin}">`);
+    let pointer = th.find('.range-pointer');
+    let value = th.find('.range-value');
+    let isMoviePointer = false;
 
-		// Кликаем на область слайдера и туда переносим поинтер
-		th.mousedown((e) => {
-			pointerMovie(e);
-		});
+    // Функция смены положения поинтера и записи value
+    function pointerMovie(e) {
+      // Вычисление положения ползунка
+      let offsetLeft = th.offset().left;
+      let left = e.pageX - offsetLeft - pointer.width() / 2;
+      let maxWidth = th.width(); //  offsetLeft;
 
-		// Акцивация движения ползунка при клике
-		pointer.mousedown(() => {
-			isMoviePointer = true;
-		});
+      // Калькулирование значения текстового поля
+      let calc = Math.round(left * max / th.width());
 
-		// Елси клик больше не нажат, отключаем движение
-		pointer.mouseup(() => {
-			isMoviePointer = false;
-		});
+      // Позиционирование поинтера
+      pointer.css('left', `${left}px`);
 
-		// Если покинули зону ползунка, отключаем движение
-		th.mouseleave(() => {
-			isMoviePointer = false;
-		});
+      // Не отпускаем за максимальное и минимальное значения
+      if (left < 0) {
+        pointer.css('left', '0px');
+      }
+      if (left >= maxWidth) {
+        pointer.css('left', `${maxWidth}px`);
+      }
 
-		// Движение поинтера за мышью
-		th.bind('mousemove', (e) => {
-			if (isMoviePointer) {
-				pointerMovie(e);
-			}
-		});
+      if (calc < min) {
+        calc = min;
+      }
+      if (calc > max) {
+        calc = max;
+      }
+      value.val(calc);
+    }
 
-		// Функция смены положения поинтера и записи value
-		function pointerMovie(e) {
-			// Вычисление положения ползунка
-			let offsetLeft = th.offset().left;
-			let left = e.pageX - offsetLeft - pointer.width() / 2;
-			let maxWidth = th.width(); //  offsetLeft;
+    // Кликаем на область слайдера и туда переносим поинтер
+    th.mousedown((e) => {
+      pointerMovie(e);
+    });
 
-			// Калькулирование значения текстового поля
-			let calc = Math.round(left * max / th.width());
+    // Акцивация движения ползунка при клике
+    pointer.mousedown(() => {
+      isMoviePointer = true;
+    });
 
-			// Позиционирование поинтера
-			pointer.css('left', `${left}px`);
+    // Елси клик больше не нажат, отключаем движение
+    pointer.mouseup(() => {
+      isMoviePointer = false;
+    });
 
-			// Не отпускаем за максимальное и минимальное значения
-			if (left < 0) {
-				pointer.css('left', '0px');
-			}
-			if (left >= maxWidth) {
-				pointer.css('left', `${maxWidth}px`);
-			}
+    // Если покинули зону ползунка, отключаем движение
+    th.mouseleave(() => {
+      isMoviePointer = false;
+    });
 
-			if (calc < min) {
-				calc = min;
-			}
-			if (calc > max) {
-				calc = max;
-			}
-			value.val(calc);
-		}
-	};
+    // Движение поинтера за мышью
+    th.bind('mousemove', (e) => {
+      if (isMoviePointer) {
+        pointerMovie(e);
+      }
+    });
+  };
 
-	/**
-     * Валидация поля формы
-     * @param dataParamsName
-     * @returns {boolean}
-     */
-	$.fn.fieldValidate = function(dataParamsName = fieldValidDataName) {
-		if (this.attr('type')) {
-			// Текстовое поле по длине строки
-			if (this.attr('type') === 'text' || this.attr('type') === 'number'
-																|| this.attr('type') === 'tel' || this.attr('type') === 'password'
-																|| this.attr('type') === 'email') {
-				let dataValid = parseInt(this.data(dataParamsName));
+  /**
+   * Проверка поля на прохождение валидации
+   * @param dataParamsName имя атрибута с которого брать числовое значение для валидации
+   * @returns {boolean}
+   */
+  $.fn.fieldValidate = function (dataParamsName) {
+    if (this.attr('type')) {
+      // Текстовое поле по длине строки
+      if (this.attr('type') === 'text' || this.attr('type') === 'number' ||
+        this.attr('type') === 'tel' || this.attr('type') === 'password' ||
+        this.attr('type') === 'email') {
+        let dataValid = parseInt(this.data(dataParamsName));
 
-				return this.val().length >= dataValid;
-			}
+        return this.val().length >= dataValid;
+      }
 
-			// Радио или чекбокс по checked
-			if (this.attr('type') === 'radio' || this.attr('type') === 'checkbox') {
-				let dataValid = Boolean(this.data(dataParamsName));
+      // Радио или чекбокс по checked
+      if (this.attr('type') === 'radio' || this.attr('type') === 'checkbox') {
+        let dataValid = Boolean(this.data(dataParamsName));
 
-				return this.prop('checked') === dataValid;
-			}
+        return this.prop('checked') === dataValid;
+      }
 
-			return true;
-		}
-	};
+      return true;
+    }
+  };
 
-	/**
-     *
-     * @param successClass
-     * @param errorClass
-     * @param removeClassTimeout
-     * @param dataParamsName
-     */
-	$.fn.fieldEventValidate = function (successClass = fieldValidSuccessClass,
-		errorClass = fieldValidErrorClass,
-		removeClassTimeout = fieldValidRemoveClassTimeout,
-		dataParamsName = fieldValidDataName) {
-		this.change(function () {
-			let th = $(this);
+  /**
+   * Подствечивание валидации полей при изменении их значения
+   * @param successClass Имя класса, для присвоения при успешной валидации
+   * @param errorClass Имя класса, для присвоения при провальной валидации
+   * @param removeClassTimeout Время, через которое удалить эти классы
+   * @param dataParamsName Имя атрибута с которого брать числовое значение для валидации
+   */
+  $.fn.fieldEventValidate = function (successClass, errorClass, removeClassTimeout, dataParamsName) {
+    this.change(function () {
+      let th = $(this);
 
-			if (th.fieldValidate(dataParamsName)) {
-				th.addClass(successClass);
-				if (removeClassTimeout !== null) {
-					th.removeClassTimeout(successClass, removeClassTimeout);
-				}
-			} else {
-				th.addClass(errorClass);
-				if (removeClassTimeout !== null) {
-					th.removeClassTimeout(errorClass, removeClassTimeout);
-				}
-			}
-		});
-	};
+      if (th.fieldValidate(dataParamsName)) {
+        th.addClass(successClass);
+      } else {
+        th.addClass(errorClass);
+      }
 
-	/**
-     * Отправка данных с формы
-     * @param func Выполняемая функция после отправки данных
-     * @param stopIsNotValidate Валидация формы true/false
-     * @param activeAntiSpam
-     */
-	$.fn.formAjax = function (func, stopIsNotValidate = formStopIsNotValidate, activeAntiSpam = formActiveAntiSpam) {
-		let th = this;
+      setTimeout(() => {
+        th.removeClass(successClass);
+        th.removeClass(errorClass);
+      }, removeClassTimeout);
+    });
+  };
 
-		// Защита от спама
-		if (activeAntiSpam) {
-			setTimeout(() => {
-				th.append(`<input type="hidden" name="hash" class="hash" value="${formAntiSpamHashKey}">`);
-			}, 1000);
-		}
+  /**
+   * Отправка данных с формы
+   * @param func Выполняемая функция после отправки данных
+   * @param stopIsNotValidate Валидация формы true/false
+   * @param activeAntiSpam Включить проверку на спам. Добавляем скрытое поле в форму для отправки на скрипт.
+   */
+  $.fn.formAjax = function (func, stopIsNotValidate = true, activeAntiSpam = true, antiSpamHashKey = 'success') {
+    let th = this;
 
-		// Отлавливаем событие нажатия на сабмит
-		this.on('submit', function (e) {
-			let form = $(this);
+    // Защита от спама
+    if (activeAntiSpam) {
+      setTimeout(() => {
+        th.append(`<input type="hidden" name="hash" class="hash" value="${antiSpamHashKey}">`);
+      }, 1000);
+    }
 
-			e.preventDefault();
-			if (!stopIsNotValidate) {
-				ajaxPost(form, form.attr('action'), form.serialize(), func);
-			} else {
-				let error = 0;
+    // Отлавливаем событие нажатия на сабмит
+    this.on('submit', function (e) {
+      let form = $(this);
 
-				form.find('input').each(function () {
-					let field = $(this);
+      e.preventDefault();
+      if (!stopIsNotValidate) {
+        ajaxPost(form, form.attr('action'), form.serialize(), func);
+      } else {
+        let error = 0;
 
-					if (!field.fieldValidate()) {
-						error += 1;
-						field.change();
-					}
-				});
-				if (error === 0) {
-					ajaxPost(form, form.attr('action'), form.serialize(), func);
-				}
-			}
+        form.find('input').each(function () {
+          let field = $(this);
 
-			return false;
-		});
-	};
+          if (!field.fieldValidate()) {
+            error += 1;
+            field.change();
+          }
+        });
+        if (error === 0) {
+          ajaxPost(form, form.attr('action'), form.serialize(), func);
+        }
+      }
+
+      return false;
+    });
+  };
 })(jQuery);
