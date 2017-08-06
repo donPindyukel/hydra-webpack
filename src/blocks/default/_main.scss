@@ -73,3 +73,11 @@ button {
 	@include button(#cccccc, rem(10));
 	@include size(rem(600));
 }
+
+.grid {
+	@include grid();
+
+	.column {
+		@include column(1, rem(20), rem(20));
+	}
+}

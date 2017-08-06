@@ -12,10 +12,11 @@
 }
 
 // Создание сетки
-@mixin grid($max-width: inherit, $direction: column, $align-items: center) {
+@mixin grid($max-width: inherit, $direction: row, $align-items: center, $wrap: nowrap) {
 	display: flex;
 	flex-direction: $direction;
 	align-items: $align-items;
+	flex-wrap: $wrap;
 }
 
 // Столбец сетки
@@ -23,6 +24,7 @@
 	flex: $width;
 	padding: $padding;
 	$margin: $margin;
+	box-sizing: border-box;
 }
 
 // Размеры элемента
