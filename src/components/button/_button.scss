@@ -3,7 +3,7 @@
 // ==========================================================================
 
 // Создание кнопки
-@mixin button($color-bg, $padding: 0, $max-width: inherit, $blink: false) {
+@mixin button($color-bg, $padding: 0, $blink: false) {
 	$color-bg-hover: darken($color-bg, 10%);
 
 	@include hover {
@@ -18,7 +18,6 @@
 	}
 
 	display: inline-block;
-	max-width: $max-width;
 	padding: $padding;
 	cursor: pointer;
 	user-select: none;
@@ -33,7 +32,7 @@
 
 	// Эффект поблескивания
 	@if ($blink) {
-		$blink-color: lighten($color-bg, 5%);
+		$blink-color: lighten($color-bg, 3%);
 
 		position: relative;
 		overflow: hidden;

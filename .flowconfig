@@ -1,6 +1,0 @@
-[ignore]
-.*/node_modules/**/.*
-.*/bower_components/**/.*
-.*/node_modules/gulp-flowtype/.*
-[libs]
-./src/**/*.js

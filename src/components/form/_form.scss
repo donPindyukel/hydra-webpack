@@ -3,7 +3,7 @@
 // ==========================================================================
 
 // Создание input
-@mixin input($color-bg, $padding: 0, $max-width: inherit) {
+@mixin input($color-bg, $padding: 0) {
 	$color-bg-hover: darken($color-bg, 3%);
 
 	@include hover {
@@ -19,7 +19,6 @@
 
 	display: inline-block;
 	width: 100%;
-	max-width: $max-width;
 	padding: $padding;
 	vertical-align: middle;
 	white-space: nowrap;
@@ -28,7 +27,7 @@
 }
 
 // Создание select
-@mixin form-select($color-bg, $img-dwopdown, $padding: 0, $max-width: inherit) {
+@mixin form-select($color-bg, $img-dwopdown, $padding: 0) {
 	$color-bg-hover: darken($color-bg, 4%);
 
 	@include hover {
@@ -45,7 +44,6 @@
 	display: inline-block;
 	box-sizing: border-box;
 	width: 100%;
-	max-width: $max-width;
 	padding: $padding;
 	vertical-align: middle;
 	white-space: nowrap;
@@ -132,7 +130,7 @@
 }
 
 // Создание range slider
-@mixin form-range($size-pointer, $bg-slider, $bg-pointer, $size-pointer) {
+@mixin form-range($size-pointer, $bg-slider, $bg-pointer) {
 	position: relative;
 	margin: 0 auto;
 	padding: 0;

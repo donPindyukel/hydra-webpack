@@ -109,9 +109,7 @@ if (commandType === 'update') {
       ncp('./update/src/components', './src/components', (err) => { if (err) return console.error(err); });
       ncp('./update/.csscomb.json', './.csscomb.json', (err) => { if (err) return console.error(err); });
       ncp('./update/.eslintrc.json', './.eslintrc.json', (err) => { if (err) return console.error(err); });
-      ncp('./update/.flowconfig', './.flowconfig', (err) => { if (err) return console.error(err); });
       ncp('./update/.pug-lintrc.json', './.pug-lintrc.json', (err) => { if (err) return console.error(err); });
-      ncp('./update/bower.json', './bower.json', (err) => { if (err) return console.error(err); });
       ncp('./update/gulpfile.js', './gulpfile.js', (err) => { if (err) return console.error(err); });
 
       ncp('./update/hydra.js', './hydra.js', (err) => { if (err) return console.error(err); });

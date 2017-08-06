@@ -64,14 +64,15 @@ a {
 }
 
 input {
-	@include input(#ccc, rem(10), rem(300));
+	@include size(rem(200));
+	@include input(#ccc, rem(10));
 	@include font($color-text, $font-size-normal, $font-family-normal);
 }
 
 button {
 	@include font($color-text, $font-size-normal, $font-family-normal);
-	@include button(#cccccc, rem(10));
-	@include size(rem(600));
+	@include button(#cccccc, rem(10), true);
+	@include size(rem(200));
 }
 
 .grid {

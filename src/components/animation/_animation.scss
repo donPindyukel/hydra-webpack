@@ -2,11 +2,9 @@
 // Компонент анимации
 // ==========================================================================
 
-// Создание анимации.
-// name - тип анимации (pulse, rotate, fadeIn, fadeOut)
-// duration - скорость анимации
-// iteration - количество повторений
-@mixin animated($name, $duration: 1s, $iteration: 1) {
+// Присвоение классу анимации
+// name - pulse, rotate, fadeIn, fadeOut
+@mixin animated($name: 'pulse', $duration: 1s, $iteration: 1) {
 	animation-duration: $duration;
 	animation-timing-function: linear;
 	animation-iteration-count: $iteration;
