@@ -87,3 +87,7 @@ button {
 	@include sizevh(rem(200), rem(200), rem(640));
 	background: red;
 }
+
+.test__icon {
+	@include after-icon(rem(20), rem(20), rem(5), './img/radio-checked.png');
+}
