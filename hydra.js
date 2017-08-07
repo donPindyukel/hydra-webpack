@@ -115,6 +115,9 @@ if (commandType === 'update') {
       ncp('./update/hydra.js', './hydra.js', (err) => { if (err) return console.error(err); });
       ncp('./update/package.json', './package.json', (err) => { if (err) return console.error(err); });
 
+      ncp('./update/.gitlab-ci.yml', './.gitlab-ci.yml', (err) => { if (err) return console.error(err); });
+      ncp('./update/.travis.yml', './.travis.yml', (err) => { if (err) return console.error(err); });
+
       setTimeout(() => {
         rimraf('./update', () => {
           console.log('Временная директория удалена.');
