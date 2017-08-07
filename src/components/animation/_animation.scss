@@ -5,11 +5,11 @@
 // Присвоение классу анимации
 // name - pulse, rotate, fadeIn, fadeOut
 @mixin animated($name: 'pulse', $duration: 1s, $iteration: 1) {
+	animation-name: $name;
 	animation-duration: $duration;
 	animation-timing-function: linear;
 	animation-iteration-count: $iteration;
 
-	animation-name: $name;
 	animation-fill-mode: both;
 
 	@if ($name == 'pulse') {

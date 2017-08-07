@@ -82,3 +82,8 @@ button {
 		@include column(1, rem(20), rem(20));
 	}
 }
+
+.test-height {
+	@include sizevh(rem(200), rem(200), rem(640));
+	background: red;
+}
