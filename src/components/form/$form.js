@@ -114,7 +114,7 @@ function ajaxPost(form, url, params, func) {
 
   /**
    * Проверка поля на прохождение валидации
-   * @param dataParamsName имя атрибута с которого брать числовое значение для валидации
+   * @param dataParamsName Имя атрибута с которого брать числовое значение для валидации
    * @returns {boolean}
    */
   $.fn.fieldValidate = function (dataParamsName) {
@@ -167,9 +167,11 @@ function ajaxPost(form, url, params, func) {
    * Отправка данных с формы
    * @param func Выполняемая функция после отправки данных
    * @param stopIsNotValidate Валидация формы true/false
+   * @param dataParamsName Имя дата-атрибута, с которого брать число/true/false для проверки валидации.
    * @param activeAntiSpam Включить проверку на спам. Добавляем скрытое поле в форму для отправки на скрипт.
+   * @param antiSpamHashKey Содержимое скрытого поля для антиспам системы, проверяется на бэкэнде.
    */
-  $.fn.formAjax = function (func, stopIsNotValidate = true, activeAntiSpam = true, antiSpamHashKey = 'success') {
+  $.fn.formAjax = function (func, stopIsNotValidate = false, dataParamsName = 'valid', activeAntiSpam = false, antiSpamHashKey = 'success') {
     let th = this;
 
     // Защита от спама

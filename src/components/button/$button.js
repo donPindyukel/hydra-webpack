@@ -6,7 +6,7 @@
   /**
    * Функционал фильтровки выводимого контента.
    * @param globalClass - общий класс контента, которым нужно управлять
-   * @param dataTargetName - атрибут у кнопки и элемента для указания уникального ключа
+   * @param dataName - атрибут у кнопки и элемента для указания уникального ключа
    * @param hideClass - класс для скрытия элементов
    */
   $.fn.buttonFilter = function (globalClass, dataName, hideClass) {
