@@ -17,6 +17,7 @@
 
 // Создание сетки
 @mixin grid($max-width: inherit, $direction: row, $align-items: center, $wrap: nowrap) {
+	max-width: $max-width;
 	display: flex;
 	flex-direction: $direction;
 	margin: 0 auto;
@@ -47,11 +48,14 @@
 }
 
 // Адаптивные Размеры (ширина и длина) элемента
-@mixin sizevh($width, $height, $container-width) {
-	width: $width / $container-width * 100vmin;
+@mixin sizevh($width, $height: null, $width-container: 1200px) {
+	width: $width / $width-container * 100vmin;
 	max-width: $width;
-	height: $height / $container-width * 100vmin;
-	max-height: $height;
+
+	@if ($height != null) {
+		height: $height / $width-container * 100vmin;
+		max-height: $height;
+	}
 }
 
 // 

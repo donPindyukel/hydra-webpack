@@ -42,3 +42,15 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+// Адаптивный размер шрифта
+@mixin font-adaptive($font-size, $width-container, $line-height: null, $letter-spacing: null) {
+		font-size: $font-size / $width-container * 100vmin;
+		
+		@if ($line-height != null) {
+			line-height: $line-height / $width-container * 100vmin;
+		}
+		@if ($letter-spacing != null) {
+			letter-spacing: $letter-spacing / $width-container * 100vmin;
+		}
+}
