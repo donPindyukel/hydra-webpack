@@ -33,7 +33,7 @@ function ajaxPost(form, url, params, func) {
   httpRequest.onload = function () {
     func(form, httpRequest.responseText, httpRequest.status);
   };
-  httpRequest.send(encodeURI(params));
+  httpRequest.send(params);
 }
 
 (function ($) {

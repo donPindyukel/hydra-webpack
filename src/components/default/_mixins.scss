@@ -11,7 +11,7 @@
 	display: block;
 	width: 100%;
 	max-width: $max-width;
-	height: $height;
+	min-height: $height;
 	margin: $margin auto;
 }
 
@@ -43,8 +43,9 @@
 // Размеры (ширина и длина) элемента
 @mixin size($width, $height: auto) {
 	width: 100%;
-	max-width: $width;
-	height: $height;
+  max-width: $width;
+  height: auto;
+	min-height: $height;
 }
 
 // Адаптивные Размеры (ширина и длина) элемента
