@@ -12,7 +12,6 @@
     "csscomb": "4.2.0",
     "rimraf": "2.6.1",
     "browser-sync": "2.18.12",
-    "rimraf": "2.6.1",
     "imagemin-pngquant": "5.0.1",
     "gulp": "3.8.11",
     "gulp-rename": "1.2.2",

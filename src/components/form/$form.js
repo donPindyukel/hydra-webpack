@@ -194,7 +194,7 @@ function ajaxPost(form, url, params, func) {
         form.find('input').each(function () {
           let field = $(this);
 
-          if (!field.fieldValidate()) {
+          if (!field.fieldValidate(dataParamsName)) {
             error += 1;
             field.change();
           }
