@@ -46,7 +46,7 @@
       $(window).scroll(() => {
         if (showIfVisibleEnd === false) {
           // Вычисляем срабатываемую область
-          let customOffset = document.body.scrollTop + window.innerHeight;
+          let customOffset = $(document).scrollTop() + window.innerHeight;
 
           customOffset -= customOffset * offset;
 
