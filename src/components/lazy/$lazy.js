@@ -3,101 +3,104 @@
 // ==========================================================================
 
 (function ($) {
-	/**
-	 * Прелоадер на странице, который скрывает весь контент
-	 * и исчезает после окончания загрузки страницы
-	 * @param hideClass - имя скрывающего контент класса
-	 * @param func - функция, которую нужно запустить при срабатывании
-	 */
-	$.fn.lazyPreloader = function (hideClass = globalHideClass, func = function () {}) {
-		let th = this;
+  /**
+   * Прелоадер на странице, который скрывает весь контент
+   * и исчезает после окончания загрузки страницы
+   * @param hideClass - имя скрывающего контент класса
+   * @param func - функция, которую нужно запустить при срабатывании
+   */
+  $.fn.lazyPreloader = function (hideClass, func = function () {}) {
+    let th = this;
 
-		$(window).on('load', () => {
-			th.fadeOut(300);
-			th.addClassTimeout(hideClass, 300);
-		});
-	};
+    $(window).on('load', () => {
+      th.fadeOut(300);
 
-	/**
-	 * Применять стили к элементу, если доскролили до него
-	 * @param offset изменить радиус воздействия, от 0 до 1 (% соотношение)
-	 * @param addClass - имя класса для добавления при срабатывании
-	 * @param removeClass - имя класса для удаления при срабатывании
-	 * @param func - функция, которую нужно запустить при срабатывании
-	 */
-	$.fn.lazyShowIfVisible = function (offset = 0, addClass = 'show', removeClass = 'hide', func = function () {}) {
-		this.each(function () {
-			let th = $(this);
-			let showIfVisibleEnd = false;
+      setTimeout(() => {
+        th.addClass(hideClass);
+      }, 300);
+    });
+  };
 
-			// Получаем положение элемента относительно начала страницы
-			let elementOffset = th.offset().top;
+  /**
+   * Применять стили к элементу, если доскролили до него
+   * @param addClass - имя класса для добавления при срабатывании
+   * @param removeClass - имя класса для удаления при срабатывании
+   * @param offset изменить радиус воздействия, от 0 до 1 (% соотношение)
+   * @param func - функция, которую нужно запустить при срабатывании
+   */
+  $.fn.lazyShowIfVisible = function (addClass, removeClass, offset = 0, func = function () {}) {
+    this.each(function () {
+      let th = $(this);
+      let showIfVisibleEnd = false;
 
-			// Если не можем определить, берем отступ у родителя
-			if (elementOffset === 0) {
-				let parentElement = th.parent();
+      // Получаем положение элемента относительно начала страницы
+      let elementOffset = th.offset().top;
 
-				elementOffset = parentElement.offset().top;
-			}
+      // Если не можем определить, берем отступ у родителя
+      if (elementOffset === 0) {
+        let parentElement = th.parent();
 
-			$(window).scroll(() => {
-				if (showIfVisibleEnd === false) {
-					// Вычисляем срабатываемую область
-					let customOffset = document.body.scrollTop + window.innerHeight;
+        elementOffset = parentElement.offset().top;
+      }
 
-					customOffset -= customOffset * offset;
+      $(window).scroll(() => {
+        if (showIfVisibleEnd === false) {
+          // Вычисляем срабатываемую область
+          let customOffset = $(document).scrollTop() + window.innerHeight;
 
-					// Если мы дошли до элемента, применяем стили функцию
-					if (customOffset > elementOffset) {
-						if (addClass !== null) {
-							th.addClass(addClass);
-						}
-						if (removeClass !== null) {
-							th.removeClass(removeClass);
-						}
-						func(th);
-						showIfVisibleEnd = true;
-					}
-				}
-			});
-		});
-	};
+          customOffset -= customOffset * offset;
 
-	/**
-	 * Ленивая загрузка изображений. Показывает изображение при прокрутке страницы.
-	 * @param type - тип ленивой загрузки (img, bg)
-	 * @param dataName - имя дата аттрибута, откуда брать ссылку на изображение
-	 * @param showAfterReadyPage показать изображение после загрузки страницы
-	 * @param func - функция, которую нужно запустить при срабатывании
-	 */
-	$.fn.lazyLoadImage = function (type = 'img', dataName = 'src', showAfterReadyPage = false, func = function () {}) {
-		let dataSrc = null;
-		let th = $(this);
+          // Если мы дошли до элемента, применяем стили функцию
+          if (customOffset > elementOffset) {
+            if (addClass !== null) {
+              th.addClass(addClass);
+            }
+            if (removeClass !== null) {
+              th.removeClass(removeClass);
+            }
+            func(th);
+            showIfVisibleEnd = true;
+          }
+        }
+      });
+    });
+  };
 
-		if (th.data(dataName)) {
-			dataSrc = th.data(dataName);
+  /**
+   * Ленивая загрузка изображений. Показывает изображение при прокрутке страницы.
+   * @param type - тип ленивой загрузки (img, bg)
+   * @param dataName - имя дата аттрибута, откуда брать ссылку на изображение
+   * @param showAfterReadyPage показать изображение после загрузки страницы
+   * @param func - функция, которую нужно запустить при срабатывании
+   */
+  $.fn.lazyLoadImage = function (type, dataName, showAfterReadyPage = false, func = () => {}) {
+    let dataSrc = null;
+    let th = $(this);
 
-			// Прогружать при пролистывании
-			th.lazyShowIfVisible(0, null, null, () => {
-				if (type === 'img') {
-					th.attr('src', dataSrc);
-				} else if (type === 'bg') {
-					th.attr('style', `background-image: url(${dataSrc})`);
-				}
-			});
+    if (th.data(dataName)) {
+      dataSrc = th.data(dataName);
 
-			// Прогружать после загрузки страницы
-			if (showAfterReadyPage) {
-				$(window).on('load', () => {
-					setTimeout(() => {
-						if (type === 'img') {
-							th.attr('src', dataSrc);
-						} else if (type === 'bg') {
-							th.attr('style', `background-image: url(${dataSrc})`);
-						}
-					}, 1000);
-				});
-			}
-		}
-	};
+      // Прогружать при пролистывании
+      th.lazyShowIfVisible(0, null, null, () => {
+        if (type === 'img') {
+          th.attr('src', dataSrc);
+        } else if (type === 'bg') {
+          th.attr('style', `background-image: url(${dataSrc})`);
+        }
+      });
+
+      // Прогружать после загрузки страницы
+      if (showAfterReadyPage) {
+        $(window).on('load', () => {
+          setTimeout(() => {
+            if (type === 'img') {
+              th.attr('src', dataSrc);
+            } else if (type === 'bg') {
+              th.attr('style', `background-image: url(${dataSrc})`);
+            }
+          }, 1000);
+        });
+      }
+    }
+  };
 })(jQuery);

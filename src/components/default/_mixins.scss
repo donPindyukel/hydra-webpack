@@ -1,0 +1,148 @@
+// ==========================================================================
+// Вспомогательные миксины
+// ==========================================================================
+
+// 
+// Контейнер и сетка
+//
+
+// Создание контейнера
+@mixin container($max-width: inherit, $height: auto, $margin: 0) {
+	display: block;
+	width: 100%;
+	max-width: $max-width;
+	min-height: $height;
+	margin: $margin auto;
+}
+
+// Создание сетки
+@mixin grid($max-width: inherit, $direction: row, $align-items: center, $wrap: nowrap) {
+	max-width: $max-width;
+	display: flex;
+	flex-direction: $direction;
+	margin: 0 auto;
+
+	align-items: $align-items;
+	flex-wrap: $wrap;
+}
+
+// Столбец сетки
+@mixin column($width: 1, $padding: 0, $margin: 0) {
+	$margin: $margin;
+
+	box-sizing: border-box;
+	padding: $padding;
+
+	flex: $width;
+}
+
+// 
+// Размеры элементов
+//
+
+// Размеры (ширина и длина) элемента
+@mixin size($width, $height: auto) {
+	width: 100%;
+  max-width: $width;
+  height: auto;
+	min-height: $height;
+}
+
+// Адаптивные Размеры (ширина и длина) элемента
+@mixin sizevh($width, $height: null, $width-container: 1200px) {
+	width: $width / $width-container * 100vmin;
+	max-width: $width;
+
+	@if ($height != null) {
+		height: $height / $width-container * 100vmin;
+		max-height: $height;
+	}
+}
+
+// 
+// Псевдоэлементы и события
+//
+
+// Наведение на элемент
+@mixin hover {
+	&:hover,
+	.hover {
+		@content;
+	}
+}
+
+// Фокус на элемент
+@mixin focus {
+	&:focus,
+	.focus {
+		@content;
+	}
+}
+
+// Псевдоэлемент after
+@mixin after {
+	&:after,
+	.after {
+		content: '';
+		@content;
+	}
+}
+
+// Псевдоэлемент before
+@mixin before {
+	&:before,
+	.before {
+		content: '';
+		@content;
+	}
+}
+
+// Миксин для создания иконки перед текстом
+@mixin before-icon($width, $height, $top, $bg-image) {
+	@include before {
+		width: $width;
+		height: $height;
+		position: relative;
+		display: inline-block;
+		top: $top;
+		background: transparent url($bg-image) no-repeat center;
+		background-size: contain;
+	}
+}
+
+// Миксин для создания иконки после текста
+@mixin after-icon($width, $height, $top, $bg-image) {
+	@include after {
+		width: $width;
+		height: $height;
+		position: relative;
+		display: inline-block;
+		top: $top;
+		background: transparent url($bg-image) no-repeat center;
+		background-size: contain;
+	}
+}
+
+// 
+// Адаптивность
+//
+
+// Скрыть с экрана
+@mixin hide {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+// Медиа запросы
+@mixin media($max-width, $min-width: 0) {
+	@if ($min-width > 0) {
+		@media (min-width: $min-width) and (max-width: $max-width) {
+			@content;
+		}
+	}
+	@else {
+		@media (max-width: $max-width) {
+			@content;
+		}
+	}
+}

@@ -1,7 +1,18 @@
-include ../blocks/global/head
+include ../blocks/default/head
 
-div#app
-	p  {{ message }}
+div.container Test content - container
+	br
+	div.test-height
+
+div.grid 
+	div.column 
+		span.test__icon Test 1
+	div.column Test 2
+	div.column Test 3
+		br
+		| Test 3
+		br
+		| Test 3
 
 h1 H1 TITLE ЗАГОЛОВОК / h1 title заголовок
 h2 H2 TITLE ЗАГОЛОВОК / h2 title заголовок
@@ -27,10 +38,10 @@ a(href='#' data-id='test' target='blank') LINK ССЫЛКА / link ссылка
 br
 br
 
-form(action='#' method='post')
+form(action='send.php' method='post')
 	input(type='text' name='name' placeholder='Введи текст')
 	input(type='text' name='name' placeholder='Введи текст')
 	input(type='text' name='name' placeholder='Введи текст')
 	button.button(type='submit') Отправить с формы
 
-include ../blocks/global/foot
+include ../blocks/default/foot

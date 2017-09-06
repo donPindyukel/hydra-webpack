@@ -1,0 +1,26 @@
+image: node:6
+
+before_script:
+  - npm install -g gulp
+  - npm install
+
+stages:
+  - test
+  - build
+
+test:
+    stage: build
+    script:
+      - gulp js:lint
+      - gulp pug:lint
+    only:
+      - master
+      - develop
+
+build:
+    stage: build
+    script:
+      - gulp build
+    only:
+      - master
+      - develop

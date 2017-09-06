@@ -19,6 +19,17 @@
 		{
 			"img": [
 				"alt"
+			], 
+			"a": [
+				"href"
+			], 
+			"form": [
+				"action",
+				"method"
+			], 
+			"input": [
+				"type",
+				"name"
 			]
 		}
 	],

@@ -1,0 +1,93 @@
+// ==========================================================================
+// Глобальные стили
+// ==========================================================================
+
+html,
+body {
+	font-family: $font-family-normal;
+	font-size: $font-size-normal;
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	letter-spacing: normal;
+	color: $color-text;
+	background: $color-bg;
+}
+
+h1 {
+	@include font($color-text, $font-size-h1, $font-family-headers);
+}
+
+h2 {
+	@include font($color-text, $font-size-h2, $font-family-headers);
+}
+
+h3 {
+	@include font($color-text, $font-size-h3, $font-family-headers);
+}
+
+h4 {
+	@include font($color-text, $font-size-h4, $font-family-headers);
+}
+
+h5 {
+	@include font($color-text, $font-size-h5, $font-family-headers);
+}
+
+h6 {
+	@include font($color-text, $font-size-h6, $font-family-headers);
+}
+
+p {
+	@include font($color-text, $font-size-normal, $font-family-normal);
+}
+
+a {
+	@include font($color-text, $font-size-normal, $font-family-normal);
+}
+
+.hide {
+	display: none !important;
+}
+
+.no-visible {
+	visibility: hidden !important;
+}
+
+//
+// Для теста, удалить при разработке
+//
+
+.container {
+	@include container($width-container, auto, rem(20));
+}
+
+input {
+	@include size(rem(200));
+	@include input(#ccc, rem(10));
+	@include font($color-text, $font-size-normal, $font-family-normal);
+}
+
+button {
+	@include font($color-text, $font-size-normal, $font-family-normal);
+	@include button(#cccccc, rem(10), true);
+	@include size(rem(200));
+}
+
+.grid {
+	@include grid();
+
+	.column {
+		@include column(1, rem(20), rem(20));
+	}
+}
+
+.test-height {
+	@include sizevh(rem(200), rem(200), rem(640));
+	background: red;
+}
+
+.test__icon {
+	@include after-icon(rem(20), rem(20), rem(5), './img/radio-checked.png');
+}
