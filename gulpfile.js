@@ -167,22 +167,6 @@ gulp.task('image:build', () => {
     .pipe(rename({
       dirname: '',
     }))
-    .pipe(imagemin([
-      imagemin.gifsicle({
-        interlaced: true,
-      }),
-      imagemin.jpegtran({
-        progressive: true,
-      }),
-      imagemin.optipng({
-        optimizationLevel: 5,
-      }),
-      imagemin.svgo({
-        plugins: [{
-          removeViewBox: true,
-        }],
-      }),
-    ]))
     .pipe(gulp.dest(path.build.img))
     .pipe(reload({
       stream: true,
