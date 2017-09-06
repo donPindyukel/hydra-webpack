@@ -36,7 +36,7 @@
 	"requireStrictEqualityOperators": true,
 	"validateAttributeQuoteMarks": "'",
 	"validateAttributeSeparator": " ",
-	"validateIndentation": "\t",
+	"validateIndentation": 2,
 	"validateLineBreaks": "LF",
 	"validateSelfClosingTags": true
 }

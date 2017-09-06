@@ -4,9 +4,8 @@
 ### Основные технологии разработки
 - Gulp
 - Pug
-- Leaf (Vapor)
 - Php
-- SCSS
+- Sass/Scss
 - ES6
 
 ### Установка
